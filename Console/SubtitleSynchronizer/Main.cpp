@@ -4,7 +4,9 @@
 * Notes   :  
 *   Basic cmd line implementation of SubSync
 *	  Old string related methods are replaced with Secure versions
-*                
+*   Note: !!Danger!!
+*    Be aware of a number of string manipulation of using pointers!!
+* Build   : MBCS, Console, x64
 *******************************************************/
 #include <cstdio>
 #include <cstdlib>
@@ -35,7 +37,7 @@ typedef struct TimeObjType {
 
 // Load time from timestamp line of subrip file, which is passed here as string
 void LoadTime(char *str, TimeType* T1, TimeType* T2) {
-  char *delim=":, ";
+  char delim[4] = ":, ";
   char *token;
   char *next_token = NULL;
   char dbgstr[10000];
@@ -212,7 +214,7 @@ bool ContainsTimestamp(const char* str) {
 }
 
 // Open input file for read and output file for writing
-void SAOpenFile(char* fpath) {
+void ValidateAndOpenFile(char* fpath) {
   int len = strlen(fpath);
   char* readfilepath = NULL;
   char* writefilepath = NULL;
@@ -268,14 +270,14 @@ int ReadSequenceNumber(const char* str) {
 }
 
 // set options from argument time different
-//   isfast means whether to make delay or do the opposite
-void ReadDiffTime(char *difftimestr, TimeType* difftime, bool* isfast) {
+//   isSubtitleFast: whether to make delay or do the opposite
+void ReadDiffTime(char *difftimestr, TimeType* difftime, bool* isSubtitleFast) {
   if (*difftimestr == '+') {
-    *isfast = true;
+    *isSubtitleFast = true;
     difftimestr++;
   }
   else if (*difftimestr == '-') {
-    *isfast = false;
+    *isSubtitleFast = false;
     difftimestr++;
   }
   else if (saIsDigit(*difftimestr) == false)  {
@@ -283,9 +285,9 @@ void ReadDiffTime(char *difftimestr, TimeType* difftime, bool* isfast) {
     exit(EXIT_FAILURE);
   }
   else // still correct; default is true
-    *isfast = true;
+    *isSubtitleFast = true;
 
-  char *delim=":, ";
+  char delim[4] = ":, ";
   char *token;
   char *next_token = NULL;
   // Get hour
@@ -307,28 +309,28 @@ void ReadDiffTime(char *difftimestr, TimeType* difftime, bool* isfast) {
 
 
 int main(int argc, char* argv[]) {
-  bool IsSubFast = true;
+  bool isSubtitleFast = true;
   char linestr[300];
 
-  puts("\nSA SybSync 0.94\n");
+  puts("\nSubtitle Synchronizer 0.95\n");
   if (argc != 4) {
-    printf("You provided %d number of cmd args. They are\n", argc);
+    printf("You provided %d cmd arg(s). They are\n", argc-1);
     for (int i=1; i<argc; i++)
       printf("%d. %s\n", i, argv[i]);
 
     puts("SubMod: incorrect commandline. Number of arguments should be 3. They are:"
       "\n1. srt file location"
       "\n2. [+/-]H:M:S,M (+ to make delay)"
-      "\n3. Sequence Offset (put a zero for default)");
+      "\n3. Sequence Offset (put a zero for default): this is sequence number that precedes every caption.");
     exit(EXIT_FAILURE);
   }
 
   // Validate and process arg 1
-  SAOpenFile(argv[1]);
+  ValidateAndOpenFile(argv[1]);
 
   TimeType BeginTime, EndTime, DiffTime;
   // Validate and process arg 2
-  ReadDiffTime(argv[2], &DiffTime, &IsSubFast);
+  ReadDiffTime(argv[2], &DiffTime, &isSubtitleFast);
 
   int sequenceOffset = ReadSequenceNumber(argv[3]);
   printf("Got offset here: %d\n", sequenceOffset);
@@ -357,8 +359,9 @@ int main(int argc, char* argv[]) {
         continue;
       }
     }
-        //else
-          //  printf("got line %s with len %d, last char %d, %d\n", linestr, len, linestr[len-2], linestr[len-1]);
+    // Debug print
+    // else
+      //  printf("got line %s with len %d, last char %d, %d\n", linestr, len, linestr[len-2], linestr[len-1]);
         
 
     if (ContainsTimestamp(linestr) == false) {
@@ -371,7 +374,7 @@ int main(int argc, char* argv[]) {
 
     // remove spaces from beginning and trail
     LoadTime(linestr, &BeginTime, &EndTime);
-    if (IsSubFast == true) {
+    if (isSubtitleFast == true) {
       AddTime(&BeginTime, &DiffTime);
       AddTime(&EndTime, &DiffTime);
     }
