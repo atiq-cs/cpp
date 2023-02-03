@@ -36,3 +36,21 @@ Providing wrong argument leads to a help output like this below,
     1. srt file location
     2. [+/-]H:M:S,M (+ to make delay)
     3. Sequence Offset (put a zero for default): this is sequence number that precedes every caption.
+
+
+**dll deps**  
+Via `dumpbin`,
+
+    $ dumpbin /DEPENDENTS x64\Release\SubSync.exe
+    Image has the following dependencies:
+
+    VCRUNTIME140.dll
+    api-ms-win-crt-runtime-l1-1-0.dll
+    api-ms-win-crt-string-l1-1-0.dll
+    api-ms-win-crt-stdio-l1-1-0.dll
+    api-ms-win-crt-heap-l1-1-0.dll
+    api-ms-win-crt-convert-l1-1-0.dll
+    api-ms-win-crt-math-l1-1-0.dll
+    api-ms-win-crt-locale-l1-1-0.dll
+    KERNEL32.dll
+
