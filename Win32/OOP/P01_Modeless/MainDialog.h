@@ -29,7 +29,7 @@ public:
 
     // WM_INITDIALOG
     HRESULT OnInitDialog();
-    DeviceAudioChipControl *m_DeviceControl;
+    DeviceAudioChipControl *m_pDeviceControl;
 
     // WM_COMMAND
     // INT_PTR OnCommand(HWND hControl, WORD idControl, WORD msg);
@@ -53,6 +53,6 @@ private:
     }
 
 private:
-    HWND            m_hDlg;     // this dialog window
+    HWND            m_hDlg;     // This dialog window
     int             m_nID;      // Resource ID of the dialog window 
 };

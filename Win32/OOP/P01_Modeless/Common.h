@@ -7,25 +7,30 @@
 //------------------------------------------------------------------------------
 
 #pragma once
-// defines the platform version here, we are enabling for Windows 7 or later
+// Target Platform version: Windows 7 or Later
 // N.B: ConvertUTF16ToUTF8 uses WINVER
 #define NTDDI_VERSION NTDDI_WIN7
 #define _WIN32_WINNT _WIN32_WINNT_WIN7
 
-#include <new>
 #include <SDKDDKVer.h>
 #include <windows.h>
-#include <tchar.h>
 #include "resource.h"
 #include "MainDialog.h"
+
+#include <stdlib.h>
+#include <malloc.h>
+#include <memory.h>
+#include <tchar.h>
+#include <new>
 
 //
 // PURPOSE: Provide most frequently used / common header files required for Win32 UI
 //
-// Author : Atiq Rahman
 // Date   : 11-2013
-// Comment: 
-//   Includes TCHAR: to resolve between Unicode or MBCS / ANSI
+// Comment: Includes,
+//  - TCHAR: to resolve between Unicode or MBCS / ANSI
+//  - Resource header file
+
 
 
 inline HINSTANCE GetInstance()

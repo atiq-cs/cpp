@@ -1,20 +1,23 @@
 //------------------------------------------------------------------------------
 //
 // File: MainDialog.h
-// Header for main dialog class
-// Copyright (c) Microsoft Corporation. All rights reserved.
+// Header for Main Dialog Class
 // 
-// Author   : Atique
-// Date     : November 2013
-// Desc     : defines the dialog class with HWND and dialog ID
-//             Declares ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
-//             Most importantly declares the dialog call back procedure DialogProc
-//             Declares function to process messages
 //------------------------------------------------------------------------------
 
 #pragma once
 // forward declaration
 class DeviceAudioChipControl;
+
+//
+// PURPOSE: Defines the dialog class with HWND and Dialog ID
+//
+// COMMENTS:
+//  Declares ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
+//  Most importantly declares the dialog call back procedure DialogProc
+//  Declares function to process messages
+//
+
 
 class MainDialog
 {

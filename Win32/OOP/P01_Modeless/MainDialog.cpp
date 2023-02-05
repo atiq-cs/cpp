@@ -2,17 +2,12 @@
 //
 // File: MainDialog.cpp
 // PURPOSE: OOP Definition of the Dialog Box of the App (constructor, destructor & methods)
+// Comment: Independent ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
 // 
 //------------------------------------------------------------------------------
-
 #include "Common.h"
 #include "MainDialog.h"
 #include "resource.h"
-
-//
-// Author : Atiq Rahman
-// Date   : 11-2013
-// Comment: Independent ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
 
 
 //-----------------------------------------------------------------------------
@@ -22,7 +17,7 @@
 MainDialog::MainDialog() : 
     m_nID(IDD_DIALOG_MAIN),
     m_hDlg(0),
-    m_DeviceControl(NULL)
+    m_pDeviceControl(NULL)
 {
     // allocate buffer for m_InputFileName
 
@@ -112,13 +107,14 @@ INT_PTR CALLBACK MainDialog::DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPAR
             // we haven't returned from CreateDialogParam, so m_hDlg is not valid yet, but we are using it in OnInitDialog
             // so let's initialize it
             pDlg->m_hDlg = hDlg;
+
             HRESULT hr = pDlg->OnInitDialog();
             bReturn = (hr > 0);
-            /*if (FAILED(hr))
-            {
-                pDlg->EndDialog(0);
-            }*/
-            SetDlgItemText(hDlg, IDC_STATIC_LOG_TEXT, _T("Test data on static text control updated by code"));
+            // if (FAILED(hr)) {
+            //     pDlg->EndDialog(0);
+            // }
+
+            SetDlgItemText(hDlg, IDC_STATIC_LOG_TEXT, _T("Satic text control (initialized by code)"));
         }
         return bReturn;
     }
@@ -152,7 +148,7 @@ BOOL MainDialog::ProcessMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lPar
         case WM_PAINT:
             hdc = BeginPaint(hDlg, &ps);
             TextOut(hdc, 60, 170, TEXT("Hello, Windows!"), 15);
-            _tcscat_s(dbgStr, 100, TEXT(" - Win32"));
+            _tcscat_s(dbgStr, 100, TEXT("[ Win32 App ]"));
             TextOut(hdc, 60, 210, dbgStr, (int) _tcslen(dbgStr));
             EndPaint(hDlg, &ps);
             return TRUE;

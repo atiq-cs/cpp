@@ -11,7 +11,7 @@
 // PURPOSE: Modeless Dialog Sample OOP with Keyboard Messaging
 //
 // Author : Atiq Rahman
-// Date   : 05-2014
+// Date   : 05-2014 (for few files, rest are from 11-2013)
 //
 
 //

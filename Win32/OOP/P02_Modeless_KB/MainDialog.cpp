@@ -2,16 +2,13 @@
 //
 // File: MainDialog.cpp
 // PURPOSE: OOP Definition of the Dialog Box of the App (constructor, destructor & methods)
+// Comment: Independent ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
 // 
 //------------------------------------------------------------------------------
 #include "Common.h"
 #include "MainDialog.h"
 #include "resource.h"
 
-//
-// Author : Atiq Rahman
-// Date   : 11-2013
-// Comment: Independent ShowDialog, OnInitDialog, GetHwnd, GetDlgItem & EndDialog
 
 //-----------------------------------------------------------------------------
 // Constructor

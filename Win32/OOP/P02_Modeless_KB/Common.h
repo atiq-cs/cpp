@@ -1,21 +1,16 @@
 //------------------------------------------------------------------------------
 //
-// File: OOPCommon.h
+// File: Common.h
 // Common header for our Windows application
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // 
-// Author    : Atique
-// Date        : November 2013
-// Desc        : Includes general Windows API
-//        Includes TCHAR because we use it to resolve Unicode
-//        And finally includes resource header file
 //------------------------------------------------------------------------------
 
 #pragma once
-// defines the platform version here, we are enabling for Windows 7 or later
+// Target Platform version: Windows 7 or Later
 // N.B: ConvertUTF16ToUTF8 uses WINVER
-// #define NTDDI_VERSION NTDDI_WIN7
-// #define _WIN32_WINNT _WIN32_WINNT_WIN7
+#define NTDDI_VERSION NTDDI_WIN7
+#define _WIN32_WINNT _WIN32_WINNT_WIN7
 
 #include <SDKDDKVer.h>
 #include <windows.h>
@@ -25,8 +20,17 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
-#include<tchar.h>
-#include<new>
+#include <tchar.h>
+#include <new>
+
+//
+// PURPOSE: Provide most frequently used / common header files required for Win32 UI
+//
+// Comment: Includes,
+//  - TCHAR: to resolve between Unicode or MBCS / ANSI
+//  - Resource header file
+
+
 
 inline HINSTANCE GetInstance()
 {
