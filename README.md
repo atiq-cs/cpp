@@ -34,6 +34,7 @@ In addition, command line references are provided for 2 build types
 To note about the CLs,
 - CL above are based on Visual Studio 2022 (around 2023-01).
 - Linker includes some OS specific libraries which might not be necessary for cross-platform C++ projects.
+- CL is simplified based on file name or paths without space. Those strings need to be surrounded by quotes when space is present in them.
 
 
 **Debug Builds**
