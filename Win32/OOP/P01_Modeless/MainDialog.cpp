@@ -139,7 +139,7 @@ INT_PTR CALLBACK MainDialog::DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPAR
             {
                 pDlg->EndDialog(0);
             }*/
-            SetDlgItemText(hDlg, IDC_STATIC_LOG_TEXT, _T("testing data on static control"));
+            SetDlgItemText(hDlg, IDC_STATIC_LOG_TEXT, _T("Test data on static text control updated by code"));
         }
         return bReturn;
     }

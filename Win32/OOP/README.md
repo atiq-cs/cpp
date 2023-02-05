@@ -12,7 +12,8 @@ For example, `hwndButton` for the button goes as a class member of the Main Wind
 - Base code without supporting keyboard events
 - Build and run status: successful
 
-![image](https://user-images.githubusercontent.com/7858031/216797647-4f1b2a77-87bc-4953-a200-5f9ff93488c7.png)
+
+![Screenshot of the running app](https://user-images.githubusercontent.com/7858031/216797833-ad281a5c-b468-41f7-a214-02d71c95b178.png)
 
 
 **P02_Modeless_KB**
