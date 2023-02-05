@@ -1,5 +1,4 @@
 ## OOP-Templates
-
 This Win32-SDK-Cpp-Template, minimal C++ code for creating Win32 Apps.
 
 **Window vs Dialog Based App**  
@@ -11,7 +10,11 @@ For example, `hwndButton` for the button goes as a class member of the Main Wind
 
 **P01_Modeless**  
 - Base code without supporting keyboard events
+- Build and run status: successful
 
-**P01_Modeless_KB**
+![image](https://user-images.githubusercontent.com/7858031/216797647-4f1b2a77-87bc-4953-a200-5f9ff93488c7.png)
+
+
+**P02_Modeless_KB**
 - Fixes keyboard messaging problem
 - Demonstrates how to disable pragma warning 4127
