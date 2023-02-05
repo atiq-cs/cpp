@@ -76,27 +76,6 @@ BOOL MainDialog::ShowDialog(HINSTANCE hinst)
         UpdateWindow(m_hDlg);
     }
 
-    // We dont's use DialogBoxParam, it defeats the purpose
-    //  modelss is what we require instead
-
-    /* Exclude from Release
-    // should not create modal dialog, we need to hide it
-    // Show the dialog. Pass a pointer to ourselves as the LPARAM
-    // ref: http://msdn.microsoft.com/en-us/library/windows/desktop/ms645465(v=vs.85).aspx
-    INT_PTR ret = DialogBoxParam(
-        hinst, 
-        MAKEINTRESOURCE(m_nID), 
-        NULL, 
-        DialogProc, 
-        (LPARAM)this
-        );
-
-    if (ret == 0 || ret == -1)
-    {
-        MessageBox( NULL, TEXT("Could not create dialog"), TEXT("Error"), MB_OK | MB_ICONERROR );
-        return FALSE;
-    }*/
-
     return TRUE;
 }
 
@@ -173,7 +152,7 @@ BOOL MainDialog::ProcessMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lPar
         case WM_PAINT:
             hdc = BeginPaint(hDlg, &ps);
             TextOut(hdc, 60, 170, TEXT("Hello, Windows!"), 15);
-            _tcscat_s(dbgStr, 100, TEXT(" - Atiq"));
+            _tcscat_s(dbgStr, 100, TEXT(" - Win32"));
             TextOut(hdc, 60, 210, dbgStr, (int) _tcslen(dbgStr));
             EndPaint(hDlg, &ps);
             return TRUE;
@@ -187,26 +166,15 @@ BOOL MainDialog::ProcessMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lPar
         // message for key up
         case WM_KEYUP:
             switch (LOWORD(wParam))
-
             {
-
             case VK_RETURN:
-
-                MessageBox(m_hDlg, L"Testing", 0, 0);
-
+                MessageBox(m_hDlg, L"VK Return button is released.", 0, 0);
                 return TRUE;
-
             }
+
             _stprintf_s(dbgStr, TEXT("%hu "), LOWORD(wParam));
             SetDlgItemText(m_hDlg, IDC_STATIC_LOG_TEXT, dbgStr);
             return TRUE;
-
-        /*case WM_DEVICECHANGE:
-        {
-            _tcscpy_s(dbgStr, TEXT("\r\nin WM_DEVICECHANGE\r\n"));
-            SetDlgItemText(m_hDlg, IDC_STATIC_LOG_TEXT, dbgStr);
-            return TRUE;
-        }*/
 
         case WM_DESTROY:
             // lResult = OnDestroy(hDlg, wParam, lParam);
@@ -248,7 +216,7 @@ BOOL MainDialog::ProcessMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lPar
             break;
     }
 
-    return(BOOL)lResult;
+    return (BOOL) lResult;
 }
 
 //---------------------------------------------------------------------------
