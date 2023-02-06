@@ -43,28 +43,6 @@ MainDialog.h
 Main.cpp (WinMain)
 - Messaging has been changed to use `PeekMessage` so that we can access `KEY_UP` messages and respond to them.
 
-For the template projects above, we don't create dialog boxes using `DialogBoxParam`  
-probably, because it creates Modal Dialog Boxes.
-
-Hence, following previous code was removed,
-```cpp
-// Show the dialog. Pass a pointer to ourselves as the LPARAM
-// ref, https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-dialogboxparama
-INT_PTR ret = DialogBoxParam(
-    hinst, 
-    MAKEINTRESOURCE(m_nID), 
-    NULL, 
-    DialogProc, 
-    (LPARAM)this
-    );
-
-if (ret == 0 || ret == -1)
-{
-    MessageBox( NULL, TEXT("Could not create dialog"), TEXT("Error"), MB_OK | MB_ICONERROR );
-    return FALSE;
-}
-```
-
 
 **Refs**  
 1. [SO - Keyboard Input & the Win32 message loop](http://stackoverflow.com/q/2441457)
