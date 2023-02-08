@@ -2,7 +2,7 @@
 
 ### Build
 **Common build instructions**  
-Create Dir for Binary Executables and Objects,
+First step is to create Dir for holding Binary Executables and Objects,
 
     New-Item -Type Directory x64\Release
 
@@ -27,7 +27,7 @@ Compile / link commands are presented in each directory per project type.
 
 *Win UI: yet to figure out how to build and deploy!*
 
-In addition, command line references are provided for 2 build types
+In addition, command line references are provided for 2 build types,
 - Debug
 - Release
 
@@ -37,7 +37,28 @@ To note about the CLs,
 - CL is simplified based on file name or paths without space. Those strings need to be surrounded by quotes when space is present in them.
 
 
-**Debug Builds**
+As per experience, cl, the compiler binary reports correct line number when an error is encountered,
+
+    $ cl /c /Zi /nologo /W4 /WX /diagnostics:column /O2 /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fox64\Release\ /Fdx64\Release\vc143.pdb /external:W4 /Gd /TP /FC *.cpp
+
+    Main.cpp
+    
+    cpp_all\Win32\OOP\P03_Wnd\Main.cpp(66,1): error C2220: the following warning is treated as an error
+    cpp_all\Win32\OOP\P03_Wnd\Main.cpp(57,1): note: while compiling class template member function 'BOOL BaseWindow<MainWindow>::Create(PCWSTR,DWORD,DWORD,int,int,int,int,HWND,HMENU)'
+    cpp_all\Win32\OOP\P03_Wnd\Main.cpp(183,3): note: see reference to function template instantiation 'BOOL BaseWindow<MainWindow>::Create(PCWSTR,DWORD,DWORD,int,int,int,int,HWND,HMENU)' being compiled
+    cpp_all\Win32\OOP\P03_Wnd\Main.cpp(128,1): note: see reference to class template instantiation 'BaseWindow<MainWindow>' being compiled
+    cpp_all\Win32\OOP\P03_Wnd\Main.cpp(66,1): warning C4302: 'type cast': truncation from 'LPWSTR' to 'WORD'
+
+
+There was indeed an incorrect conversion in following in line 66,
+
+    wcex.hIcon = LoadIcon(NULL, MAKEINTRESOURCE(IDI_APPLICATION));
+
+
+Hence, there is no reason to distrust the compiler.
+
+
+**Debug Builds**  
 For debug builds, we need to create the debug dir,
 
     New-Item -Type Directory x64\Debug
