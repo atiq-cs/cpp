@@ -2,7 +2,7 @@
 *Windows Classic Apps (raw Win32 C++)!*  **Danger ☠️ !!  Proceed with Caution!!**
 
 **Compile and Build**  
-*Resource compilation*,
+*Resource compilation*,  
 Assuming resource file is named 'Main.rc',
 
     rc /D _UNICODE /D UNICODE /l"0x0409" /nologo /fox64\Release\Main.res Main.rc
