@@ -1,5 +1,7 @@
 ## P03 Window Based Template
-OOP Skeleton with an actual Window as Base,
+\*\* *Note this is an outdated template compared to VS 2022. TODO: update it based on P04_VS2022*  
+
+This is an OOP Skeleton with an actual Window as Base.
 
 Previous two projects,
 - P01_Modeless, and,
