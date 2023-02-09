@@ -1,16 +1,24 @@
-### Console Projects  
-Should be followed for each project under this directory.
+## Console Projects  
+### Build Instructions
+Should be followed for each project under this directory. *[Projects under "WinConsole"](https://github.com/atiq-cs/cpp/tree/dev/WinConsole) should also follow this. However, projects under WinConsole might link to additional libraries, more details on WinConsole's ReadMe.*
 
-Hence the build command line follows like below,
+Build command line follows,
 
 **Compile and Build**  
+*Remember to set unicode flags if you are using unicode strings in your project.*  
+
 Compile (MBCS / legacy / non Unicode),
 
     cl /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Oi /GL /D NDEBUG /D _CONSOLE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /permissive- /Fox64\Release\ /Fdx64\Release\vc143.pdb /external:W3 /Gd /TP /FC *.cpp
 
 Link,
 
-    link /OUT:x64\Release\Main.exe /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:x64\Release\Main.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /LTCGOUT:"X64\RELEASE\Main.iobj" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:x64\Release\Main.lib" /MACHINE:X64 x64\Release\*.obj
+    link /OUT:x64\Release\Main.exe /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:x64\Release\Main.pdb /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /LTCGOUT:x64\Release\Main.iobj /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:x64\Release\Main.lib /MACHINE:X64 x64\Release\*.obj
+
+
+With typo on double quotes on the link cmd, we get errors similar to following,
+
+    LINK : fatal error LNK1201: error writing to program database 'x64\Release\Main.pdb \SUBSYSTEM:CONSOLE \OPT:REF \OPT:ICF \LTCG:incremental \LTCGOUT:X64\RELEASE\Main.iobj \TLBID:1 \DYNAMICBASE \NXCOMPAT \IMPLIB:x64\Release\Main.lib'; check for insufficient disk space, invalid path, or insufficient privilege
 
 
 #### Original Reference Build Configurations
@@ -48,11 +56,11 @@ Link,
     /OUT:x64\Debug\Main.exe /MANIFEST /NXCOMPAT /PDB:x64\Debug\Main.pdb /DYNAMICBASE "kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" /DEBUG /MACHINE:X64 /INCREMENTAL /PGD:x64\Debug\Main.pgd /SUBSYSTEM:CONSOLE /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /ManifestFile:x64\Debug\Main.exe.intermediate.manifest /LTCGOUT:x64\Debug\Main.iobj /ERRORREPORT:PROMPT /ILK:x64\Debug\Main.ilk /NOLOGO /TLBID:1 
 
 
-**pre compile headers**
+**pre compile headers**  
 *not required for most projects*, here, for reference,
 
     cl /EHsc /nologo /Yc /c *.cpp /Fp"x64\Release\Main.pch" /Fox64\Release\
 
-**Refs**
+**Refs**  
 In case we need profiling back,
 - For PGD i.e., `/FASTGENPROFILE`, [MSFT Learn](https://learn.microsoft.com/en-us/cpp/build/reference/pgd-specify-database-for-profile-guided-optimizations)
