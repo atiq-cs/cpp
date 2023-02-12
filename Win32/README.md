@@ -18,6 +18,8 @@ Assuming resource file is named 'Main.rc',
 
 Additional customizations (common) are at [parent wiki](https://github.com/atiq-cs/cpp/blob/dev/README.md).
 
+RegisterClass previous versions are on [RegisterClass doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/RegisterClass.md).
+
 ### Win32 Samples
 - CppSendWM_COPYDATA: C++ Windows app uses `WM_COPYDATA` for IPC (CppSendWM_COPYDATA) available on [GitHub - msdn-code-gallery-microsoft](https://github.com/microsoftarchive/msdn-code-gallery-microsoft/tree/master/OneCodeTeam/C%2B%2B%20Windows%20app%20uses%20WM_COPYDATA%20for%20IPC%20\(CppSendWM_COPYDATA\))
 

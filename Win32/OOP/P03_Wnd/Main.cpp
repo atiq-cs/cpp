@@ -9,14 +9,11 @@
 //         - update this template as per latest VS 
 //           - header files to reorder based 
 //           - method signatures
-//         - NULL to replace with nullptr
 
 
 
-#include <windows.h>
-#include <stdlib.h>
-#include <string.h>
-#include <tchar.h>
+#include "framework.h"
+#include "Template.h"
 
 
 template <class DERIVED_TYPE> 
@@ -25,7 +22,7 @@ class BaseWindow
 public:
   static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
   {
-    DERIVED_TYPE *pThis = NULL;
+    DERIVED_TYPE *pThis = nullptr;
 
     if (uMsg == WM_CREATE)
     {
@@ -47,7 +44,7 @@ public:
     }
   }
 
-  BaseWindow() : m_hwnd(NULL) { }
+  BaseWindow(_In_ HINSTANCE hInst) : m_hwnd(nullptr) { hInstance =  hInst; }
 
   BOOL Create(
     PCWSTR lpWindowName,
@@ -73,10 +70,10 @@ public:
     wcex.lpfnWndProc = DERIVED_TYPE::WindowProc;     // points to window procedure
     wcex.cbClsExtra = 0;                // no extra class memory
     wcex.cbWndExtra = 0;                // no extra window memory
-    wcex.hInstance = GetModuleHandle(NULL);         // handle to instance
-    wcex.hIcon = LoadIcon(NULL, 
+    wcex.hInstance = GetModuleHandle(nullptr);         // handle to instance
+    wcex.hIcon = LoadIcon(nullptr, 
         IDI_APPLICATION);              // predefined app. icon
-    wcex.hCursor = LoadCursor(NULL, 
+    wcex.hCursor = LoadCursor(nullptr, 
         IDC_ARROW);                    // predefined arrow
     // Was this to change Window Background to Whitish ?
     // wcex.hbrBackground  = (HBRUSH) (COLOR_WINDOW+1);
@@ -98,7 +95,7 @@ public:
 
     m_hwnd = CreateWindowEx(
       dwExStyle, ClassName(), lpWindowName, dwStyle, x, y,
-      nWidth, nHeight, hWndParent, hMenu, GetModuleHandle(NULL), this
+      nWidth, nHeight, hWndParent, hMenu, GetModuleHandle(nullptr), this
       );
 
     return (m_hwnd ? TRUE : FALSE);
@@ -112,12 +109,14 @@ protected:
   virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
 
   HWND m_hwnd;
+  HINSTANCE hInstance;
 };
 
 
 class MainWindow : public BaseWindow<MainWindow>
 {
 public:
+  MainWindow(_In_ HINSTANCE hInstance):BaseWindow(hInstance) {  }
   PCWSTR  ClassName() const { return L"Window Default Class"; }
   LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 };
@@ -162,12 +161,12 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
 */
 
-int APIENTRY wWinMain(_In_ HINSTANCE /* hInstance */,
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE /* hPrevInstance */,
     _In_ LPWSTR    /* lpCmdLine */,
     _In_ int       nCmdShow)
 {
-  MainWindow win;
+  MainWindow win(hInstance);
 
   if (!win.Create(L"P03 Wnd Template", WS_OVERLAPPEDWINDOW))
   {
@@ -177,13 +176,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE /* hInstance */,
   ShowWindow(win.Window(), nCmdShow);
   UpdateWindow(win.Window());
 
+  HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TEMPLATE));
 
-  MSG msg = { };
+  MSG msg;
+
   // Main Window message loop.
-  while (GetMessage(&msg, NULL, 0, 0))
+  while (GetMessage(&msg, nullptr, 0, 0))
   {
-    TranslateMessage(&msg);
-    DispatchMessage(&msg);
+    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
   }
 
   return 0;
