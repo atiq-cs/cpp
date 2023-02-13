@@ -9,8 +9,7 @@
 //         - update this template as per latest VS 
 //           - header files to reorder based 
 //           - method signatures
-
-
+//
 
 #include "framework.h"
 #include "Template.h"
@@ -20,133 +19,201 @@ template <class DERIVED_TYPE>
 class BaseWindow
 {
 public:
-  static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+  static LRESULT CALLBACK s_WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
   {
     DERIVED_TYPE *pThis = nullptr;
 
-    if (uMsg == WM_CREATE)
-    {
-      CREATESTRUCT* pCreate = (CREATESTRUCT*) lParam;
-      pThis = (DERIVED_TYPE*) pCreate->lpCreateParams;
-      SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR) pThis);
+    if (uMsg == WM_NCCREATE) {
+      // Recover the "this" pointer which was passed as a parameter
+      // to CreateWindow(Ex).
+      LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
+      pThis = static_cast<DERIVED_TYPE *>(lpcs->lpCreateParams);
+
+      // Put the value in a safe place for future use
+      SetWindowLongPtr(hWnd, GWLP_USERDATA,
+                      reinterpret_cast<LONG_PTR>(pThis));
+
+      pThis->m_hWnd = hWnd;
+    } else {
+      // Recover the "this" pointer from where our WM_NCCREATE handler
+      // stashed it.
+      pThis = reinterpret_cast<DERIVED_TYPE *>(
+                  GetWindowLongPtr(hWnd, GWLP_USERDATA));
     }
-    else
-    {
-      pThis = (DERIVED_TYPE*) GetWindowLongPtr(hwnd, GWLP_USERDATA);
-    }
+
+
     if (pThis)
-    {
-      return pThis->HandleMessage(uMsg, wParam, lParam);
-    }
-    else
-    {
-      return DefWindowProc(hwnd, uMsg, wParam, lParam);
-    }
+      return pThis->WndProc(uMsg, wParam, lParam);
+
+    return DefWindowProc(hWnd, uMsg, wParam, lParam);
   }
 
-  BaseWindow(_In_ HINSTANCE hInst) : m_hwnd(nullptr) { hInstance =  hInst; }
+  BaseWindow(_In_ HINSTANCE hInst):
+    m_hWnd(nullptr),
+    hInstance(hInst),
+    MAX_LOADSTRING(100)
+  {
+    szTitle = new TCHAR[MAX_LOADSTRING];
+    szWindowClass = new TCHAR[MAX_LOADSTRING];
+
+    // Initialize global strings
+    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_MAIN_APP, szWindowClass, MAX_LOADSTRING);
+  }
 
   BOOL Create(
-    PCWSTR lpWindowName,
     DWORD dwStyle,
-    DWORD dwExStyle = 0,
+    // DWORD dwExStyle = 0,
     int x = CW_USEDEFAULT,
     int y = CW_USEDEFAULT,
     // Tried fixed custom width 400x300 too
     // In addition, CW_USEDEFAULT/2 doesn't work to set as proportion to Screen Size
+    // TODO: try passing 0 for nWidth and nHeight
     int nWidth =  CW_USEDEFAULT,
     int nHeight = CW_USEDEFAULT,
-    HWND hWndParent = 0,
-    HMENU hMenu = 0
+    HWND hWndParent = nullptr,
+    HMENU hMenu = nullptr
     )
   {
-    WNDCLASSEX wcex = {0};
- 
-    // Fill in the window class structure with parameters
-    // that describe the main window. 
-    wcex.cbSize = sizeof(wcex);          // size of structure
-    wcex.style = CS_HREDRAW | 
-        CS_VREDRAW;                    // redraw if size changes
-    wcex.lpfnWndProc = DERIVED_TYPE::WindowProc;     // points to window procedure
-    wcex.cbClsExtra = 0;                // no extra class memory
-    wcex.cbWndExtra = 0;                // no extra window memory
-    wcex.hInstance = GetModuleHandle(nullptr);         // handle to instance
-    wcex.hIcon = LoadIcon(nullptr, 
-        IDI_APPLICATION);              // predefined app. icon
-    wcex.hCursor = LoadCursor(nullptr, 
-        IDC_ARROW);                    // predefined arrow
-    // Was this to change Window Background to Whitish ?
-    // wcex.hbrBackground  = (HBRUSH) (COLOR_WINDOW+1);
-    wcex.hbrBackground = (HBRUSH) GetStockObject( 
-        WHITE_BRUSH);                  // white background brush
-    // Utilize valid menu resource, otherwise Registering Window and ShowWindow won't work
-    // wcex.lpszMenuName =  L"MainMenu";    // name of menu resource
-    wcex.lpszClassName = ClassName();  // name of window class
-    // wcex.hIconSm = LoadImage(wcex.hInstance, // small class icon
-    //     MAKEINTRESOURCE(5),
-    //     IMAGE_ICON,
-    //     GetSystemMetrics(SM_CXSMICON),
-    //     GetSystemMetrics(SM_CYSMICON),
-    //     LR_DEFAULTCOLOR);
- 
-    // Register the window class.
-    RegisterClassEx(&wcex);
+    MyRegisterClass();
 
+    // Use CreateWindowEx for extended window style, not needed yet
+    m_hWnd = CreateWindow(szWindowClass, szTitle, dwStyle,
+      x, nWidth, y, nHeight, hWndParent, hMenu, hInstance, this);
 
-    m_hwnd = CreateWindowEx(
-      dwExStyle, ClassName(), lpWindowName, dwStyle, x, y,
-      nWidth, nHeight, hWndParent, hMenu, GetModuleHandle(nullptr), this
-      );
-
-    return (m_hwnd ? TRUE : FALSE);
+    return (m_hWnd ? TRUE : FALSE);
   }
 
-  HWND Window() const { return m_hwnd; }
+  HWND Window() const { return m_hWnd; }
 
 protected:
+  // Every Window needs these two
+  LPTSTR szTitle;                  // The title bar text
+  LPTSTR szWindowClass;            // the main window class name
 
-  virtual PCWSTR  ClassName() const = 0;
-  virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+  virtual LRESULT WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+  ATOM MyRegisterClass();
 
-  HWND m_hwnd;
+  HWND m_hWnd;
   HINSTANCE hInstance;
+  
+private:
+  const int MAX_LOADSTRING;       // Max length of szTitle and szWindowClass
 };
+
+//
+//  FUNCTION: MyRegisterClass()
+//
+//  PURPOSE: Registers the window class.
+//
+//  Remark : Had to learn this syntax for defining C++ Template Class Member Method
+//   ref, SO - How to define a template member function of a template class
+//     https://stackoverflow.com/q/11394832
+template <class DERIVED_TYPE> 
+ATOM BaseWindow<DERIVED_TYPE>::MyRegisterClass()
+{
+    // ref, https://github.com/atiq-cs/cpp/blob/dev/Win32/RegisterClass.md
+    WNDCLASSEXW wcex;
+
+    wcex.cbSize = sizeof(WNDCLASSEX);
+
+    wcex.style          = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc    = DERIVED_TYPE::s_WndProc;
+    wcex.cbClsExtra     = 0;
+    wcex.cbWndExtra     = 0;
+    wcex.hInstance      = hInstance;
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MAIN_APP));
+    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MAIN_APP);
+    wcex.lpszClassName  = szWindowClass;
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+
+    return RegisterClassExW(&wcex);
+}
 
 
 class MainWindow : public BaseWindow<MainWindow>
 {
 public:
   MainWindow(_In_ HINSTANCE hInstance):BaseWindow(hInstance) {  }
-  PCWSTR  ClassName() const { return L"Window Default Class"; }
-  LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+  LRESULT WndProc(UINT message, WPARAM wParam, LPARAM lParam);
+
+  // Message handler for about box.
+  static INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+  {
+      UNREFERENCED_PARAMETER(lParam);
+
+      switch (message)
+      {
+      case WM_INITDIALOG:
+          return (INT_PTR)TRUE;
+
+      case WM_COMMAND:
+          if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+          {
+              EndDialog(hDlg, LOWORD(wParam));
+              return (INT_PTR) TRUE;
+          }
+          break;
+      }
+      return (INT_PTR) FALSE;
+  }
 };
 
-LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+
+//
+// PURPOSE: Our Custom WndProc
+//
+// COMMENTS:
+//  Custom WndProc Callback method Hooked via lpParam. ref, s_WndProc
+//  RETURNs TRUE when no case matches indicating Error/Exception!
+//
+LRESULT MainWindow::WndProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-  switch (uMsg)
+  switch (message)
   {
-  case WM_DESTROY:
-    PostQuitMessage(0);
-    return 0;
+  case WM_PAINT: {
+    PAINTSTRUCT ps;
+    HDC hdc = BeginPaint(m_hWnd, &ps);
+    // Example drawing on the Window!
+    FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+    LPCWSTR TestStr = TEXT("Win32 Window created using CPP OOP Class! :) ");
+    TextOut(hdc, 25, 85, TestStr, (int) _tcslen(TestStr));
 
-  case WM_PAINT:
-    {
-      PAINTSTRUCT ps;
-      HDC hdc = BeginPaint(m_hwnd, &ps);
-      FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
-			LPCWSTR TestStr = L"A Sample Win32 Window! :) ";
-			TextOut(hdc, 25, 85, TestStr, (int) _tcslen(TestStr));
-      EndPaint(m_hwnd, &ps);
+    EndPaint(m_hWnd, &ps);
+    break;
+  }
+ 
+  case WM_COMMAND: {
+    int wmId = LOWORD(wParam);
+
+    // Parse the menu selections
+    switch (wmId) {
+    case IDM_ABOUT:
+        DialogBox(hInstance, MAKEINTRESOURCE(IDD_ABOUTBOX), m_hWnd, MainWindow::About);
+        break;
+    case IDM_EXIT:
+        DestroyWindow(m_hWnd);
+        break;
+    default:
+        return DefWindowProc(m_hWnd, message, wParam, lParam);
     }
-    return 0;
 
-  default:
-    return DefWindowProc(m_hwnd, uMsg, wParam, lParam);
+    break;
   }
 
-  // Unreachable code warning
-  // return TRUE;
+  case WM_DESTROY:
+    PostQuitMessage(0);
+    break;
+
+  default:
+    return DefWindowProc(m_hWnd, message, wParam, lParam);
+  }
+
+  return TRUE;
 }
+
 
 //
 // PURPOSE: Win32 Entry Point Function
@@ -157,10 +224,11 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 //  Changed to wide char version of WinMain which is wWinMain
 //  In earlier version, we used following signature of the function:
 //
-/*
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
-*/
-
+// REMARKS:
+//  Example of earlier signature,
+//
+//    int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR pCmdLine, int nCmdShow)
+//
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE /* hPrevInstance */,
     _In_ LPWSTR    /* lpCmdLine */,
@@ -168,15 +236,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
   MainWindow win(hInstance);
 
-  if (!win.Create(L"P03 Wnd Template", WS_OVERLAPPEDWINDOW))
+  if (!win.Create(WS_OVERLAPPEDWINDOW))
   {
-    return 0;
+    return FALSE;
   }
 
   ShowWindow(win.Window(), nCmdShow);
   UpdateWindow(win.Window());
 
-  HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TEMPLATE));
+  HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MAIN_APP));
 
   MSG msg;
 
@@ -190,5 +258,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
   }
 
-  return 0;
+  return (int) msg.wParam;
 }
