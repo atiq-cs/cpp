@@ -2,7 +2,8 @@
 Here are few tutorials to provides inside into Win32 App Dev using C++. Please feel free to click the links to find them.
 1. [Hello World](./T01_Font/): change Font and draw text using Unicode (ANSI example below in this README)
 2. [Enabling Visual Style, Menu and Icon](./T02_VS_and_Menu/): change Font and draw text using Unicode (ANSI example below in this README)
-3. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
+3. [Timer](#quick-start-tutorial)
+4. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
 
 ### Quick Start Tutorial
 **(Quick Start for Win32 Programming)**  
@@ -86,6 +87,86 @@ When you are done with this program, check these links to complete your knowledg
 
 For ANSI C Programmers it helps to be able to code with non-unicode string methods. Next section shows how to do it.
 
+
+**Drawing on a Window**  
+Invalidate a specified area of the window,
+
+```cpp
+InvalidateRect(hWnd, &curRect, true);
+```
+
+Best practice, is not to draw inside any other Message than `WM_PAINT`. For example, this is definite **DON"T DO**,
+
+```cpp
+case WM_TIMER:
+  tmpDC= GetDC(hWnd);
+  // declared somewhere in the class to maintain state or as static var
+  // TCHAR greeting[100];
+  sprintf(greeting, "Current value in main: %d", count);
+  TextOut(tmpDC, 5, 5, greeting, strlen(greeting));
+  ReleaseDC(hWnd, tmpDC);
+```
+
+*To get client rectangle*, for example, when we need to know the dimension of the window,
+
+```cpp
+RECT curRect;
+GetClientRect(hWnd, &curRect);
+```
+
+Rectangle initialization example,
+```cpp
+RECT curRect={5, 5, 50, 400};
+```
+
+
+
+### Timer Example
+For the Timer implementation this is how we modify our `WndProc` function,
+
+```cpp
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+  // Maintain the time id in the class
+  UINT_PTR IDT_TIMER=10;
+  static TCHAR greeting[100];
+
+  switch (message)
+  {
+  case WM_CREATE:
+    // Create a Timer
+    SetTimer(hWnd, IDT_TIMER, 1000, (TIMERPROC)NULL);
+    break;
+
+  case WM_PAINT:
+    PAINTSTRUCT ps;
+    HDC hdc = BeginPaint(hWnd, &ps);
+
+    sprintf_s(greeting, "Seconds counted: %d", count);
+    TextOut(hdc, 5, 5, greeting, strlen(greeting));
+
+    EndPaint(hWnd, &ps);
+    break;
+  case WM_TIMER:
+    count++;
+    InvalidateRect(hWnd, NULL, false);
+    break;
+
+  case WM_DESTROY:
+      PostQuitMessage(0);
+    if (IDT_TIMER)
+      KillTimer(hWnd, IDT_TIMER);
+        break;
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+        break;
+    }
+
+    return 0;
+}
+```
+
+
 **Win32 Programming: How to Disable Unicode**  
 Since we are using VS Code for editing code and manually compiling code. To get ANSI support back all we need to is follow the compile instruction.
 ref, [ReadMe doc](https://github.com/atiq-cs/cpp/blob/dev/Console/README.md).
@@ -126,6 +207,6 @@ There is an option named "General" under Configuration properties in the right s
 
 Under 'project defaults', there is a property called 'Character Set'. Change its value from "Use Unicode Character Set" to "Use Multi-Byte Character Set" selecting from the drop down list as shown in the image below. Click the image to enlarge.
 
-TODO: link the screenshot
+(screenshot is in linked earlier above in blogspot)
 
 Now you can use normal string functions like `strlen`, `sprintf` etc in this program to manipulate strings. Here is a sample program demonstrating ANSI C behavior.
