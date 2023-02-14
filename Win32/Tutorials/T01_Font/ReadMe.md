@@ -68,7 +68,7 @@ case WM_PAINT:
   HFONT hFont;
   RECT rect;
   HDC hdc = BeginPaint(hWnd, &ps);
-  // SetBkMode(hdc, TRANSPARENT);			// Does not clear the area before drawing
+  // SetBkMode(hdc, TRANSPARENT);      // Does not clear the area before drawing
   // Set font, choose a font that appropriately shows the character of your language/culture
   hFont = CreateFont(30,0,0,0, FW_DONTCARE, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
       CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Bangla"));
@@ -91,3 +91,22 @@ case WM_PAINT:
   break;
 // code ... ...
 ```
+
+
+To print out decimal value of Unicode chars,
+
+```cpp
+  // message for key down
+  case WM_KEYDOWN:
+    _stprintf_s(dbgStr, TEXT("%hu "), LOWORD(wParam));
+    SetDlgItemText(m_hDlg, IDC_STATIC_LOG_TEXT, dbgStr);
+    break;
+
+  // message for key up
+  case WM_KEYUP:
+    _stprintf_s(dbgStr, TEXT("%hu "), LOWORD(wParam));
+    SetDlgItemText(m_hDlg, IDC_STATIC_LOG_TEXT, dbgStr);
+    break;
+```
+
+*ref, P03_UnicodeSymbolsAndIndex*
