@@ -48,7 +48,13 @@ Additionally, we set the icon file using .rc file,
 
 
 **Adding Menu**  
-We add the MENU entries in .rc file,
+We specify the menu resource in during Window class registration,
+
+```cpp
+wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MAIN_APP);
+```
+
+We add the MENU entries in .rc file with same ID as above `IDC_MAIN_APP`,
 
     IDC_MAIN_APP MENU
     BEGIN
@@ -64,7 +70,7 @@ We add the MENU entries in .rc file,
 
 
 **Adding Version Info**  
-We add the Version Info in .rc file to add application information on its executable file,
+We add the Version Info in .rc file to add application information to its executable file,
 
     // Microsoft Visual C++ generated resource script.
     //
