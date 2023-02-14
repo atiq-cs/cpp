@@ -1,4 +1,10 @@
-## Quick Start Tutorial
+### Win32 Tutorial Series
+Here are few tutorials to provides inside into Win32 App Dev using C++. Please feel free to click the links to find them.
+1. [Hello World](./T01_Font/): change Font and draw text using Unicode (ANSI example below in this README)
+2. [Enabling Visual Style, Menu and Icon](./T02_VS_and_Menu/): change Font and draw text using Unicode (ANSI example below in this README)
+3. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
+
+### Quick Start Tutorial
 **(Quick Start for Win32 Programming)**  
 
 We use VS Code to edit these code.
@@ -6,7 +12,7 @@ We use the command line to compile, link and run the code. Due to that it is a m
 
 If you prefer Visual Studio instead please follow the earlier article on this.
 
-Here's a starter article on [Desktop Applications (Visual C++) - MSFT Docs](https://learn.microsoft.com/en-us/cpp/windows/walkthrough-creating-windows-desktop-applications-cpp)
+Here's a starter article on [Desktop Applications \(Visual C++\) - MSFT Docs](https://learn.microsoft.com/en-us/cpp/windows/walkthrough-creating-windows-desktop-applications-cpp)
 
 
 **WinMain Function**  
