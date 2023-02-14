@@ -2,8 +2,9 @@
 Here are few tutorials to provides inside into Win32 App Dev using C++. Please feel free to click the links to find them.
 1. [Hello World](./T01_Font/): change Font and draw text using Unicode (ANSI example below in this README)
 2. [Enabling Visual Style, Menu and Icon](./T02_VS_and_Menu/): change Font and draw text using Unicode (ANSI example below in this README)
-3. [Timer](#quick-start-tutorial)
+3. [Timer](#timer-example)
 4. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
+
 
 ### Quick Start Tutorial
 **(Quick Start for Win32 Programming)**  
@@ -119,9 +120,35 @@ Rectangle initialization example,
 RECT curRect={5, 5, 50, 400};
 ```
 
+In one of the example, I did draw on `WM_DESTROY` though which looks like below,
 
+```cpp
+case WM_DESTROY:
+  tmpDC= GetDC(hWnd);
+  sprintf(greeting, "Exiting program..");
+  TextOut(tmpDC, 5, 5, greeting, strlen(greeting));
+  ReleaseDC(hWnd, tmpDC);
+
+  
+  if (IDT_TIMER1)
+    KillTimer(hWnd, IDT_TIMER1);
+
+  PostQuitMessage(0);
+
+  break;
+```
+
+I wonder if in above example drawing really works though!
 
 ### Timer Example
+A timer is instantiated like this,
+
+```cpp
+SetTimer(hWnd, IDT_TIMER, 1000, (TIMERPROC) nullptr);
+```
+
+Last argument can be used to set a CALLBACK procedure.
+
 For the Timer implementation this is how we modify our `WndProc` function,
 
 ```cpp
@@ -135,7 +162,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
   {
   case WM_CREATE:
     // Create a Timer
-    SetTimer(hWnd, IDT_TIMER, 1000, (TIMERPROC)NULL);
+    SetTimer(hWnd, IDT_TIMER, 1000, (TIMERPROC) nullptr);
     break;
 
   case WM_PAINT:
@@ -149,7 +176,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
   case WM_TIMER:
     count++;
-    InvalidateRect(hWnd, NULL, false);
+    InvalidateRect(hWnd, nullptr, false);
     break;
 
   case WM_DESTROY:
@@ -165,6 +192,71 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 ```
+
+### Modal Dialog Example
+Probably it is an anti-pattern to make a WndProc like below to make it wait with a modal dialog box!
+
+```cpp
+switch (message) {
+  case WM_COMMAND:
+    if (LOWORD (wParam) == IDM_APP_ABOUT) {
+      int ret = DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(ABOUTDLGBOX), hwnd, AboutDlgProc);
+
+      swithc(ret) {
+        case IDOK:
+          MessageBox(hwnd, "Dialog exited with IDOK.", "Notice", MB_OK | MB_ICONINFORMATION);
+          break;
+        case IDCANCEL:
+          MessageBox(hwnd, "Dialog exited with IDCANCEL.", "Notice", MB_OK | MB_ICONINFORMATION);
+          break;
+        case -1:
+          MessageBox(hwnd, "Dialog failed!", "Error", MB_OK | MB_ICONINFORMATION);
+          break;
+        default:
+          MessageBox(hwnd, "Unknown value.", "Notice", MB_OK | MB_ICONINFORMATION);
+      }
+    }
+    break;
+  case WM_DESTROY:
+    PostQuitMessage(0);
+    break;
+}
+```
+
+And the resources: DIALOG and MENU are defined as below in rc file,
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    // Dialog
+    //
+
+    ABOUTDLGBOX DIALOG DISCARDABLE 25, 25, 288, 125
+    STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_VISIBLE
+    CAPTION "About Box"
+    FONT 8, "MS Sans Serif"
+    BEGIN
+        DEFPUSHBUTTON   "OK",IDOK,174,18,50,14
+        PUSHBUTTON      "Cancel",IDCANCEL,174,35,50,14
+        GROUPBOX        "About this program...",IDC_STATIC,7,7,225,52
+        CTEXT           "An example program showing how to use Dialog Boxes\r\n\r\nby theForger",
+                        IDC_STATIC,16,18,144,33
+    END
+
+    /////////////////////////////////////////////////////////////////////////////
+    //
+    // Menu
+    //
+
+    ABOUT_MENU MENU DISCARDABLE
+    BEGIN
+      POPUP "&Help"
+      BEGIN
+        MENUITEM "&About", IDM_APP_ABOUT
+      END
+    END
+
+
+*ref, Dialog Box, 11-15-2009*
 
 
 **Win32 Programming: How to Disable Unicode**  
@@ -210,3 +302,4 @@ Under 'project defaults', there is a property called 'Character Set'. Change its
 (screenshot is in linked earlier above in blogspot)
 
 Now you can use normal string functions like `strlen`, `sprintf` etc in this program to manipulate strings. Here is a sample program demonstrating ANSI C behavior.
+
