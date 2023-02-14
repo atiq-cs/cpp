@@ -3,7 +3,8 @@ Here are few tutorials to provides inside into Win32 App Dev using C++. Please f
 1. [Hello World](./T01_Font/): change Font and draw text using Unicode (ANSI example below in this README)
 2. [Enabling Visual Style, Menu and Icon](./T02_VS_and_Menu/): change Font and draw text using Unicode (ANSI example below in this README)
 3. [Timer](#timer-example)
-4. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
+4. [Mouse KeyBoard WM Messaging](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_KB_Mouse.md)
+5. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
 
 
 ### Quick Start Tutorial
@@ -61,6 +62,9 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 Here is a tested program that will help you to start with. The program is well-documented.
 
 Press Ctrl + Shift + B to build the program and then Ctrl + F5 to run the program. Download project files from here in case you cannot build and test the code yourself successfully.
+
+
+*[MSFT Docs - Using Messages and Message Queues](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues)* shows how to do message loop, working with message queue and sending/posting messages to the Window!
 
 
 **String Type Basics**  
@@ -140,7 +144,7 @@ case WM_DESTROY:
 
 I wonder if in above example drawing really works though!
 
-### Timer Example
+### T03: Timer Example
 A timer is instantiated like this,
 
 ```cpp
