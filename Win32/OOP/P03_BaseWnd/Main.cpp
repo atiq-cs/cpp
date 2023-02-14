@@ -5,10 +5,6 @@
 // Date   : 11-15-2010
 // Status : Builds and runs great, screenshot in ReadMe
 // Remarks: updated to get rid of warnings etc 02-08-2023
-//   TODO :
-//         - update this template as per latest VS 
-//           - header files to reorder based 
-//           - method signatures
 //
 
 #include "framework.h"
