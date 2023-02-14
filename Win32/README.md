@@ -1,4 +1,6 @@
 ## Win32 Apps Classic (before Win UI)
+Projects under this directory are targeted toward Windows. Not tested on Linux Wine yet!
+
 *Windows Classic Apps (raw Win32 C++)!*  **Danger ☠️ !!  Proceed with Caution!!**
 
 **Compile and Build**  

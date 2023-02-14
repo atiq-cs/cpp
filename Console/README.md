@@ -1,4 +1,6 @@
-## Console Projects  
+## Console Projects
+Console projects are supposed to run in all platforms (Windows, Unix, Linux).
+
 ### Build Instructions
 Should be followed for each project under this directory. *[Projects under "WinConsole"](https://github.com/atiq-cs/cpp/tree/dev/WinConsole) should also follow this. However, projects under WinConsole might link to additional libraries, more details on WinConsole's ReadMe.*
 
@@ -64,3 +66,43 @@ Link,
 **Refs**  
 In case we need profiling back,
 - For PGD i.e., `/FASTGENPROFILE`, [MSFT Learn](https://learn.microsoft.com/en-us/cpp/build/reference/pgd-specify-database-for-profile-guided-optimizations)
+
+
+### Standard C++
+Converting numbers to strings,
+
+```cpp
+std::string itoa(int i)
+{
+	std::stringstream out;
+	out << i;
+	return out.str();
+}
+```
+
+**File I/O**  
+Read: Open a file, read and close,
+
+```cpp
+ifstream loadfile;
+loadfile.open("comptime.cnt");
+
+if (!loadfile.fail()) {
+  loadfile >> elapsedtime;
+  loadfile >> starttime;
+}
+
+loadfile.close();
+```
+
+Write: Open a file, write and close,
+
+```cpp
+ofstream of;
+of.open("comptime.cnt");
+of << elapsedtime;
+of << "\n";
+of << starttime;
+of.close();
+```
+
