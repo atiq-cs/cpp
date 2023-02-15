@@ -80,53 +80,11 @@ We add the MENU entries in .rc file with same ID as above `IDC_MAIN_APP`,
 
 
 **Adding Version Info**  
-We add the Version Info in .rc file to add application information to its executable file,
-
-    // Microsoft Visual C++ generated resource script.
-    //
-    #include "resource.h"
-    #include "afxres.h"
-
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    // Version
-    //
+We add the Version Info in .rc file to add application information to its executable file. Please have a look at the section starting with line
 
     1 VERSIONINFO
-    FILEVERSION 1,0,0,0
-    PRODUCTVERSION 1,0,0,0
-    FILEFLAGSMASK 0x0L
-    #ifdef _DEBUG
-    FILEFLAGS 0x1L
-    #else
-    FILEFLAGS 0x0L
-    #endif
-    FILEOS 0x0L
-    FILETYPE 0x1L
-    FILESUBTYPE 0x0L
-    BEGIN
-        BLOCK "StringFileInfo"
-        BEGIN
-            BLOCK "040904e4"
-            BEGIN
-                VALUE "Comments", "This program adds version info and enables VS Style"
-                VALUE "CompanyName", "FFTSys Inc."
-                VALUE "FileDescription", "Tutorial 2 Executable"
-                VALUE "FileVersion", "1.0"
-                VALUE "InternalName", "Tutorial 2"
-                VALUE "LegalCopyright", "FFTSys (c) 2023"
-                VALUE "LegalTrademarks", "FFTSys Inc."
-                VALUE "OriginalFilename", "CoolApp.exe"
-                VALUE "ProductName", "FFTSys Cool App"
-                VALUE "ProductVersion", "1.0"
-            END
-        END
-        BLOCK "VarFileInfo"
-        BEGIN
-            VALUE "Translation", 0x409, 1252
-        END
-    END
 
+in [Main.rc](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/T02_VS_and_Menu/Main.rc).
 
 Please feel free to change the information strings above according to your need. More details on `versioninfo` resource on [MSFT Doc - versioninfo](https://learn.microsoft.com/en-us/windows/win32/menurc/versioninfo-resource).
 
