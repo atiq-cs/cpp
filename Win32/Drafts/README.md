@@ -1,5 +1,10 @@
 *Projects that are not reviewed and not tested are archived in this dir. listed below,*
 
+**P10 Edit Control Based Projects**  
+1. P10_EditCtrl_Simple: program based on simple edit control, a demo for single line edit control
+2. P10_EditCtrl_Passwd: program based on simple edit control, a demo for password edit control
+3. P10_BCG: Actual program developed based on learning above.
+
 **P28: Countdown Timer**  
 
 *Screenshot*  

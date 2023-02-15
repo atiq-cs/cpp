@@ -9,7 +9,7 @@
 //
 //  PURPOSE : Simple Edit Control Demo
 //  Date    : 12-08-2009
-//  Remarks : 
+//  Remarks :
 //   - Curate Edit Control by Code (via CreateWindow)
 //   - Demo most actions on the edit control
 //     - Cut, Copy, Wrap
@@ -17,9 +17,14 @@
 //   In addition,
 //   - How to Exit when Menu Exit option is clicked
 //   - Removed common code function `WinMain` body
-//   ref, EditControl_Menu
+//
+//   rel: P10_BCG (project on parent dir)
+//     A full fledged program to convert literal doc to html code (blogger)
+//
 //   TODO: wrap ANSI string with TCHAR TEXT or _T macro
-
+//
+//   ref, EditControl_Menu
+//
 
 // Global variables
 
