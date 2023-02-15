@@ -1,0 +1,62 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Save",                        ID_FILESAVE
+		MENUITEM "Save &As",                     ID_FILESAVEAS
+        MENUITEM "E&xit\tCtrl+Q",                ID_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo",                        IDM_EDUNDO
+        MENUITEM "&Cut",                         IDM_EDCUT
+        MENUITEM "C&opy",                        IDM_EDCOPY
+        MENUITEM "&Paste",                       IDM_EDPASTE
+        MENUITEM "&Delete",                      IDM_EDDEL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Wrap",                        IDM_WRAP
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                       IDM_ABOUT
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+CtrlAccl ACCELERATORS 
+BEGIN
+    "Q",            ID_EXIT,                VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_SEL,                 VIRTKEY, CONTROL, NOINVERT
+END
+
+
+IDI_PROGICON ICON "blog.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ID_ABOUT DIALOGEX 0, 0, 330, 92
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+EXSTYLE WS_EX_TRANSPARENT
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "About Dialog",IDC_STATIC,126,4,77,8
+END
