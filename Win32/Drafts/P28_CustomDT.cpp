@@ -1,3 +1,9 @@
+#include <windows.h>
+#include <stdlib.h>
+#include <string.h>
+#include <tchar.h>
+// #include "resource.h"
+
 //
 //  PURPOSE : Custom Date Time Picker
 //  Date    : 2009-11-15
@@ -6,13 +12,7 @@
 //   - Tracks/shows message when Tab or any other Key is pressed and released
 //   - Removed common code function `WinMain` body
 //   ref, MultiObjectGUI
-
-#include <windows.h>
-#include <stdlib.h>
-#include <string.h>
-#include <tchar.h>
-
-// #include "resource.h"
+//
 
 // Global variables
 
