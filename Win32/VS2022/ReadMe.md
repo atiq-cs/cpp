@@ -1,7 +1,7 @@
 ### VS 2022 Win32 Template for CPP
 This is not an OOP Template. OOP Templates are in [OOP Dir](https://github.com/atiq-cs/cpp/tree/dev/Win32/OOP).
 
-This is retained here for reference purposes.
+*This is retained here for reference purposes i.e., to easily generate diff for few projects that are in C.* Can be dropped after those projects are converted to the OOP Template.
 
 
 **Screenshot**  

@@ -1,4 +1,5 @@
 ### Key Down and Paint Demo based on VS 2022 Win32 Template for CPP
+VS 2022 Win32 Template based program. This could be easily ported to the [Drafts](../Drafts/) dir for Keyboard Messaging example.
 
 Screenshot of the app below,  
 
