@@ -39,12 +39,22 @@ We add a manifest file and add that during compilation,
   
 ![Tutorial 2 App with VS Style](https://user-images.githubusercontent.com/7858031/218615483-4c3a45d6-c797-4f06-a3cf-59731cccfaaf.png)
 
+Icons are set during RegisterClass,
+
+```cpp
+wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MAIN_APP));
+wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+```
+
 Additionally, we set the icon file using .rc file,
 
     // Icon with lowest ID value placed first to ensure application icon
     // remains consistent on all systems.
     IDI_MAIN_APP       ICON         "Main.ico"
     IDI_SMALL          ICON         "small.ico"
+
+And the IDs are defined in resource.h
+
 
 
 **Adding Menu**  

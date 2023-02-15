@@ -143,7 +143,7 @@ public:
       switch (message)
       {
       case WM_INITDIALOG:
-          return (INT_PTR)TRUE;
+          return (INT_PTR) TRUE;
 
       case WM_COMMAND:
           if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
