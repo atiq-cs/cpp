@@ -3,7 +3,7 @@
 **P10 Edit Control Based Projects**  
 1. P10_EditCtrl_Simple: program based on simple edit control, a demo for single line edit control
 2. P10_EditCtrl_Passwd: program based on simple edit control, a demo for password edit control
-3. P10_BCG: Actual program developed based on learning above.
+3. P10_BCG: Actual program developed based on learning above, Edit Control related full project.
 
 **P28: Countdown Timer**  
 
@@ -18,7 +18,7 @@ Noob Code warning! Probably written around 2009.
 It is collection of a bunch of code segments from various sources.
 Probably the WndProc / WM Messaging is messed up; window doesn't show up!
 
-It's here coz I don't have time to isolate the useful code segments from this messy source file. It is archived here for future use.
+It's here since there's scarcity of time to isolate the useful code segments from this messy source file. It is archived here for future references.
 
 Motley of code related to,
 - Date / time conversion
