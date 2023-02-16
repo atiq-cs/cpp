@@ -48,7 +48,7 @@ if (uMsg == WM_NCCREATE)
 **Refs**  
 - Primary [MSFT Doc - Managing Application State](https://learn.microsoft.com/en-us/windows/win32/learnwin32/managing-application-state-)
 - How can I make a WNDPROC or DLGPROC a member of my C++ class, [Raymond Chen - MSFT Blog](https://devblogs.microsoft.com/oldnewthing/20140203-00/?p=1893)
-- [MSFT - Windows-classic-samples - OOP Sample BaseWindow](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/begin/LearnWin32/BaseWindow), contains `Main.cpp`
+- [MSFT - Windows-classic-samples - OOP Sample BaseWindow](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/begin/LearnWin32/BaseWindow), Source File of Interest: `Main.cpp`, related, MSFT Doc on Sample Info, [BaseWindow Sample](https://learn.microsoft.com/en-us/windows/win32/learnwin32/basewindow-sample)
  
 
 Previous two projects:
