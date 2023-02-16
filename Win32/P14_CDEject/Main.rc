@@ -1,0 +1,13 @@
+// SA Manually Written Resource Script
+//
+#include "resource.h"
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Other Identifiers
+//
+
+IDI_PROGICON	ICON "Main.ico"
+ID_EJECTICON	ICON "Eject.ico"
+ID_CLOSEICON	ICON "Close.ico"
