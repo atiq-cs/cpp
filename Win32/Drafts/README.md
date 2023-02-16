@@ -4,6 +4,8 @@
 1. P10_EditCtrl_Simple: program based on simple edit control, a demo for single line edit control
 2. P10_EditCtrl_Passwd: program based on simple edit control, a demo for password edit control
 3. P10_BCG: Actual program developed based on learning above, Edit Control related full project.
+4. P12_BalloonToolTip: contains few balloon tool tip related code samples, *not tested*!
+5. P13_SysTray: Working Sys Tray code example. Hide app in Sys Tray and restore.
 
 **P28: Countdown Timer**  
 
