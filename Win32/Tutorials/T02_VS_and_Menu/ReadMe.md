@@ -6,6 +6,19 @@ Need to research if we still need manifest file to enable visual style.
 
 Also, our cl command line provided in [Win32 Main ReadMe](../../) doesn't cover how to add a manifest file in command line yet!
 
+Add manifest to init common controls from code,
+
+```cpp
+#pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+```
+
+And, link to comctl32 lib from code,
+
+```cpp
+#pragma comment(lib, "comctl32.lib")
+```
+
+Or, do it manually,  
 We add a manifest file and add that during compilation,
 
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
