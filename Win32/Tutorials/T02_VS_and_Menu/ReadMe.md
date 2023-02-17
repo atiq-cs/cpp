@@ -6,11 +6,14 @@ Need to research if we still need manifest file to enable visual style.
 
 Also, our cl command line provided in [Win32 Main ReadMe](../../) doesn't cover how to add a manifest file in command line yet!
 
-Add manifest to init common controls from code,
+A manifest file is not required if we use this on VS 2005 or later.
+Enable Visual Style; following windows common controls demo sample of microsoft using pragma statement below,
 
 ```cpp
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 ```
+
+*We are using CL, yet to check manifest embedding arguments.*
 
 And, link to comctl32 lib from code,
 
