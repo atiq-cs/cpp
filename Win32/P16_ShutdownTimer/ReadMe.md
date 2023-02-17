@@ -1,9 +1,8 @@
 ### Shutdown Timer
 Shut your computer down at specified time and date.
 
-It's efficient and small in size since it's written in Win32.
+It's efficient and small in size since being written in Win32.
 
-Merged from [GitLab](https://gitlab.com/atiq-cs/Merged_ShutdownTimer), linked here for file history.
 
 **Build instructions**  
 - It was an MBCS (non Unicode) Program. Converted to Unicode through Generic TCHAR.
@@ -23,12 +22,18 @@ Retained the previous comment style for cpp which looks like this,
 ```
 
 **App Screenshots**  
+*Runs in Windows 8/7 and earlier*  
 
 ![Shutdown Timer App Screenshot](https://user-images.githubusercontent.com/7858031/219719946-6aeaa4a2-5a6f-4466-9238-b91549efad26.png)
 
 About Dailog Box,  
   
 ![Shutdown Timer App About Dialog Box](https://user-images.githubusercontent.com/7858031/219719970-91a552b1-5fcd-4af2-8124-f8dbcfc9145f.png)
+
+
+**Refs**  
+- Merged from [GitLab](https://gitlab.com/atiq-cs/Merged_ShutdownTimer), linked here for file history.
+- Earlier version was in [sourceforge - stdt](https://sourceforge.net/projects/stdt)
 
 
 
