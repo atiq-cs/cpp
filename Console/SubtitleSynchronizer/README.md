@@ -7,6 +7,8 @@ Input:
 Output:  
 	filename.srt
 
+Merged from [GitLab](https://gitlab.com/atiq-cs/merged_SubtitleSynchronizer), linked for file history.
+
 **Build**  
 Build instruction at [Console Projects Build - Main ReadMe](https://github.com/atiq-cs/cpp/tree/dev/Console).
 
