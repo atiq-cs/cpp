@@ -76,21 +76,18 @@ public:
   {
     MyRegisterClass();
 
-    // The parameters to CreateWindow,
-    //  szWindowClass: the name of the application
-    //  szTitle: the text that appears in the title bar
-    //  WS_OVERLAPPEDWINDOW: the type of window to create
-    //  CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)
-    //   x, y: initial size (width, length)
-    //  NULL: the parent of this window
-    //  NULL: this application dows not have a menu bar
-    //  hInstance: the first parameter from WinMain
-    //  NULL: not used in this application
-    //
-    // Use of CreateWindowEx for extended window style, not needed yet
-    //  ** last argument 'this' is important
-    m_hWnd = CreateWindow(szWindowClass, szTitle, dwStyle,
-      x, nWidth, y, nHeight, hWndParent, hMenu, hInstance, this);
+    // The parameters to CreateWindow: ref, T01_Font\Main.cpp
+    m_hWnd = CreateWindow(
+      szWindowClass,
+      szTitle,
+      dwStyle,
+      x, y,
+      nWidth, nHeight,
+      hWndParent,
+      hMenu,
+      hInstance,
+      this
+    );
 
     return (m_hWnd ? TRUE : FALSE);
   }

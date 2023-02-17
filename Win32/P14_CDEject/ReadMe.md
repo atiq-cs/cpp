@@ -1,5 +1,5 @@
 ### CD/DVD Media Ejector
-This software ejects CD/DVDROM Media.
+This software tool soft closes and ejects CD/DVDROM Media.
 After starting the software press 'Ctrl + J' to eject CD/DVDROM. Pressing 'Ctrl + J' again will close the CD/DVDROM.
 
 **Why this software?**  
@@ -24,7 +24,7 @@ Utilizes `mciSendCommand` from Winmm.lib to control the Media.
 - http://stackoverflow.com/questions/58670/windows-cdrom-eject
 - http://www.experts-exchange.com/Programming/System/Windows__Programming/Q_10336052.html
 - http://social.msdn.microsoft.com/Forums/en/Vsexpressvc/thread/8ea026f0-a81b-486f-a871-089323ceaa82
-
+- [sourceforge - CD Eject](https://sourceforge.net/projects/sacdeject)
 
 Initially, while figuring out the mechanism for ejecting media, I bumped into this,
 
