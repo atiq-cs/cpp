@@ -51,7 +51,12 @@ Following features have to be maintained or added,
 
 
 **Installer Refs**  
-11-25-2009  
+For this project, after trying both Windows Installer (MSI) and InstallShield we went with InstallShield i.e., release 1.0-b3 on Github.
+
+InstallShield (as part of VS Setup Project) creates a large dir path for the installer in output: "ShutdownTimer_setup\Express\SingleImage\DiskImages\DISK1\*.exe*  
+
+Earlier we tried MSI Setup, related files are archived in [GitLab](https://gitlab.com/atiq-cs/Merged_ShutdownTimer/-/tree/dev/MSI_Setup)
+from 11-25-2009,  
 - [MSFT Docs - Windows Installer - An Installation Example](https://learn.microsoft.com/en-us/windows/win32/msi/an-installation-example)
 
 Example cmd, 11-25-2009  
