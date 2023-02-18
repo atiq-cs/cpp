@@ -6,7 +6,12 @@ Here are few tutorials to provides inside into Win32 App Dev using C++. Please f
 4. [Mouse KeyBoard WM Messaging](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_KB_Mouse.md)
 5. [Accelerator Tables](https://github.com/atiq-cs/cpp/blob/dev/Win32/Tutorials/tut_AccelTbl.md)
 
-ref, [earlier Tutorial Series in blog around 2009](http://sa-os.blogspot.com/search/label/Win32%20Tutorial)
+
+**Refs**  
+- [earlier Tutorial Series in blog around 2009](http://sa-os.blogspot.com/search/label/Win32%20Tutorial)
+- [MSFT Docs - Your First Windows Program](https://learn.microsoft.com/en-us/windows/win32/learnwin32/your-first-windows-program) 3rd part is important which is about "Window Messages (Get Started with Win32 and C++)"
+
+
 
 ### Quick Start Tutorial
 **(Quick Start for Win32 Programming)**  
