@@ -7,6 +7,10 @@ All files including 'images' dir are same except some modifications around 11-20
 - ThemedButton.cpp: Successful linking required changing this file, more details on next section!
 - MPlayer.rc: looks like co-ordinates are updated. Added this file here in this repo.
   
+For ease of viewing the diff,
+
+![Change on the resource file](https://user-images.githubusercontent.com/7858031/219880720-9a194038-e4de-4402-811f-6c13c94b5404.png)
+
 
 **Code**  
 `ZeroMemory` on 'ThemedButton.cpp(310)' throw this 'warning C4789' on x64,
