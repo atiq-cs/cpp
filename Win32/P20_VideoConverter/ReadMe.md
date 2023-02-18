@@ -26,7 +26,7 @@ Video conversion is probably tested. However, how many options/capabilities are 
 
 
 **Refs**  
-- Win Classic Media Foundation Sample [MSFT on Github  - MFPlayer2](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2)
+- Win Classic Media Foundation Sample [MSFT on Github  - MFPlayer2](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2), [MSFT Docs - medfound](https://learn.microsoft.com/en-us/windows/win32/medfound/mfplayer2-sample)
 - Win Classic Media Foundation Sample [MSFT on Github  - Transcode](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/Transcode)
 
 
@@ -48,11 +48,6 @@ TODOs planned,
 - Keep previous settings using registry, retrived media info for dropped file
 - Cropping video
 - Better UI (later)
-
-
-```cpp
-// place holder
-```
 
 
 **Common-Controls Version**  
