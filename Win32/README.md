@@ -1,5 +1,9 @@
 ## Win32 Apps Classic (before Win UI)
-Projects under this directory are targeted toward Windows. Not tested on Linux Wine yet!
+Listing,  
+- [Windows SDK and Visual Studio Samples](https://github.com/atiq-cs/cpp/blob/dev/Win32/Samples.md)
+- RegisterClass previous versions are on [RegisterClass doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/RegisterClass.md).  
+
+Projects under this directory are targeted toward Windows. Not tested on Linux Wine yet!  
 
 *Windows Classic Apps (raw Win32 C++)!*  **Danger ☠️ !!  Proceed with Caution!!**
 
@@ -20,9 +24,15 @@ Assuming resource file is named 'Main.rc',
 
 Additional customizations (common) are at [parent wiki](https://github.com/atiq-cs/cpp/blob/dev/README.md).
 
-RegisterClass previous versions are on [RegisterClass doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/RegisterClass.md).
 
 ### Win32 Samples
 - CppSendWM_COPYDATA: C++ Windows app uses `WM_COPYDATA` for IPC (CppSendWM_COPYDATA) available on [GitHub - msdn-code-gallery-microsoft](https://github.com/microsoftarchive/msdn-code-gallery-microsoft/tree/master/OneCodeTeam/C%2B%2B%20Windows%20app%20uses%20WM_COPYDATA%20for%20IPC%20\(CppSendWM_COPYDATA\))
 
 
+**Q&A**  
+1. Should we generate pch files?  
+Turns out latest VS CL doesn't show generation of pch files! In case we need it back, few refs,
+[MSFT Compiler Docs - /Yc (Create Precompiled Header File)](https://learn.microsoft.com/en-us/cpp/build/reference/yc-create-precompiled-header-file)
+
+2. C ++ the application has failed to start because the application configuration is incorrect? How to fix?  
+ This happened a few times when the .sln file was targetting "/SUBSYSTEM:Console" However, project was a Win32 App.

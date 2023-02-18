@@ -64,17 +64,8 @@ For debug builds, we need to create the debug dir,
     New-Item -Type Directory x64\Debug
 
 
-**Q&A**  
-1. Should we generate pch files?  
-Turns out latest VS CL doesn't show generation of pch files! In case we need it back, few refs,
-[MSFT Compiler Docs - /Yc (Create Precompiled Header File)](https://learn.microsoft.com/en-us/cpp/build/reference/yc-create-precompiled-header-file)
-
-2. C ++ the application has failed to start because the application configuration is incorrect? How to fix?  
-This happened a few times when the .sln file was targetting "/SUBSYSTEM:Console" However, project was a Win32 App.
-
-
 **Refs**  
 - [MSFT Docs - Walkthrough: Compile a C program on the command line](https://learn.microsoft.com/en-us/cpp/build/walkthrough-compile-a-c-program-on-the-command-line)
 - [MSFT Docs - Release Builds and Optimizations](https://learn.microsoft.com/en-us/cpp/build/release-builds)
-- [GitHub C++ `.gitignore`](https://github.com/github/gitignore/blob/main/C%2B%2B.gitignore), single vs double asterisks, ref, [henriquesd - The .gitignore File
+- ref for '.gitignore': [GitHub C++ `.gitignore`](https://github.com/github/gitignore/blob/main/C%2B%2B.gitignore), single vs double asterisks, ref, [henriquesd - The .gitignore File
 ](https://henriquesd.medium.com/the-gitignore-file-dc293f6c80fb)
