@@ -1,0 +1,110 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+  "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+  "#include ""afxres.h""\r\n"
+  "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+  "\r\n"
+  "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_MAIN DIALOGEX 0, 0, 347, 262
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "Video Converter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+  GROUPBOX        "Conversion Settings",IDC_STATIC,21,11,295,64
+  CONTROL         "Maintain Aspect Ratio",IDC_CHECK_MAR,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,29,25,85,10
+  LTEXT           "Width",IDC_STATIC,29,40,20,8
+  EDITTEXT        IDC_EDIT_WIDTH,76,38,45,12,ES_AUTOHSCROLL | ES_NUMBER
+  LTEXT           "pixels",IDC_STATIC,130,41,19,8
+  LTEXT           "Height",IDC_STATIC,178,41,22,8
+  EDITTEXT        IDC_EDIT_HEIGHT,233,38,40,12,ES_AUTOHSCROLL | ES_NUMBER
+  LTEXT           "pixels",IDC_STATIC,277,40,19,8
+  LTEXT           "Bit Rate",IDC_STATIC,29,55,26,8
+  EDITTEXT        IDC_EDIT_BITRATE,76,54,47,12,ES_AUTOHSCROLL | ES_NUMBER
+  LTEXT           "kbps",IDC_STATIC,130,56,16,8
+  LTEXT           "Frame Rate",IDC_STATIC,178,56,38,8
+  EDITTEXT        IDC_EDIT_FR,233,55,40,12,ES_AUTOHSCROLL | ES_NUMBER
+  LTEXT           "fps",IDC_STATIC,278,56,11,8
+  LTEXT           "Input File",IDC_STATIC,25,92,31,8
+  LTEXT           "Media Info",IDC_STATIC,25,121,35,8
+  EDITTEXT        IDC_EDIT_MEDIA_INFO,21,137,293,95,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
+  PUSHBUTTON      "Start Conversion",IDC_BUTTON_START_CONV,200,93,79,18
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+  IDD_DIALOG_MAIN, DIALOG
+  BEGIN
+    LEFTMARGIN, 7
+    RIGHTMARGIN, 340
+    TOPMARGIN, 7
+    BOTTOMMARGIN, 255
+  END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
