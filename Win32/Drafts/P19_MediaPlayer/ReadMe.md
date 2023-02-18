@@ -1,7 +1,9 @@
 ### P19 Media Player
 *This project was deprecated by new Movies & TV App by Microsoft (project discontinued).*  
 
-*Minor modification on [MFPlayer2]((https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2)).*  
+*Minor modification on [MFPlayer2](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2).*  
+MFPlayer2 itself is a deprecated or obsolete Sample, ref, [MSFT medfound - medfound](https://learn.microsoft.com/en-us/windows/win32/medfound/media-foundation-sdk-samples)!
+
 
 All files including 'images' dir are same except some modifications around 11-2013,
 - ThemedButton.cpp: Successful linking required changing this file, more details on next section!
