@@ -1,5 +1,6 @@
 ## Win32 Apps Classic (before Win UI)
 Listing,  
+- [MSFT Docs - Coding Style Conventions for C++/Win32](https://learn.microsoft.com/en-us/windows/win32/stg/coding-style-conventions)
 - [Windows SDK and Visual Studio Samples](https://github.com/atiq-cs/cpp/blob/dev/Win32/Samples.md)
 - RegisterClass previous versions are on [RegisterClass doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/RegisterClass.md).  
 

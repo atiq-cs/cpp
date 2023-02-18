@@ -1,3 +1,17 @@
+## Standard C++ Docs and Projects
+Standard C++ (anything that is not specific to Win32/MFC etc.) Documentations are here.
+
+### Language Resources
+- *[Books and E-Books Resources](https://github.com/atiq-cs/cpp/blob/dev/Console/Books.md)*
+- `std::cout` formatting examples, [MSFT - String and I/O Formatting \(Modern C++\)](https://learn.microsoft.com/en-us/cpp/text/string-and-i-o-formatting-modern-cpp)
+
+#### Coding Guidelines
+- [reddit - Developing a C++ Coding Standard for a program](https://www.reddit.com/r/cpp/comments/62l68j)
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+- [Google Docs - Jialiang Ge - Microsoft All-In-One Code Framework](https://docs.google.com/document/d/1sg2G9EEp50mC5Ouu94kTkKEQxJ8K70p8/edit?usp=sharing&ouid=106507132518514033249&rtpof=true&sd=true), because all [old links to this doc](https://marketplace.visualstudio.com/items?itemName=JialiangGeMSFT.MicrosoftAll-In-OneCodeFramework) expired!
+- [Geotechnical Software Services - C++ Programming Style Guidelines](https://geosoft.no/development/cppstyle.html), 01-2011
+- [Tom Goodale - C/C++ Coding Guidlines](http://www.sourceformat.com/pdf/cpp-coding-standard-gridlab.pdf)
+
 ## Console Projects
 Console projects are supposed to run in all platforms (Windows, Unix, Linux).
 
@@ -105,4 +119,3 @@ of << "\n";
 of << starttime;
 of.close();
 ```
-

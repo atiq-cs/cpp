@@ -1,13 +1,20 @@
 ## C++ Projects
 
-### Build
-**Common build instructions**  
+### Generalized Build Instructions
+**Setup output directory**  
 First step is to create Dir for holding Binary Executables and Objects,
 
     New-Item -Type Directory x64\Release
 
-Link CL(command line) is same for MBCS (non-Unicode) and Unicode.
+**Release Build**  
+In this high level ReadMe doc, we don't provide the exact command lines, only provide customizations.
 
+Compile / link commands are presented in each directory per project type.
+- Console (Win32 Console Apps also fall under this)
+- Win32 (include resource compilation)
+- MFC
+
+Compile CL changes slight based on MBCS vs Unicode.
 
 For MBCS (non Unicode) projects, please replace
 
@@ -19,19 +26,12 @@ with
 
 in above compile CL.
 
+Link CL (command line) is same for MBCS (non-Unicode) and Unicode.
 
-Compile / link commands are presented in each directory per project type.
-- Console (Win32 Console Apps also fall under this)
-- Win32 (include resource compilation)
-- MFC
 
 *Win UI: yet to figure out how to build and deploy!*
 
-In addition, command line references are provided for 2 build types,
-- Debug
-- Release
-
-To note about the CLs,
+To note about the CLs provided in each dir,
 - CL above are based on Visual Studio 2022 (around 2023-01).
 - Linker includes some OS specific libraries which might not be necessary for cross-platform C++ projects.
 - CL is simplified based on file name or paths without space. Those strings need to be surrounded by quotes when space is present in them.
@@ -56,6 +56,10 @@ There was indeed an incorrect conversion in following in line 66,
 
 
 Hence, there is no reason to distrust the compiler.
+
+Command line references are provided for 2 build types,
+- Debug
+- Release
 
 
 **Debug Builds**  
