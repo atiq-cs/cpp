@@ -28,6 +28,12 @@ linker pragma to cover all *archs*,
 #pragma endregion
 ```
 
+To suppress a specific warning by the compiler we use following pragma statement,
+
+```cpp
+__pragma(warning(disable:4127))
+```
+
 *We are using CL, yet to check manifest embedding arguments.*
 
 And, link to comctl32 lib from code,
