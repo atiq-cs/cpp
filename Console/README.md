@@ -4,6 +4,7 @@ Standard C++ (anything that is not specific to Win32/MFC etc.) Documentations ar
 ### Language Resources
 - *[Books and E-Books Resources](https://github.com/atiq-cs/cpp/blob/dev/Console/Books.md)*
 - `std::cout` formatting examples, [MSFT - String and I/O Formatting \(Modern C++\)](https://learn.microsoft.com/en-us/cpp/text/string-and-i-o-formatting-modern-cpp)
+- `std::string` ref, [MSFT - string typedef](https://learn.microsoft.com/en-us/cpp/standard-library/string-typedefs)
 
 #### Coding Guidelines
 - [reddit - Developing a C++ Coding Standard for a program](https://www.reddit.com/r/cpp/comments/62l68j)

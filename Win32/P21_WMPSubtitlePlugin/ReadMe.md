@@ -22,6 +22,7 @@ Features,
 - Subtitle Converter (from on Sub format to another)
 - Properly detecting encoding of input text file
 
+*Build Instructions for this project is at [build doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/P21_WMPSubtitlePlugin/Build.md)*. Target platform for the build is defined at 'StdAfx.h'.
 
 #### Developer Doc
 ref, CaptionDevPlan.docx, 06-11-2014  
@@ -130,6 +131,7 @@ This registry settings allows us to set WMP 64 bit as default,
       4d,00,65,00,64,00,69,00,61,00,20,00,50,00,6c,00,61,00,79,00,65,00,72,00,00,\
       00
 
+
 **Getting smi file path**  
 ```cpp
 hr = m_spCore->get_closedCaption(&spWMPClosedCaption);
@@ -156,7 +158,7 @@ Hide smi file
 
 **Refs**  
 - WMP official samples including Wizard can be found in our [primary Samples Doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/Samples.md)
-- DSP Sample is archived at [atiq-cs/WmpSubtitlePlugin](https://gitlab.com/atiq-cs/Merged_WmpSubtitlePlugin/-/tree/dev/WMPPluginDsp)
+- DSP Sample 'WMPPluginDsp' is archived at [atiq-cs/WmpSubtitlePlugin](https://gitlab.com/atiq-cs/Merged_WmpSubtitlePlugin/-/tree/dev/WMPPluginDsp)
 - MSFT - [Windows Media Player DSP Plug-ins](https://learn.microsoft.com/sl-si/windows/win32/wmp/windows-media-player-dsp-plug-ins)
 - MSFT - [Getting Started with the Windows Media Player SDK](https://learn.microsoft.com/en-us/windows/win32/wmp/getting-started)
 

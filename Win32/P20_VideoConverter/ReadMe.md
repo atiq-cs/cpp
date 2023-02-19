@@ -28,6 +28,9 @@ Video conversion is probably tested. However, how many options/capabilities are 
 **Refs**  
 - Win Classic Media Foundation Sample [MSFT on Github  - MFPlayer2](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2), [MSFT Docs - medfound](https://learn.microsoft.com/en-us/windows/win32/medfound/mfplayer2-sample)
 - Win Classic Media Foundation Sample [MSFT on Github  - Transcode](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/Transcode)
+- Intro to [MSFT - Microsoft Media Foundation](https://learn.microsoft.com/en-us/windows/win32/medfound/microsoft-media-foundation-sdk) to utilize MF on Apps.
+  - [stimulant - Cinder-WMFVideo](https://github.com/stimulant/Cinder-WMFVideo) is a port port of Second Story's ofxWMFVideoPlayer addon; allows playback of videos and routing of audio to specific audio devices.
+
 
 
 **07-2013 plans**  

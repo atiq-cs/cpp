@@ -12,6 +12,8 @@ Most of the old samples are available on
   - Classic Win Samples Repository: [microsoft/Windows-classic-samples](https://github.com/microsoft/Windows-classic-samples) contains
     - [Win 7 Samples](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples) which includes,
       - [WinUI Samples](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/winui) i.e., HotKey registration
+
+[MSFT - Media Foundation Samples List](https://learn.microsoft.com/en-us/windows/win32/medfound/media-foundation-sdk-samples)
     - In addition, includes MFPlayer2 and Transcode as part of Media Foundation samples,  
   
 listed from local copy,  
@@ -70,9 +72,13 @@ listed from local copy,
     -a---            6/4/2014  9:11 PM      106206722 Windows Driver Kit (WDK) 8.1 Samples.zip
 
 
-  - Listing resumes for Classic Win Samples Repository: [microsoft/Windows-classic-samples](https://github.com/microsoft/Windows-classic-samples)
-    - [WMP Samples C++](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/WMP) as part of multimedia samples.
-    - WMP SDK Samples were part of Windows SDK around Windows 7, ref, [MSFT - WMP SDK Samples](https://learn.microsoft.com/en-us/windows/win32/wmp/samples)
+  - Listing resumes for Classic Win Samples Repository: [microsoft/Windows-classic-samples](https://github.com/microsoft/Windows-classic-samples). A new section is created below for WMP Samples.
+
+### Windows Media Format SDK Samples
+[MSFT - Windows Media Format SDK Sample Applications](https://learn.microsoft.com/en-us/windows/win32/wmformat/sample-applications) lists all WMP Samples.
+- [WMP Samples C++](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/WMP) as part of multimedia samples.
+- WMP SDK Samples were part of Windows SDK around Windows 7, ref, [MSFT - WMP SDK Samples](https://learn.microsoft.com/en-us/windows/win32/wmp/samples)
+
 
 - [MSFT Docs - Visual Studio C++ Official Samples Main Page](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-samples) lists ATL, COM, CLR, MFC Samples
 

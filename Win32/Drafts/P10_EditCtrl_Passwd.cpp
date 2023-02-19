@@ -32,12 +32,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 
 // On .rc file DLG def for this source file
-/*
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
-
+/*
 DLGX_PASSWD DIALOGEX 25, 25, 288, 125
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Box"
