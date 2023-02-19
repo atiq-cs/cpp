@@ -3,11 +3,11 @@
 class CShape
 {
 public:
-	CShape(void);
-	CShape(int x);
-	~CShape(void);
-	int get();
+  CShape(void);
+  CShape(int x);
+  ~CShape(void);
+  int get();
 
 private:
-	int a;
+  int a;
 };

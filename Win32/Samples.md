@@ -72,6 +72,7 @@ listed from local copy,
 
   - Listing resumes for Classic Win Samples Repository: [microsoft/Windows-classic-samples](https://github.com/microsoft/Windows-classic-samples)
     - [WMP Samples C++](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/WMP) as part of multimedia samples.
+    - WMP SDK Samples were part of Windows SDK around Windows 7, ref, [MSFT - WMP SDK Samples](https://learn.microsoft.com/en-us/windows/win32/wmp/samples)
 
 - [MSFT Docs - Visual Studio C++ Official Samples Main Page](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-samples) lists ATL, COM, CLR, MFC Samples
 

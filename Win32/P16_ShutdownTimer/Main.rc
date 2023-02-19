@@ -17,8 +17,8 @@ BEGIN
     END
 END
 
-IDI_MAIN_APP_ICON	    ICON    "Main.ico"
-IDB_BMP		        	  BITMAP  "About.bmp"
+IDI_MAIN_APP_ICON      ICON    "Main.ico"
+IDB_BMP                BITMAP  "About.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -12,9 +12,9 @@ FD::~FD(void)
 }
 
 void FD::initialize() {
-	uni_obj = new CShape(50);
+  uni_obj = new CShape(50);
 }
 
 void FD::display_shape() {
-	std::cout<<"Retrieved value: "<<uni_obj->get()<<std::endl;
+  std::cout<<"Retrieved value: "<<uni_obj->get()<<std::endl;
 }

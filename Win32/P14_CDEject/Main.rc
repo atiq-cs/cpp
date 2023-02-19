@@ -8,6 +8,6 @@
 // Other Identifiers
 //
 
-IDI_PROGICON	ICON "Main.ico"
-ID_EJECTICON	ICON "Eject.ico"
-ID_CLOSEICON	ICON "Close.ico"
+IDI_PROGICON  ICON "Main.ico"
+ID_EJECTICON  ICON "Eject.ico"
+ID_CLOSEICON  ICON "Close.ico"

@@ -2,10 +2,10 @@
 - only supported subtitle format: SubRip (.srt)
  
 Input:  
-	filename_pre.srt
-	
+  filename_pre.srt
+  
 Output:  
-	filename.srt
+  filename.srt
 
 Merged from [GitLab](https://gitlab.com/atiq-cs/merged_SubtitleSynchronizer), linked for file history.
 

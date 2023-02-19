@@ -9,12 +9,12 @@
 // PARTICULAR PURPOSE.
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
+//------------------------------------------------------------------------------
+
 // 
 // Modified by Atiq
 // Date: 07-06-2013, some files 07-26
 // Probably requires a modification of main method
-//------------------------------------------------------------------------------
-
 // Demos file drops and reading file path from the drop
 //   how to use Transcode API to convert vidoes/ how to call transcode methods
 // This file will only have inclusions for UI
@@ -26,7 +26,7 @@
 
 INT WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*lpCmdLine*/, INT /*nCmdShow*/)
 {
-	// will enable if COM is required later
+  // will enable if COM is required later
   (void) HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
 
   // Initialize the COM library.

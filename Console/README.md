@@ -88,9 +88,9 @@ Converting numbers to strings,
 ```cpp
 std::string itoa(int i)
 {
-	std::stringstream out;
-	out << i;
-	return out.str();
+  std::stringstream out;
+  out << i;
+  return out.str();
 }
 ```
 

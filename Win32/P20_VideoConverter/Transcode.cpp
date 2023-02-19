@@ -195,45 +195,45 @@ HRESULT CTranscoder::ConfigureVideoOutput(int m_width, int m_height, int m_frame
     // Create a new attribute store.
     if (SUCCEEDED(hr))
     {
-        hr = MFCreateAttributes( &pVideoAttrs, 5 );
+      hr = MFCreateAttributes( &pVideoAttrs, 5 );
     }
 
     // Set the encoder to be Windows Media video encoder, so that the appropriate MFTs are added to the topology.
     if (SUCCEEDED(hr))
     {
-        // hr = pVideoAttrs->SetGUID(MF_MT_SUBTYPE, MFVideoFormat_WMV3);
-		// Changed by Saint Atique to use h264
-		hr = pVideoAttrs->SetGUID(MF_MT_SUBTYPE, MFVideoFormat_H264);
+      // hr = pVideoAttrs->SetGUID(MF_MT_SUBTYPE, MFVideoFormat_WMV3);
+      // Modified to use h264
+      hr = pVideoAttrs->SetGUID(MF_MT_SUBTYPE, MFVideoFormat_H264);
     }
 
     // Set the frame rate.
     if (SUCCEEDED(hr))
     {
-		// Changed by Saint Atique
-		hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_FRAME_RATE, m_frameRate, 1000);
-        // hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_FRAME_RATE, 30, 1);
+      // Modified
+      hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_FRAME_RATE, m_frameRate, 1000);
+      // hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_FRAME_RATE, 30, 1);
     }
 
     //Set the frame size.
     if (SUCCEEDED(hr))
     {
-		// // Changed by Saint Atique to use customized size to match video
-		hr = MFSetAttributeSize(pVideoAttrs, MF_MT_FRAME_SIZE, m_width, m_height);
-        // hr = MFSetAttributeSize(pVideoAttrs, MF_MT_FRAME_SIZE, 320, 240);
+      // Modified to use customized size to match video
+      hr = MFSetAttributeSize(pVideoAttrs, MF_MT_FRAME_SIZE, m_width, m_height);
+      // hr = MFSetAttributeSize(pVideoAttrs, MF_MT_FRAME_SIZE, 320, 240);
     }
 
     //Set the pixel aspect ratio
     if (SUCCEEDED(hr))
     {
-        hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_PIXEL_ASPECT_RATIO, 1, 1);
+      hr = MFSetAttributeRatio(pVideoAttrs, MF_MT_PIXEL_ASPECT_RATIO, 1, 1);
     }
 
     // Set the bit rate.
     if (SUCCEEDED(hr))
     {
-		// Changed by Saint Atique
-		hr = pVideoAttrs->SetUINT32(MF_MT_AVG_BITRATE, m_bitRate);
-        // hr = pVideoAttrs->SetUINT32(MF_MT_AVG_BITRATE, 300000);
+      // Modified
+      hr = pVideoAttrs->SetUINT32(MF_MT_AVG_BITRATE, m_bitRate);
+      // hr = pVideoAttrs->SetUINT32(MF_MT_AVG_BITRATE, 300000);
     }
 
     // Set the attribute store on the transcode profile.
@@ -270,13 +270,13 @@ HRESULT CTranscoder::ConfigureContainer()
     hr = MFCreateAttributes( &pContainerAttrs, 2 );
 
     //Set the output container to be ASF type
-	// changed from MF_TRANSCODE_ADJUST_PROFILE_DEFAULT to MFTranscodeContainerType_MPEG4
+   // changed from MF_TRANSCODE_ADJUST_PROFILE_DEFAULT to MFTranscodeContainerType_MPEG4
     if (SUCCEEDED(hr))
     {
-        hr = pContainerAttrs->SetGUID(
-            MF_TRANSCODE_CONTAINERTYPE, 
-            MFTranscodeContainerType_MPEG4
-            );
+      hr = pContainerAttrs->SetGUID(
+        MF_TRANSCODE_CONTAINERTYPE, 
+        MFTranscodeContainerType_MPEG4
+        );
     }
 
     // Use the default setting. Media Foundation will use the stream 
@@ -284,16 +284,16 @@ HRESULT CTranscoder::ConfigureContainer()
 
     if (SUCCEEDED(hr))
     {
-        hr = pContainerAttrs->SetUINT32(
-            MF_TRANSCODE_ADJUST_PROFILE, 
-            MF_TRANSCODE_ADJUST_PROFILE_DEFAULT
-            );
+      hr = pContainerAttrs->SetUINT32(
+        MF_TRANSCODE_ADJUST_PROFILE, 
+        MF_TRANSCODE_ADJUST_PROFILE_DEFAULT
+        );
     }
 
     //Set the attribute store on the transcode profile.
     if (SUCCEEDED(hr))
     {
-        hr = m_pProfile->SetContainerAttributes(pContainerAttrs);
+      hr = m_pProfile->SetContainerAttributes(pContainerAttrs);
     }
 
     SafeRelease(&pContainerAttrs);
@@ -518,19 +518,19 @@ HRESULT CreateMediaSource(
   
   if (SUCCEEDED(hr))
   {
-      hr = pSourceResolver->CreateObjectFromURL(
-          sURL,                       // URL of the source.
-          MF_RESOLUTION_MEDIASOURCE,  // Create a source object.
-          NULL,                       // Optional property store.
-          &ObjectType,                // Receives the created object type. 
-          &pUnkSource                 // Receives a pointer to the media source.
-          );
+    hr = pSourceResolver->CreateObjectFromURL(
+      sURL,                       // URL of the source.
+      MF_RESOLUTION_MEDIASOURCE,  // Create a source object.
+      NULL,                       // Optional property store.
+      &ObjectType,                // Receives the created object type. 
+      &pUnkSource                 // Receives a pointer to the media source.
+      );
   }
 
   // Get the IMFMediaSource from the IUnknown pointer.
   if (SUCCEEDED(hr))
   {
-      hr = pUnkSource->QueryInterface(IID_PPV_ARGS(ppMediaSource));
+    hr = pUnkSource->QueryInterface(IID_PPV_ARGS(ppMediaSource));
   }
 
   SafeRelease(&pSourceResolver);

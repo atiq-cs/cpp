@@ -13,9 +13,9 @@ MainDialog::MainDialog() :
     m_nID(IDD_DIALOG_MAIN),
     m_hDlg(0)
 {
-	// allocate buffer for m_InputFileName
-	// m_InputFileName = new TCHAR[MAX_PATH];
-	m_InputFileName[0] = 0;
+  // allocate buffer for m_InputFileName
+  // m_InputFileName = new TCHAR[MAX_PATH];
+  m_InputFileName[0] = 0;
 }
 
 
@@ -25,7 +25,7 @@ MainDialog::MainDialog() :
 
 MainDialog::~MainDialog()
 {
-	// for future use
+  // for future use
 }
 
 //-----------------------------------------------------------------------------
@@ -37,13 +37,13 @@ MainDialog::~MainDialog()
 HRESULT MainDialog::OnInitDialog()
 {
   HRESULT hr = S_OK;
-	// Register drag and drop: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776406(v=vs.85).aspx
+  // Register drag and drop: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776406(v=vs.85).aspx
 
-	DragAcceptFiles(m_hDlg, TRUE);
-	// Set Text for media info
-	SetWindowText( GetDlgItem(IDC_EDIT_MEDIA_INFO), TEXT("Plese drag and drop a file to view information."));
+  DragAcceptFiles(m_hDlg, TRUE);
+  // Set Text for media info
+  SetWindowText( GetDlgItem(IDC_EDIT_MEDIA_INFO), TEXT("Plese drag and drop a file to view information."));
 
-	return hr;
+  return hr;
 }
 
 
@@ -215,61 +215,61 @@ INT_PTR CALLBACK MainDialog::DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPAR
 */
 
 void MainDialog::OnDropFiles(HDROP hDrop) {
-	// Get number of files; ref: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776408(v=vs.85).aspx
-	int numFiles = DragQueryFile(hDrop, 0xFFFFFFFF, NULL, NULL);
+  // Get number of files; ref: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776408(v=vs.85).aspx
+  int numFiles = DragQueryFile(hDrop, 0xFFFFFFFF, NULL, NULL);
 
-	if (numFiles == 1) {
-		DragQueryFile(hDrop, 0, m_InputFileName, sizeof(m_InputFileName));
-		// display file name on the dialog; on media info textbox
-		const size_t tempStrSize = _tcslen(TEXT("File Name: ")) + sizeof(m_InputFileName);
-		LPTSTR tmpStr = new TCHAR[tempStrSize];
-		_tcscpy_s(tmpStr, tempStrSize, TEXT("File Name: "));
-		_tcscat_s(tmpStr, tempStrSize, m_InputFileName);
-		SetWindowText( GetDlgItem(IDC_EDIT_MEDIA_INFO), tmpStr);
+  if (numFiles == 1) {
+    DragQueryFile(hDrop, 0, m_InputFileName, sizeof(m_InputFileName));
+    // display file name on the dialog; on media info textbox
+    const size_t tempStrSize = _tcslen(TEXT("File Name: ")) + sizeof(m_InputFileName);
+    LPTSTR tmpStr = new TCHAR[tempStrSize];
+    _tcscpy_s(tmpStr, tempStrSize, TEXT("File Name: "));
+    _tcscat_s(tmpStr, tempStrSize, m_InputFileName);
+    SetWindowText( GetDlgItem(IDC_EDIT_MEDIA_INFO), tmpStr);
 
-	}
-	else if (numFiles == 0)
-		MessageBox(m_hDlg, TEXT("Number of files dropped should not be zero!!"), NULL, MB_OK | MB_ICONEXCLAMATION);
-	else
-		MessageBox(m_hDlg, TEXT("Currently, dropping multiple files is not supported!"), NULL, MB_OK | MB_ICONINFORMATION);
-	
-	// finish procedure, deallocate
-	DragFinish(hDrop);		//ref: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776407(v=vs.85).aspx
+  }
+  else if (numFiles == 0)
+    MessageBox(m_hDlg, TEXT("Number of files dropped should not be zero!!"), NULL, MB_OK | MB_ICONEXCLAMATION);
+  else
+    MessageBox(m_hDlg, TEXT("Currently, dropping multiple files is not supported!"), NULL, MB_OK | MB_ICONINFORMATION);
+  
+  // finish procedure, deallocate
+  DragFinish(hDrop);    //ref: http://msdn.microsoft.com/en-us/library/windows/desktop/bb776407(v=vs.85).aspx
 }
 
 #include "Transcode.h"
 
 void MainDialog::ConvertVideo()
 {
-	if (m_InputFileName[0] == 0) {
-		return ;
-	}
+  if (m_InputFileName[0] == 0) {
+    return ;
+  }
 
-	BOOL fError;
-	int video_height = GetDlgItemInt(m_hDlg, IDC_EDIT_HEIGHT, &fError, TRUE);
-	
-	// Debug test
-	// TCHAR num[53] = TEXT("Video height: ");
-	// _itot_s(video_height, &num[14], 39, 10);
-	// MessageBox(m_hDlg, num, NULL, MB_OK | MB_ICONINFORMATION);
+  BOOL fError;
+  int video_height = GetDlgItemInt(m_hDlg, IDC_EDIT_HEIGHT, &fError, TRUE);
+  
+  // Debug test
+  // TCHAR num[53] = TEXT("Video height: ");
+  // _itot_s(video_height, &num[14], 39, 10);
+  // MessageBox(m_hDlg, num, NULL, MB_OK | MB_ICONINFORMATION);
 
-	int video_width = GetDlgItemInt(m_hDlg, IDC_EDIT_WIDTH, &fError, TRUE);
+  int video_width = GetDlgItemInt(m_hDlg, IDC_EDIT_WIDTH, &fError, TRUE);
 
-	if (fError == FALSE || video_width <= 0)
-		return ;
-	int video_frameRate = GetDlgItemInt(m_hDlg, IDC_EDIT_FR, &fError, TRUE);
-	if (fError == FALSE || video_frameRate <= 0)
-		return ;
-	int video_bitRate = GetDlgItemInt(m_hDlg, IDC_EDIT_BITRATE, &fError, TRUE);
-	if (fError == FALSE || video_bitRate <= 0)
-		return ;
+  if (fError == FALSE || video_width <= 0)
+    return ;
+  int video_frameRate = GetDlgItemInt(m_hDlg, IDC_EDIT_FR, &fError, TRUE);
+  if (fError == FALSE || video_frameRate <= 0)
+    return ;
+  int video_bitRate = GetDlgItemInt(m_hDlg, IDC_EDIT_BITRATE, &fError, TRUE);
+  if (fError == FALSE || video_bitRate <= 0)
+    return ;
 
-	// disable button until conversion is complete
-	EnableWindow(GetDlgItem(IDC_BUTTON_START_CONV), FALSE);
+  // disable button until conversion is complete
+  EnableWindow(GetDlgItem(IDC_BUTTON_START_CONV), FALSE);
 
   (void) HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
 
-	LPTSTR sInputFile = m_InputFileName;  // Audio source file name
+  LPTSTR sInputFile = m_InputFileName;  // Audio source file name
   LPCTSTR sOutputFile = TEXT("H:\\Test.mp4");  // Output file name
   
   HRESULT hr = S_OK;
@@ -330,6 +330,6 @@ void MainDialog::ConvertVideo()
     SetWindowText( GetDlgItem(IDC_EDIT_MEDIA_INFO), TEXT("Couldn't create output file."));
   }
 
-	// enable button
-	EnableWindow(GetDlgItem(IDC_BUTTON_START_CONV), TRUE);
+  // enable button
+  EnableWindow(GetDlgItem(IDC_BUTTON_START_CONV), TRUE);
 }

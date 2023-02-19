@@ -35,15 +35,15 @@ public:
   MainDialog();
   ~MainDialog();
 
-	virtual BOOL ShowDialog(HINSTANCE hinst);
+  virtual BOOL ShowDialog(HINSTANCE hinst);
   // Message handlers
 
   // WM_INITDIALOG
   HRESULT OnInitDialog(); 
 
-	void OnDropFiles(HDROP hDrop);
+  void OnDropFiles(HDROP hDrop);
 
-	// WM_COMMAND
+  // WM_COMMAND
   // INT_PTR OnCommand(HWND hControl, WORD idControl, WORD msg);
 
 private:
@@ -53,8 +53,8 @@ private:
   // Return one of our dialog controls
   HWND GetDlgItem(int nID) { return ::GetDlgItem(m_hDlg, nID); }
 
-	// bool ValidateDialogInputs();
-	void ConvertVideo();
+  // bool ValidateDialogInputs();
+  void ConvertVideo();
 
   void EndDialog(INT_PTR cmd)
   {
@@ -67,5 +67,5 @@ private:
 private:
   HWND            m_hDlg;               // this dialog window
   int             m_nID;                // Resource ID of the dialog window 
-	TCHAR			m_InputFileName[MAX_PATH];	// name of dropped file
+  TCHAR      m_InputFileName[MAX_PATH];  // name of dropped file
 };

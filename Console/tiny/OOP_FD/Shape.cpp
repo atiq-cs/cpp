@@ -5,7 +5,7 @@ CShape::CShape(void)
 }
 
 CShape::CShape(int x) {
-	a = x;
+  a = x;
 }
 
 CShape::~CShape(void)
@@ -13,5 +13,5 @@ CShape::~CShape(void)
 }
 
 int CShape::get() {
-	return a;
+  return a;
 }

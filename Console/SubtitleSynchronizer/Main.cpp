@@ -3,7 +3,7 @@
 * Date    : 2015-02
 * Notes   :  
 *   Basic cmd line implementation of SubSync
-*	  Old string related methods are replaced with Secure versions
+*   Old string related methods are replaced with Secure versions
 *   Note: !!Danger!!
 *    Be aware of a number of string manipulation of using pointers!!
 * Build   : MBCS, Console, x64

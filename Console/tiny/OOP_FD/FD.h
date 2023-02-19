@@ -7,11 +7,11 @@ class CShape;
 class FD
 {
 public:
-	FD(void);
-	~FD(void);
-	void initialize();
-	void display_shape();
+  FD(void);
+  ~FD(void);
+  void initialize();
+  void display_shape();
 
 private:
-	CShape *uni_obj;
+  CShape *uni_obj;
 };
