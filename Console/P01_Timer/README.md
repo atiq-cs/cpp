@@ -1,5 +1,10 @@
 ### Timer
-*Time a.k.a Delay Timer a.k.a Countdown Timer*
+*Time a.k.a Delay Timer a.k.a Countdown Timer a.k.a Sleep Timer a.k.a Console Stop Watch*
+
+Console application works as a countdown timer for Windows and Linux. Useful for windows batch scripts, powershell scripts and Linux bash shell scripts.
+
+- On Win, functions as Sleep method in scripts, better of version Start-Sleep cmdlet
+- On Unix, it functions as an enhanced version of sleep command.
 
 #### Windows Instructions
 Please put the dll file on the same directory where you keep 'Timer.exe'.
@@ -18,7 +23,7 @@ Start Timer for 1 hour and 10 seconds,
 
     C:\> Timer 1:0:10
 
-Start Timer for 25 hours and 4 minutes and 4 seconds,
+Start Timer for 25 hours 4 minutes and 4 seconds,
 
     C:\> Timer 25:04:04
 
