@@ -28,7 +28,11 @@ Compile (MBCS / legacy / non Unicode),
 
     cl /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Oi /GL /D NDEBUG /D _CONSOLE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /permissive- /Fox64\Release\ /Fdx64\Release\vc143.pdb /external:W3 /Gd /TP /FC *.cpp
 
-Link,
+Slightly stripped down linker cmd (without manifest and libs) which is more appropriate for console programs,
+
+    link /OUT:x64\Release\Main.exe /NOLOGO /DEBUG /PDB:x64\Release\Main.pdb /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /LTCGOUT:x64\Release\Main.iobj /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:x64\Release\Main.lib /MACHINE:X64 x64\Release\*.obj
+
+Full Link Cmd,
 
     link /OUT:x64\Release\Main.exe /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:x64\Release\Main.pdb /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /LTCGOUT:x64\Release\Main.iobj /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:x64\Release\Main.lib /MACHINE:X64 x64\Release\*.obj
 
