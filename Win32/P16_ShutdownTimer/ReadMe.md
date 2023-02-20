@@ -68,6 +68,9 @@ Project was in [sourceforge](http://sourceforge.net/projects/stdt) earlier.
 ref, ShellControl.cpp, 11-23-2009
 
 ```cpp
+// Assuming declaration for sizeof in `_stprintf_s`
+// TCHAR greeting[100];
+
 case WM_TIMER:
   GetLocalTime(&lt);
   InvalidateRect(hWnd, NULL, true);
@@ -90,9 +93,9 @@ case WM_TIMER:
     if (count == 0)
     {
       if (MySystemShutdown())
-        sprintf_s(greeting, "Shutdown call successful.");
+        _stprintf_s(greeting, sizeof(greeting) / sizeof(TCHAR), "Shutdown call successful.");
       else
-        sprintf_s(greeting, "Shutdown call failure.");
+        _stprintf_s(greeting, sizeof(greeting) / sizeof(TCHAR), "Shutdown call failure.");
     }
   }
   break;
@@ -102,8 +105,8 @@ Example action on signal to terminate the app,
 
 ```cpp
 case WM_CLOSE:
-  // process close event alt+f4 or clicking close button
-  sprintf_s(greeting, "Cool down. Alt+F4 for goodness.");
+  // Process close event alt+f4 or clicking close button
+  _stprintf_s(greeting, sizeof(greeting) / sizeof(TCHAR), "Cool down. Alt+F4 for goodness.");
   InvalidateRect(hWnd, NULL, false);
   isPressed = TRUE;
   break;

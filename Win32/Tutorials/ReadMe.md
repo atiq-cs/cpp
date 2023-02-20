@@ -179,8 +179,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     PAINTSTRUCT ps;
     HDC hdc = BeginPaint(hWnd, &ps);
 
-    sprintf_s(greeting, "Seconds counted: %d", count);
-    TextOut(hdc, 5, 5, greeting, strlen(greeting));
+    _stprintf_s(greeting, sizeof(greeting) / sizeof(TCHAR), TEXT("Seconds counted: %d"), count);
+    TextOut(hdc, 5, 5, greeting, _tcslen(greeting));
 
     EndPaint(hWnd, &ps);
     break;
@@ -190,16 +190,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
 
   case WM_DESTROY:
-      PostQuitMessage(0);
+    PostQuitMessage(0);
+
     if (IDT_TIMER)
       KillTimer(hWnd, IDT_TIMER);
-        break;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-        break;
-    }
+    break;
 
-    return 0;
+  default:
+    return DefWindowProc(hWnd, message, wParam, lParam);
+    break;
+  }
+
+  return 0;
 }
 ```
 
@@ -280,17 +282,18 @@ switch (message)
 {
 // ... ...
 case WM_PAINT:
-    PAINTSTRUCT ps;
-    char *inst = "ANSI C (Non-unicode) program";
-    HDC hdc = BeginPaint(hWnd, &ps);
+  PAINTSTRUCT ps;
+  HDC hdc = BeginPaint(hWnd, &ps);
 
-    TextOutA(hdc, 25, 75, inst, strlen(inst));
-    inst = new char[101];
-    sprintf_s(inst, 100, "Length of the string: %d", strlen(inst));
-    TextOutA(hdc, 25, 95, inst, strlen(inst));
+  char* str = "ANSI C (Non-unicode) program";
+  TextOut(hdc, 25, 75, str, strlen(str));
 
-    EndPaint(hWnd, &ps);
-    break;
+  char* len_str = new TCHAR[101];
+  sprintf_s(len_str, 101, "Length of the string: %d", strlen(str));
+  TextOut(hdc, 25, 95, len_str, strlen(len_str));
+
+  EndPaint(hWnd, &ps);
+  break;
 // ... ...
 ```
 
@@ -312,4 +315,3 @@ Under 'project defaults', there is a property called 'Character Set'. Change its
 (screenshot is in linked earlier above in blogspot)
 
 Now you can use normal string functions like `strlen`, `sprintf` etc in this program to manipulate strings. Here is a sample program demonstrating ANSI C behavior.
-
