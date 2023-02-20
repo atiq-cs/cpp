@@ -18,7 +18,7 @@ Start Timer for 1 hour and 10 seconds,
 
     C:\> Timer 1:0:10
 
-Start Timer for 25 hours and 4 minutes and 4 seconds,
+Start Timer for 25 hours 4 minutes and 4 seconds,
 
     C:\> Timer 25:04:04
 
