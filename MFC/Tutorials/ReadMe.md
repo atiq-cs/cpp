@@ -8,6 +8,17 @@ Write an MFC program that will display a dialog box that will have,
   
 When we click ok, static control will echo what is typed on the edit control. However, it will replace all texts "smile" to ":)" all texts "sad" to ":("  
 
+A: Here's an example how to accomplish this,
+```cpp
+void CChatDlg::OnBnClickedSendButton()
+{
+	m_inputEdit.GetWindowText(cstatic);
+	m_chatBox.Replace(_T("sad"), _T(":("));
+	m_chatBox.Replace(_T("smile"), _T(":)"));
+	UpdateData(FALSE);
+}
+```
+
 **Assignment 02**  
 Modify assignment 1 to support following,  
 - Pressing ESC Keyboard button should not close dialog box!
