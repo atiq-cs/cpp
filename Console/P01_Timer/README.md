@@ -61,3 +61,6 @@ Start Timer for 25 hours and 4 minutes and 4 seconds,
 **Refs**  
 - Sleep function from Windows header [MSFT - nf-synchapi-sleep](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep) and an example use in code, ref, [MSFT - thread local storage](https://learn.microsoft.com/en-us/windows/win32/procthread/using-thread-local-storage)
 - Deprecated link: A powershell script that uses this executable for notifying user after timeout is here: https://gallery.technet.microsoft.com/scriptcenter/Powershell-Delay-Counter-3ade4a08
+
+
+Tags: cross-platform, time, scripting, bash, powershell
