@@ -47,7 +47,7 @@ LONG APIENTRY WndProc(HWND hwnd,                // window handle
       LPARAM lParam)            // additional information 
 { 
     static HWND hwndEdit; 
-	  int len;
+    int len;
     static CHAR ecText[] =  "Sample single line text "
         " using multi line."; 
  

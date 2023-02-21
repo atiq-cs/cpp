@@ -15,9 +15,9 @@ To note, the new template includes,
 
 ```cpp
 BEGIN_MESSAGE_MAP(CMainDlg, CDialogEx)
-	ON_WM_SYSCOMMAND()
-	ON_WM_PAINT()
-	ON_WM_QUERYDRAGICON()
+  ON_WM_SYSCOMMAND()
+  ON_WM_PAINT()
+  ON_WM_QUERYDRAGICON()
 END_MESSAGE_MAP()
 ```
 - `OnPaint` and `OnQueryDragIcon` are as usual.

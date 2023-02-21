@@ -19,15 +19,15 @@
 
 // #define _WIN32_IE 0x0501
 // Win 7 Target Platform
-#define WINVER	0x0601
+#define WINVER  0x0601
 
 #include <windows.h>
-#include <windowsx.h>		// Track Pop UP Menu
+#include <windowsx.h>    // Track Pop UP Menu
 #include <string.h>
 #include <shellapi.h>
 #include <tchar.h>
-#include <strsafe.h>		// for StrCchCopy
-#include <commctrl.h>		// for LoadIconMetric
+#include <strsafe.h>    // for StrCchCopy
+#include <commctrl.h>    // for LoadIconMetric
 
 // For linker manifest:
 //  "Tutorials\T02_VS_and_Menu\ReadMe.md"
@@ -41,7 +41,7 @@ int WINAPI WinMain(*);
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	static HWND hwndButton, hwndToolTip;
+  static HWND hwndButton, hwndToolTip;
 
   switch (message) {
   case WM_CREATE:

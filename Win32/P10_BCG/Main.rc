@@ -13,7 +13,7 @@ BEGIN
     POPUP "&File"
     BEGIN
         MENUITEM "&Save",                        ID_FILESAVE
-		MENUITEM "Save &As",                     ID_FILESAVEAS
+    MENUITEM "Save &As",                     ID_FILESAVEAS
         MENUITEM "E&xit\tCtrl+Q",                ID_EXIT
     END
     POPUP "&Edit"

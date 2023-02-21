@@ -131,31 +131,31 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     int wmId, wmEvent;
-	PAINTSTRUCT ps;
-	HDC hdc;
+  PAINTSTRUCT ps;
+  HDC hdc;
 
     switch (message)
     {
     case WM_KEYDOWN: {
-		// Difference between StringCchPrintf and StringCbPrintf is that one uses character count
+    // Difference between StringCchPrintf and StringCbPrintf is that one uses character count
         // and other uses bytes count
-		// Refs
+    // Refs
         // - https://learn.microsoft.com/en-us/windows/win32/api/strsafe/nf-strsafe-stringcbprintfa
-		// - https://learn.microsoft.com/en-us/windows/win32/api/strsafe/nf-strsafe-stringcchprintfa
+    // - https://learn.microsoft.com/en-us/windows/win32/api/strsafe/nf-strsafe-stringcchprintfa
 
-		hdc = GetDC(hWnd);
-		const size_t cchDest = 100;
-		TCHAR pszDest[cchDest] = TEXT("");
-		//HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Key %d, char %c, code %d is pressed"), LOWORD(wParam), _T('A') + LOWORD(wParam) - 65, (int)(_T('A') + LOWORD(wParam) - 65));
-		int V_Code = LOWORD(wParam);
-		// int CHAR_Code = _T('A') + V_Code - 65;
+    hdc = GetDC(hWnd);
+    const size_t cchDest = 100;
+    TCHAR pszDest[cchDest] = TEXT("");
+    //HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Key %d, char %c, code %d is pressed"), LOWORD(wParam), _T('A') + LOWORD(wParam) - 65, (int)(_T('A') + LOWORD(wParam) - 65));
+    int V_Code = LOWORD(wParam);
+    // int CHAR_Code = _T('A') + V_Code - 65;
 
-		HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Key %d, char %c, code %d is pressed"), V_Code, V_Code, V_Code);
-		size_t pcchStrLen;
-		hr = StringCchLength(pszDest, cchDest, &pcchStrLen);
+    HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Key %d, char %c, code %d is pressed"), V_Code, V_Code, V_Code);
+    size_t pcchStrLen;
+    hr = StringCchLength(pszDest, cchDest, &pcchStrLen);
 
-		TextOut(hdc, 20, 20, pszDest, (int) pcchStrLen);
-		ReleaseDC(hWnd, hdc);
+    TextOut(hdc, 20, 20, pszDest, (int) pcchStrLen);
+    ReleaseDC(hWnd, hdc);
     }
 
     break;
@@ -179,19 +179,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     break;
     case WM_PAINT: {
-		hdc = BeginPaint(hWnd, &ps);
+    hdc = BeginPaint(hWnd, &ps);
 
-		const size_t cchDest = 1000;
-		TCHAR pszDest[cchDest] = TEXT("");
-		// int V_Code = LOWORD(wParam);
-		// int CHAR_Code = _T('A') + V_Code - 65;
-		LPTSTR arabicStr = L"زنده.ز";
-		HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Char %c, code %d - %X"), arabicStr[0], (int)arabicStr[0], (int)arabicStr[0]);
-		size_t pcchStrLen;
-		hr = StringCchLength(pszDest, cchDest, &pcchStrLen);
-		TextOut(hdc, 20, 50, pszDest, (int) pcchStrLen);
+    const size_t cchDest = 1000;
+    TCHAR pszDest[cchDest] = TEXT("");
+    // int V_Code = LOWORD(wParam);
+    // int CHAR_Code = _T('A') + V_Code - 65;
+    LPTSTR arabicStr = L"زنده.ز";
+    HRESULT hr = StringCchPrintf(pszDest, cchDest, TEXT("Char %c, code %d - %X"), arabicStr[0], (int)arabicStr[0], (int)arabicStr[0]);
+    size_t pcchStrLen;
+    hr = StringCchLength(pszDest, cchDest, &pcchStrLen);
+    TextOut(hdc, 20, 50, pszDest, (int) pcchStrLen);
 
-		EndPaint(hWnd, &ps);
+    EndPaint(hWnd, &ps);
     }
     break;
     case WM_DESTROY:

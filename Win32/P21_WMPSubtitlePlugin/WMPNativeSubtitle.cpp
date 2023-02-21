@@ -12,7 +12,7 @@
 #include "stdafx.h"
 #include "WMPNativeSubtitle.h"
 #include "CPropertyDialog.h"
-#include "SAMIConversion.h"		// for subtitle to sami conversion
+#include "SAMIConversion.h"    // for subtitle to sami conversion
 
 /////////////////////////////////////////////////////////////////////////////
 // CWMPNativeSubtitle::CWMPNativeSubtitle

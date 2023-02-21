@@ -48,7 +48,7 @@ LONG APIENTRY MainWndProc(HWND hwnd,                // window handle
                     WS_CHILD | WS_VISIBLE | WS_BORDER | ES_NUMBER,
                     100, 100, 50, 20,  // set size in WM_SIZE message
                     hwnd,        // parent window
-                    NULL,			// no control id
+                    NULL,      // no control id
                     //(HMENU) ID_EDITCHILD,   // edit control ID 
                     (HINSTANCE) GetWindowLong(hwnd, GWL_HINSTANCE), 
                     NULL);       // pointer not needed 
@@ -61,7 +61,7 @@ LONG APIENTRY MainWndProc(HWND hwnd,                // window handle
                       WS_CHILD | WS_VISIBLE | WS_BORDER | ES_NUMBER,
                       160, 100, 50, 20,  // set size in WM_SIZE message 
                       hwnd,        // parent window 
-                      NULL,			// no control id
+                      NULL,      // no control id
                       //(HMENU) ID_EDITCHILD,   // edit control ID 
                       (HINSTANCE) GetWindowLong(hwnd, GWL_HINSTANCE), 
                       NULL);       // pointer not needed 

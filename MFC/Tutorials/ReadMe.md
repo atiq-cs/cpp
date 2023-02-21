@@ -12,10 +12,10 @@ A: Here's an example how to accomplish this,
 ```cpp
 void CChatDlg::OnBnClickedSendButton()
 {
-	m_inputEdit.GetWindowText(cstatic);
-	m_chatBox.Replace(_T("sad"), _T(":("));
-	m_chatBox.Replace(_T("smile"), _T(":)"));
-	UpdateData(FALSE);
+  m_inputEdit.GetWindowText(cstatic);
+  m_chatBox.Replace(_T("sad"), _T(":("));
+  m_chatBox.Replace(_T("smile"), _T(":)"));
+  UpdateData(FALSE);
 }
 ```
 
