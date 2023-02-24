@@ -1,5 +1,12 @@
 ### Templates
-Two Templates extracted from VS 2022.
+Two Templates extracted from VS 2022. In general, note,
+- use of `TRACE`
+
+To learn from this template,
+- There's a pointer to the Main Window
+- Shell Manager needs to be initialized
+- Requires activating "Windows Native" visual manager for enabling themes in MFC controls
+- Enabled registry entries for the App
 
 #### T01_Dlg
 A Basic Dialog Based Template with most features stripped down.
@@ -51,15 +58,35 @@ Mentioned in comments of the template,
     InitCtrls.dwICC = ICC_WIN95_CLASSES;
 
 #### T02_SDI
+What's different than Template 1?
+- Exception behavior seems to be modified on this template.
+
+`noexcept` is specified with a few class object declarations,
+
+```cpp
+public:
+  CMainApp() noexcept;
+```
+
+- It does a Modal Dialog box to show "About App".
+- Has more debug diag statements. (also `TRACE0`)
+
 This template has,
 - a file menu
 - register the application and the document extension via Registry
 - parses command line using `CCommandLineInfo`
+- Accepts `DragAcceptFiles`
 
 Single document interface app template has,
 - Frame/Window
 - Doc
 - View
-  
-  
+
+Main Frame has following members (properties / methods),
+- `PreCreateWindow`
+- CToolBar
+- CStatusBar
+
+
+
 ![T02 SDI App Template Screenshot](https://user-images.githubusercontent.com/7858031/220487325-f2b60d66-066c-474c-a212-e0b3c735277b.png)
