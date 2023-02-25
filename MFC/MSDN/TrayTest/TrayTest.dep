@@ -1,0 +1,51 @@
+# Microsoft Developer Studio Generated Dependency File, included by TrayTest.mak
+
+.\Mainfrm.cpp : \
+  ".\mainfrm.h"\
+  ".\subclass.h"\
+  ".\trayicon.h"\
+  ".\TrayTest.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+ 
+
+.\StatLink.cpp : \
+  ".\StatLink.h"\
+  ".\stdafx.h"\
+ 
+
+.\Stdafx.cpp : \
+  ".\stdafx.h"\
+  "d:\msdev\sdk\include\basetsd.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+  "d:\msdev\sdk\include\reason.h"\
+  "d:\msdev\sdk\include\stralign.h"\
+  "d:\msdev\sdk\include\tvout.h"\
+ 
+
+.\Subclass.cpp : \
+  ".\subclass.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+ 
+
+.\TrayIcon.CPP : \
+  ".\subclass.h"\
+  ".\trayicon.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+  "d:\msdev\sdk\include\propidl.h"\
+ 
+
+.\TrayTest.cpp : \
+  ".\mainfrm.h"\
+  ".\StatLink.h"\
+  ".\subclass.h"\
+  ".\trayicon.h"\
+  ".\TrayTest.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+ 
+
+.\TrayTest.rc : \
+  ".\res\app.ico"\
+  ".\res\app.rc2"\
+  ".\res\myicon.ico"\
+  ".\res\myicon2.ico"\
+ 
