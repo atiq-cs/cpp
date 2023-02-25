@@ -306,11 +306,12 @@ LRESULT CALLBACK WndProc(HWND hwnd,                // window handle
     PostQuitMessage(0);
     if (IDT_TIMER1)
       KillTimer(hwnd, IDT_TIMER1);
+
     if (IDT_TIMER2)
       KillTimer(hwnd, IDT_TIMER2);
     break;
 
-    case WM_TIMER:
+  case WM_TIMER:
     if (secondtimerstarted==FALSE && isTimeUp())
     {
       secondtimerstarted = TRUE;

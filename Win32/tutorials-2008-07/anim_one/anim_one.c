@@ -133,9 +133,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         MessageBox(hwnd, "Could not SetTimer()!", "Error", MB_OK | MB_ICONEXCLAMATION);
     }
     break;
+
     case WM_CLOSE:
       DestroyWindow(hwnd);
     break;
+
     case WM_PAINT:
     {
       RECT rcClient;
@@ -161,6 +163,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       ReleaseDC(hwnd, hdc);
     }
     break;
+
     case WM_DESTROY:
       KillTimer(hwnd, ID_TIMER);
 
@@ -169,9 +172,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
       PostQuitMessage(0);
     break;
+
     default:
       return DefWindowProc(hwnd, msg, wParam, lParam);
   }
+
   return 0;
 }
 
