@@ -3,7 +3,6 @@
 
 Original files from 08-05-2014 without modifications!
 
-
 **App Output**  
 An app screenshot of the chat box is showed in screenshot below,  
   

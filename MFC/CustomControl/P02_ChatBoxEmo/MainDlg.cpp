@@ -172,7 +172,7 @@ void CMainDlg::OnBnClickedSend()
 
   if (_tcslen(msg) == 0)
   {
-    AfxMessageBox(_T("Empty"), MB_OK);
+    AfxMessageBox(_T("Input string can not be empty!"), MB_OK);
     GotoDlgCtrl(&m_editMsgToSend);
   }
   else
