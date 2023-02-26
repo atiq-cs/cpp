@@ -21,3 +21,5 @@ Demo runs for 20 seconds, then it shows a Message Box for closing it,
 **Refs**  
 - [MSFT - IcmpSendEcho2](https://learn.microsoft.com/en-us/windows/win32/api/icmpapi/nf-icmpapi-icmpsendecho2)
 - [MSFT - IcmpSendEcho](https://learn.microsoft.com/en-us/windows/win32/api/icmpapi/nf-icmpapi-icmpsendecho)
+- [MSFT - Win32 - Retrieving HTTP Headers](https://learn.microsoft.com/en-us/windows/win32/WinInet/retrieving-http-headers)
+- [MSFT - Win32 Internet - Asynchronous Example Application](https://learn.microsoft.com/en-us/windows/win32/wininet/asynchronous-example-application)

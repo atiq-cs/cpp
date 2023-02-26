@@ -50,23 +50,23 @@
 #endif
 
 
-class SAFrame : public CFrameWnd
+class MainFrame : public CFrameWnd
 {
 public:
-  SAFrame ();
+  MainFrame ();
 
 protected:
   static void CALLBACK EXPORT TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DWORD dwTime);
 };
 
 // Implementations
-SAFrame::SAFrame()
+MainFrame::MainFrame()
 {
   // Create the window's frame
   Create(NULL, _T("Ping Application"), WS_OVERLAPPEDWINDOW,
       CRect(120, 100, 700, 480), NULL);
 
-  SetTimer(ID_TIMER, 2000, &SAFrame::TimerProc);
+  SetTimer(ID_TIMER, 2000, &MainFrame::TimerProc);
 }
 
 
@@ -77,9 +77,9 @@ public:
 };
 
 // The Timer Proc
-void CALLBACK EXPORT SAFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DWORD dwTime) {
+void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DWORD dwTime) {
   // Declare and initialize variables
-  SAFrame* pMainWnd = (SAFrame*) AfxGetMainWnd ();
+  MainFrame* pMainWnd = (MainFrame*) AfxGetMainWnd ();
   char pstr[500];
   int i = 0;
   static int counter = 0;
@@ -215,7 +215,7 @@ void CALLBACK EXPORT SAFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DW
 
 
 BOOL CSAApp::InitInstance() {
-  m_pMainWnd = new SAFrame ;
+  m_pMainWnd = new MainFrame ;
   m_pMainWnd->ShowWindow(SW_SHOW);
   m_pMainWnd->UpdateWindow();
 
