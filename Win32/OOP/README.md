@@ -33,6 +33,13 @@ A Modeless Dialog however is pretty much like a Window. Guess that's why we crea
 
 ![Screenshot of the running app](https://user-images.githubusercontent.com/7858031/216800336-80dc4ab7-9368-4eae-96e5-7d75f95e0d70.png)
 
+**Target Platform**  
+For the two templates above, target Platform is set to Win 7 or later via,
+- `NTDDI_VERSION`
+- `_WIN32_WINNT`
+
+More on `WINVER` on [Tutorials ReadMe](../Tutorials#target-platforms-win32).
+
 **Difference between two projects above**
 MainDialog.cpp
 - pretty much same

@@ -4,7 +4,6 @@
 //  Remarks : Look at ReadMe
 //
 
-// Target: Win7
 // #define WINVER  0x0601
 #include <afxwin.h>
 #include <afxinet.h>

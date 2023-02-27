@@ -23,7 +23,6 @@
 //
 
 
-// Target: Win7
 // #define WINVER  0x0601
 #include <afxwin.h>
 #include <winsock2.h>
@@ -105,6 +104,8 @@ void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, 
   }
   else if (counter++ < 20) {
     // Validate the parameters
+    // TODO: Replace with tchar version instead for,
+    //  - GetCommandLineW and GetCommandLineA
     if(CommandLineToArgvW(GetCommandLineW(), &argc)) {
       sprintf(targv, "%s", GetCommandLineA());
 

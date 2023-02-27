@@ -10,6 +10,59 @@ Call `ParseCommandLine` during App Instance initialization.
 
 This code sample below shows how easy it is to use the CL arguments as variables once parsing is complete!
 
+In another example, we had,
+
+```cpp
+class CCustomCommandLineInfo : public CCommandLineInfo {
+public:
+  CCustomCommandLineInfo() {}
+  INT m_nError;
+
+  // This function will retrieve the value of the option provided	
+  BOOL GetOption (LPCTSTR option, CString& val);
+
+  // This function will check for the commandline without ny options
+  BOOL GetOption (LPCTSTR option);
+
+protected:
+  CMapStringToString m_options; // hash of options
+  CString m_sLastOption; // last option encountered
+
+  // Parse param overrided
+  virtual void ParseParam (const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
+};
+
+void CCustomCommandLineInfo::ParseParam(LPCTSTR pszParam, BOOL bFlag, BOOL bLast) {
+  if (bFlag) {
+    // this is a "flag" (begins with / or -)
+    m_options [pszParam] = "TRUE"; // default value is "TRUE"
+    m_sLastOption = pszParam; // save in case other value specified 
+  }
+  else if (!m_sLastOption.IsEmpty ()) 
+  {
+    // last token was option: set value
+    m_options [m_sLastOption] = pszParam;
+    m_sLastOption.Empty (); // clear
+  } 
+
+  // Call base class so MFC can see this param/token.
+  CCommandLineInfo::ParseParam(pszParam, bFlag, bLast);
+}
+
+// Retrieve the balue for option provided
+BOOL CCustomCommandLineInfo::GetOption (LPCTSTR option, CString& val) {
+  return m_options.Lookup (option, val);
+}
+
+BOOL CCustomCommandLineInfo::GetOption (LPCTSTR option) {
+  return GetOption (option, CString ());
+}
+```
+
+Note the base class call on last line of `ParseParam`.
+
+ref, *P07_CommandLineArgs/CLA.cpp*, 05-2010
+
 Wondering what `SetConsoleMode` is about in below code sample!
  ref, same file `EnableIDMInt.cpp`
 

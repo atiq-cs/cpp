@@ -271,7 +271,7 @@ And the resources: DIALOG and MENU are defined as below in rc file,
 *ref, Dialog Box, 11-15-2009*
 
 
-**Win32 Programming: How to Disable Unicode**  
+**Win32 Programming: Programming in ANSI C (non Unicode)**  
 Since we are using VS Code for editing code and manually compiling code. To get ANSI support back all we need to is follow the compile instruction.
 ref, [ReadMe doc](https://github.com/atiq-cs/cpp/blob/dev/Console/README.md).
 
@@ -315,3 +315,18 @@ Under 'project defaults', there is a property called 'Character Set'. Change its
 (screenshot is in linked earlier above in blogspot)
 
 Now you can use normal string functions like `strlen`, `sprintf` etc in this program to manipulate strings. Here is a sample program demonstrating ANSI C behavior.
+
+### Target Platforms (Win32)
+This is for all frameworks that are based on Win32. So that's for MFC, VC++ CLR and so on.
+
+**winver.h**  
+As per [MSFT - winver.h header](https://learn.microsoft.com/en-us/windows/win32/api/winver),  
+- This header is used by Menus and Other Resources.
+- Lists header files/APIs that utilize it including link to [MSFT - Using the Windows Headers](https://learn.microsoft.com/en-us/windows/win32/WinProg/using-the-windows-headers) which is thorough details on the macros and when to use them.
+
+
+**Porting and upgrading**  
+[MSFT - cpp - Upgrade projects from earlier versions - Update WINVER and _WIN32_WINNT](https://learn.microsoft.com/en-us/cpp/porting/modifying-winver-and-win32-winnt) provides more detais. This lists all version code for target OS.
+
+
+

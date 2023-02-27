@@ -18,9 +18,7 @@
 //
 
 // #define _WIN32_IE 0x0501
-// Win 7 Target Platform
-#define WINVER  0x0601
-
+// #define WINVER  0x0601
 #include <windows.h>
 #include <windowsx.h>    // Track Pop UP Menu
 #include <string.h>

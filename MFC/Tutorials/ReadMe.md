@@ -1,7 +1,7 @@
 ### Learning Resources
 Listing,  
 - [Command Line Parsing Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/CommandLineParsing.md)
-
+- [WINVER def ref on Win32 ReadMe](../../Win32/Tutorials#target-platforms-win32)
 
 ### Teaching Assignments
 
@@ -162,7 +162,7 @@ void CRichEditControlDlg::OnBnClickedButton1()
 }
 ```
 
-A Screenshot from the RichEditControl Sample is presented below,  
+A Screenshot from the 'Rich Edit Control' Sample is presented below,  
   
 ![RichEditControl Sample Screenshot](https://user-images.githubusercontent.com/7858031/221075250-a4c1e4f3-d485-4670-a73c-57c1d649fa26.png)
 
