@@ -1,3 +1,8 @@
+### Learning Resources
+Listing,  
+- [Command Line Parsing Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/CommandLineParsing.md)
+
+
 ### Teaching Assignments
 
 **Assignment 01**  
