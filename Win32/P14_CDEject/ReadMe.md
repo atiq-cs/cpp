@@ -18,12 +18,11 @@ Utilizes `mciSendCommand` from Winmm.lib to control the Media.
 
 
 **Refs**  
-- `OpenCloseMediaDrive` is based on Jagdish Bhimbha's post [MSDN Social](http://social.msdn.microsoft.com/Forums/en/Vsexpressvc/thread/8ea026f0-a81b-486f-a871-089323ceaa82)
+- `OpenCloseMediaDrive` is based on **Jagdish Bhimbha's post** on [MSDN Social](http://social.msdn.microsoft.com/Forums/en/Vsexpressvc/thread/8ea026f0-a81b-486f-a871-089323ceaa82)
 - [codeproject - Detect cdrom](http://www.codeproject.com/Messages/2055140/Detect-CDROM-eject.aspx)
-- http://stackoverflow.com/questions/1948780/the-best-way-to-always-detect-a-removable-device
+- [SO - dephi, detect a removable device](http://stackoverflow.com/q/1948780)
 - http://stackoverflow.com/questions/58670/windows-cdrom-eject
 - http://www.experts-exchange.com/Programming/System/Windows__Programming/Q_10336052.html
-- http://social.msdn.microsoft.com/Forums/en/Vsexpressvc/thread/8ea026f0-a81b-486f-a871-089323ceaa82
 - [sourceforge - CD Eject](https://sourceforge.net/projects/sacdeject)
 
 Initially, while figuring out the mechanism for ejecting media, I bumped into this,
