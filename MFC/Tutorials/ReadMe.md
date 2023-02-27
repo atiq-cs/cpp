@@ -138,6 +138,28 @@ We can use `GetDlgItem` to set/retrieve text. Here's an example, how to set,
     // set text using the control variable retrieved
     staticText->SetWindowText(str);
 
+**Access Main Window Frame in Timer Proc**  
+Use of `CWnd::PostMessage` in Timer Callback Proc,
+Example code,
+
+```cpp
+void MainFrame::OnPaint() {
+	CFrameWnd::OnPaint();
+	SetWindowText(_T("The window has been painted."));
+	m_Label.SetWindowText(TextStr);
+}
+
+void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DWORD dwTime) {
+	MainFrame* pMainWnd = (MainFrame *) AfxGetMainWnd();
+
+	static int i = 0;
+	_stprintf(pMainWnd->TextStr, _T("Seconds passed %d"), i++);
+
+	pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
+}
+```
+
+ref, *P08_TimerCallback\ping.cpp*, 04-2010
 
 #### Appendix
 From additional tiny projects/tutorials, some info is presented here in a concise manner!
@@ -146,7 +168,7 @@ From additional tiny projects/tutorials, some info is presented here in a concis
 It creates a new window naming the pointer as Dlg. However, it does a call for Create Window,
 
 ```cpp
-void CRichEditControlDlg::OnBnClickedButton1()
+void CRichEditControlDlg::OnBnClickedButtonOk()
 {
   HWND wndTop;
   CWnd* sdlg = new CWnd();
@@ -154,11 +176,12 @@ void CRichEditControlDlg::OnBnClickedButton1()
   sdlg = cdlg;
   sdlg->Create(_T("STATIC"), _T("Hi"), WS_CHILD | WS_CAPTION | WS_SYSMENU, CRect(100, 100, 400, 400), this, 1234);
 
-  // probably tried because that new Window wasn't getting focus
-  //sdlg->SetWindowPos(&wndTopMost, 0, 0, 0, 0, SWP_NOSIZE);
+  // Probably tried because that new Window wasn't getting focus
+  // sdlg->SetWindowPos(&wndTopMost, 0, 0, 0, 0, SWP_NOSIZE);
 
   sdlg->ShowWindow(SW_SHOWNORMAL);
-  //sdlg->MoveWindow(CRect(10, 10, 400, 400));
+  // Resize Example? Lookup ref MSFT Doc
+  // sdlg->MoveWindow(CRect(10, 10, 400, 400));
 }
 ```
 
@@ -169,4 +192,20 @@ A Screenshot from the 'Rich Edit Control' Sample is presented below,
 
 **CustomDialog 07-21-2014**  
 On the contrary, *CustomDialog* creates a second dialog from resource file Dialog Definition (dlg id) (not reproduced here since it's easy to create!).
+
+### Adding Controls By Hand
+As per [MSFT - MFC UI Elements - Adding Controls By Hand](https://learn.microsoft.com/en-us/cpp/mfc/adding-controls-by-hand), we can either add controls to a dialog box with the dialog editor or add them yourself, with code.
+
+**Window Styles**  
+For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
+
+    m_Edit.Create(ES_MULTILINE | ES_AUTOHSCROLL | WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER,
+        CRect(10, 50, 150, 70), this, 0x1552);
+
+
+ref, *P06_CEdit\P6_CEdit.cpp*, 06-26-2010
+
+
+
+
 

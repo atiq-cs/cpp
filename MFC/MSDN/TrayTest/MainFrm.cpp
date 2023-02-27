@@ -58,9 +58,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
   // Create child edit control for displaying messages
   CRect rc;
   if (!m_wndEdit.Create(
-    WS_VISIBLE|WS_CHILD|WS_VSCROLL|ES_MULTILINE|ES_READONLY, rc, this,
-    AFX_IDW_PANE_FIRST))
-
+    WS_VISIBLE | WS_CHILD | WS_VSCROLL | ES_MULTILINE | ES_READONLY,
+    rc, this, AFX_IDW_PANE_FIRST)
+  )
     return -1;
 
   // Set up tray icon
