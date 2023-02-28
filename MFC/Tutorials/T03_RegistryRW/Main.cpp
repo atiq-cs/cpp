@@ -87,11 +87,11 @@ void CMyCommandLineInfo::ParseParam(
 /////////////////////////////////////////////////////////////////////////////
 // Interface of some application class
 
-class CSAApp : public CWinApp
+class CMyApp : public CWinApp
 {
 // Construction
 public:
-   CSAApp(void);
+   CMyApp(void);
 
 // Attributes
 public:
@@ -101,7 +101,7 @@ public:
 public:
   // Overrides
   // ClassWizard generated virtual function overrides
-  //{{AFX_VIRTUAL(CSAApp)
+  //{{AFX_VIRTUAL(CMyApp)
   virtual BOOL InitInstance();
   virtual int Run();
   virtual int ExitInstance();
@@ -109,7 +109,7 @@ public:
 
 // Implementation
 public:
-   virtual ~CSAApp(void);
+   virtual ~CMyApp(void);
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -117,20 +117,20 @@ public:
 
 DECLARE_CONSOLEAPP
 
-CSAApp theApp;
+CMyApp theApp;
 
 /////////////////////////////////////////////////////////////////////////////
 // Implementation of the application class
 
-CSAApp::CSAApp(void) : CWinApp()
+CMyApp::CMyApp(void) : CWinApp()
 {
 }
 
-CSAApp::~CSAApp(void)
+CMyApp::~CMyApp(void)
 {
 }
 
-BOOL CSAApp::InitInstance() {
+BOOL CMyApp::InitInstance() {
   if (!CWinApp::InitInstance())
   {
     return FALSE;
@@ -143,7 +143,7 @@ BOOL CSAApp::InitInstance() {
   return TRUE;
 }
 
-int CSAApp::Run()
+int CMyApp::Run()
 {
   if (!m_cmdInfo.m_bSuccess)
   {
@@ -207,7 +207,7 @@ int CSAApp::Run()
   return CWinApp::Run(); // calls ExitInstance and exits right away when m_pMainWnd=NULL
 }
 
-int CSAApp::ExitInstance()
+int CMyApp::ExitInstance()
 {
    //_tprintf(_T("Done\n"));
    return CWinApp::ExitInstance();

@@ -17,6 +17,8 @@
 //   Timer
 //   - Implementation of timer using callback procedure
 //
+//  TODO: replace `sprintf` with `_stprintf` and some ANSI C Functions
+//
 //   Refs,
 //   - look at ReadMe
 //   - prev name, ping.cpp
@@ -69,7 +71,7 @@ MainFrame::MainFrame()
 }
 
 
-class CSAApp: public CWinApp
+class CMyApp: public CWinApp
 {
 public:
   BOOL InitInstance();
@@ -215,7 +217,7 @@ void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, 
 }
 
 
-BOOL CSAApp::InitInstance() {
+BOOL CMyApp::InitInstance() {
   m_pMainWnd = new MainFrame ;
   m_pMainWnd->ShowWindow(SW_SHOW);
   m_pMainWnd->UpdateWindow();
@@ -223,4 +225,4 @@ BOOL CSAApp::InitInstance() {
   return TRUE;
 }
 
-CSAApp theApp;
+CMyApp theApp;

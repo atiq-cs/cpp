@@ -1,7 +1,7 @@
 ### MFC - Command Line Parsing
 Call `ParseCommandLine` during App Instance initialization.
 
-    BOOL CSAApp::InitInstance() {    
+    BOOL CMyApp::InitInstance() {    
       // Code
       ParseCommandLine(m_cmdInfo);
 
@@ -67,7 +67,7 @@ Wondering what `SetConsoleMode` is about in below code sample!
  ref, same file `EnableIDMInt.cpp`
 
 ```cpp
-int CSAApp::Run() {
+int CMyApp::Run() {
   HANDLE hStdin;
   DWORD fdwMode;
 
