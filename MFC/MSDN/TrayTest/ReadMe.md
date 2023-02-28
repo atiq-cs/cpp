@@ -1,3 +1,10 @@
+*This rare sample is for reference only*  
+  
+Please have a look at [Win7Samples/winui/shell/appshellintegration/NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon/NotificationIcon.cpp) instead which uses `NOTIFYICON_VERSION_4`.  
+
+This sample might be using obsolete fields of `NOTIFYICONDATA` structure!
+
+
 ### MSDN TrayTest Sample from Q&A
 *from MSDN Magazine -- November 2002*  
 
