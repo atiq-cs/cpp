@@ -315,7 +315,7 @@ BOOL ShowBalloon(HWND hWnd, LPCTSTR pszTitle, LPCTSTR pszText, DWORD dwIcon)
 
   hr = StringCchCopy(nid.szInfoTitle, ARRAYSIZE(nid.szInfoTitle), pszTitle);
 
-  HICON hicon = (HICON)LoadImage( // load up the icon:
+  HICON hicon = (HICON) LoadImage( // load up the icon:
       g_hInst,                    // get the HINSTANCE to this program
       MAKEINTRESOURCE(dwIcon),    // grab the icon out of our resource file
       IMAGE_ICON,                 // tells the versatile LoadImage function that we are loading an icon

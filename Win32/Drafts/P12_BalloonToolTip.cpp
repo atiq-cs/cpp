@@ -71,8 +71,8 @@ HWND CreateToolTip(const HWND hwndTool, const HWND hWndMain, PTSTR pszText) {
   if (!hwndTool || !hwndTip)
   {
       return (HWND)NULL;
-  }                              
-                            
+  }
+
   // Associate the tooltip with the tool.
   TOOLINFO toolInfo = { 0 };
   toolInfo.cbSize = sizeof(toolInfo);
