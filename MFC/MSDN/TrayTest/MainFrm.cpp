@@ -51,16 +51,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     return -1;
 
   if (!m_wndStatusBar.Create(this) ||
-    !m_wndStatusBar.SetIndicators(indicators,
-    sizeof(indicators)/sizeof(UINT)))
+      !m_wndStatusBar.SetIndicators(indicators,sizeof(indicators)/sizeof(UINT)))
     return -1;     // fail to create
 
   // Create child edit control for displaying messages
   CRect rc;
   if (!m_wndEdit.Create(
-    WS_VISIBLE | WS_CHILD | WS_VSCROLL | ES_MULTILINE | ES_READONLY,
-    rc, this, AFX_IDW_PANE_FIRST)
-  )
+      WS_VISIBLE | WS_CHILD | WS_VSCROLL | ES_MULTILINE | ES_READONLY,
+      rc, this, AFX_IDW_PANE_FIRST))
     return -1;
 
   // Set up tray icon
@@ -93,7 +91,8 @@ void CMainFrame::OnClose()
 //
 LRESULT CMainFrame::OnTrayNotification(WPARAM uID, LPARAM lEvent)
 {
-  if (m_bShowTrayNotifications) {
+  if (m_bShowTrayNotifications)
+  {
     CString msg;
     if (WM_MOUSEFIRST<=lEvent && lEvent<=WM_MOUSELAST) {
       static LPCSTR MouseMsgs[] = { _T("WM_MOUSEMOVE"),
@@ -110,7 +109,8 @@ LRESULT CMainFrame::OnTrayNotification(WPARAM uID, LPARAM lEvent)
         _T("NIN_BALLOONUSERCLICK") };
       msg = BalloonMsgs[lEvent-NIN_BALLOONFIRST];
 #endif
-    } else
+    }
+    else
       msg = _T("(Unknown)");
 
     CString s;
@@ -121,6 +121,7 @@ LRESULT CMainFrame::OnTrayNotification(WPARAM uID, LPARAM lEvent)
     m_wndEdit.ReplaceSel(s);    // append string..
     m_wndEdit.SendMessage(EM_SCROLLCARET); // ..and make visible
   }
+
   return 0;
 }
 

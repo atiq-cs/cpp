@@ -205,7 +205,3 @@ For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
 
 ref, *P06_CEdit\P6_CEdit.cpp*, 06-26-2010
 
-
-
-
-
