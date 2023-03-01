@@ -124,3 +124,17 @@ of << "\n";
 of << starttime;
 of.close();
 ```
+
+
+**Struct Initialization**  
+There are few ways to do it.  
+First,
+
+    NOTIFYICONDATA nid = {0};
+
+Second,
+
+    ZeroMemory(&nid, sizeof(NOTIFYICONDATA)); 
+
+Third is `memset`. Gotta lookup the difference between `memset` and `ZeroMemory` though.
+

@@ -162,9 +162,12 @@ void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, 
 ref, *P08_TimerCallback\ping.cpp*, 04-2010
 
 #### Appendix
-From additional tiny projects/tutorials, some info is presented here in a concise manner!
+**MFC Threading API**  
+Example,
 
-**RichEditControl, 07-21-2014**
+    AfxBeginThread(WorkerThreadDNSLookUpProc, this);
+
+**RichEditControl, 07-21-2014**  
 It creates a new window naming the pointer as Dlg. However, it does a call for Create Window,
 
 ```cpp
@@ -204,4 +207,3 @@ For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
 
 
 ref, *P06_CEdit\P6_CEdit.cpp*, 06-26-2010
-
