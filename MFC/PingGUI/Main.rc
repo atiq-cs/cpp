@@ -1,0 +1,232 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Main.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDLG DIALOGEX 0, 0, 333, 114
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Ping GUI"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Info",IDC_STATIC,7,7,147,87
+    LTEXT           "Target",IDC_STATIC,15,18,34,8
+    LTEXT           "",IDC_TARGETTYPE,75,19,67,8
+    LTEXT           "IP Address",IDC_STATIC,15,30,36,8
+    LTEXT           "",IDC_TARGETIP,75,31,67,8
+    LTEXT           "Requests sent",IDC_STATIC,16,43,47,8
+    LTEXT           "0",IDC_REQ,75,43,19,8
+    LTEXT           "Replies received",IDC_STATIC,15,56,53,8
+    LTEXT           "0",IDC_NOREPLY,75,57,9,8
+    LTEXT           "Progress",IDC_STATIC,16,70,34,8
+    CONTROL         "",IDC_PINGPROGRESS,"msctls_progress32",WS_BORDER,74,72,73,8
+    GROUPBOX        "Report",IDC_STATIC,163,7,155,86
+    LTEXT           "",IDC_STATUSBAR,25,99,286,8
+    LTEXT           "",IDC_REPORT_DG,171,22,144,8
+    LTEXT           "",IDC_REPORT_PDNS,171,37,144,8
+    LTEXT           "",IDC_REPORT_SDNS,171,52,144,19
+    LTEXT           "",IDC_DNS,171,78,144,8
+END
+
+NETINFO_DIALOG DIALOGEX 0, 0, 200, 181
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ping GUI"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "&Network Information",IDC_STATIC,6,64,190,91
+    LTEXT           "Target host &IP",IDC_STATIC2,14,99,68,12
+    CONTROL         "",IDC_IPADDRESS1,"SysIPAddress32",WS_GROUP | WS_TABSTOP,90,98,100,14
+    LTEXT           "&Primary DNS Server",IDC_STATIC,14,118,65,12
+    CONTROL         "",IDC_IPADDRESS2,"SysIPAddress32",WS_GROUP | WS_TABSTOP,90,116,100,15
+    LTEXT           "&Secondary DNS Server",IDC_STATIC,14,137,76,12
+    CONTROL         "",IDC_IPADDRESS3,"SysIPAddress32",WS_GROUP | WS_TABSTOP,90,135,100,15
+    LTEXT           "Number of &requests",IDC_STATIC,14,82,81,14
+    EDITTEXT        IDC_NOREQ,90,81,27,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP,WS_EX_RIGHT
+    GROUPBOX        "Choose &options",IDC_STATIC,6,4,190,52
+    CONTROL         "Ping &ISP",IDC_CHECKISP,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,13,16,42,10
+    CONTROL         "Notify when &target comes online",IDC_CHECKNOTIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,13,30,114,10
+    DEFPUSHBUTTON   "OK",IDOK,78,164,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,146,164,50,14
+    LTEXT           "",IDC_NOTIFYBOX,14,45,135,10
+END
+
+IDD_ABOUT_DLG DIALOGEX 0, 0, 205, 151
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Net Notifier"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+  LTEXT           "Net Notifier Appication",IDC_APPNAMEINFO,20,14,62,11
+  LTEXT           "1.0.1.41",IDC_STATIC,19,30,36,8
+  LTEXT           "Credits",IDC_CREDIT01,21,55,32,9
+  LTEXT           "iQubit Inc.",IDC_CREDIT3,22,66,41,9
+  CONTROL         108,IDC_LOGO,"Static",SS_BITMAP | SS_REALSIZEIMAGE,96,15,87,80
+  LTEXT           "Project Homepage:",IDC_CREDIT2,19,89,67,9
+  CONTROL         "<a href=""https://github.com/atiq-cs/cpp/tree/dev/MFC/PingGUI"">github.com/atiq-cs/cpp/MFC/PingGUI</a>",IDC_PROJ_LINK,
+                  "SysLink",WS_TABSTOP,18,100,115,11
+  DEFPUSHBUTTON   "OK",IDOK,77,124,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+  IDD_MAINDLG, DIALOG
+  BEGIN
+    RIGHTMARGIN, 326
+    BOTTOMMARGIN, 111
+  END
+
+  NETINFO_DIALOG, DIALOG
+  BEGIN
+    RIGHTMARGIN, 199
+    BOTTOMMARGIN, 180
+  END
+
+  IDD_ABOUT_DLG, DIALOG
+  BEGIN
+    LEFTMARGIN, 7
+    RIGHTMARGIN, 198
+    TOPMARGIN, 7
+    BOTTOMMARGIN, 144
+  END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "iQubit Inc."
+            VALUE "FileDescription", "Net Notifier"
+            VALUE "FileVersion", "1.0.1.41"
+            VALUE "InternalName", "PingGUI.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2023"
+            VALUE "OriginalFilename", "PingGUI.exe"
+            VALUE "ProductName", "Ping GUI"
+            VALUE "ProductVersion", "1.0.1.41"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_SYSMENU MENU
+BEGIN
+    POPUP "Tray Menu"
+    BEGIN
+        MENUITEM "&Restore",                    ID_APP_RESTORE
+        MENUITEM "&About",                      ID_APP_ABOUT
+        MENUITEM "&Exit",                       ID_APP_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGO_BMP            BITMAP                  "res\\duck.bmp"
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -43,6 +43,10 @@ Tray Notification,
 Same approach to implement Tray Notification is used in [CD Eject](../../Win32/P14_CDEject/) project!
 `Shell_NotifyIcon` for `NIM_MODIFY` and `NIM_ADD` had been fixed in latest revision! We should also check and fix if required for the CD Eject project!
 
+** Tray Notification Ref**  
+Including Balloon Notifications,  
+- [Win7 Sample - NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon)
+
 **Project Goals**  
 From earlier doc,  
 Here's some screenshot of the project.  
@@ -83,7 +87,6 @@ Method 3:
 ```cpp
 LoadIconMetric(hInst, MAKEINTRESOURCE(dwIcon), LIM_LARGE, &hIcon);
 ```
-
 
 #### DNS Lookup
 When DNS Lookup is possible, a notification is displayed using dialog box. If it failed it is not displayed. Thread exits after DNS response is received.
