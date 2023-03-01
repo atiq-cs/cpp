@@ -1,4 +1,6 @@
 ### Ping GUI
+**TODO: Migrate to MAUI**
+
 **Net Notifier cross platform**  
 *a.k.a Ping GUI (penguin misspelled)*  
 
@@ -97,7 +99,7 @@ LoadIconMetric(hInst, MAKEINTRESOURCE(dwIcon), LIM_LARGE, &hIcon);
 When DNS Lookup is possible, a notification is displayed using dialog box. If it failed it is not displayed. Thread exits after DNS response is received.
 
 #### Installer
-*Installer for Ping GUI* is created using NSIS install script.
+*[Installer for Ping GUI](NSIS/)* is created using NSIS install script.
 
 Has following features,
 - Modern user interface
@@ -418,9 +420,11 @@ else
 pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
 ```
 
-
-Old code dir in previous repo that we merged from,
-last code rev, 07-09-2011
+**Previous Repo**  
+Old code dir in previous repo that we merged from is in [gitlab](https://gitlab.com/atiq-cs/merged_pinggui)  
+- last code rev, 07-09-2011
+- working solution vc project files are retained in [gitlab repo - file listing](https://gitlab.com/atiq-cs/merged_pinggui/-/tree/dev/mfc-code) above.
+- old source files are left as is without renaming and touching though
 
 Old code dir is old version of the app that
 - didn't have Tray Support
