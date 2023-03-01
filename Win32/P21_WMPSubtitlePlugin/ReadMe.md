@@ -294,7 +294,6 @@ HRESULT LaunchAppForFile(LPCWSTR strAppUserModelId, LPCWSTR szFilePath, PDWORD p
     {
         // This call ensures that the app is launched as the foreground window
         hrResult = CoAllowSetForegroundWindow(spAppActivationManager, NULL);
-        
     }
 
     // Declare ShellITem
@@ -313,7 +312,7 @@ HRESULT LaunchAppForFile(LPCWSTR strAppUserModelId, LPCWSTR szFilePath, PDWORD p
       // SHCreateItemFromParsingNam
       // SHCreateShellItemArrayFromShellItem ref,
       //  https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-shcreateshellitemarrayfromshellitem
-      hrResult = ::SHCreateShellItemArrayFromShellItem(pItem, IID_PPV_ARGS(&psia));    
+      hrResult = ::SHCreateShellItemArrayFromShellItem(pItem, IID_PPV_ARGS(&psia));
       // Shell IID_PPV_ARGS ref
       //  https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-iid_ppv_args
       pItem->Release();
@@ -323,9 +322,9 @@ HRESULT LaunchAppForFile(LPCWSTR strAppUserModelId, LPCWSTR szFilePath, PDWORD p
     // {
     //   // Create Shell item Array
     //   hrResult = SHCreateShellItemArray(NULL, psf_desktop, file_count, (PCUITEMID_CHILD_ARRAY) pidla,
-    //     &This->psia_results);            
+    //     &This->psia_results);
     // }
-    
+
     // Launch the app
     if (SUCCEEDED(hrResult))
     {
@@ -370,43 +369,44 @@ void DisplayFileManagementError(LPTSTR lpszFunction)
 // Routine Description:
 // Retrieve and output the system error message for the last-error code
 { 
-    LPVOID lpMsgBuf;
-    LPVOID lpDisplayBuf;
-    DWORD dw = GetLastError(); 
+  LPVOID lpMsgBuf;
+  LPVOID lpDisplayBuf;
+  DWORD dw = GetLastError(); 
 
-    FormatMessage(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-        FORMAT_MESSAGE_FROM_SYSTEM |
-        FORMAT_MESSAGE_IGNORE_INSERTS,
-        NULL,
-        dw,
-        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        (LPTSTR) &lpMsgBuf,
-        0, 
-        NULL );
+  FormatMessage(
+    FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+    FORMAT_MESSAGE_FROM_SYSTEM |
+    FORMAT_MESSAGE_IGNORE_INSERTS,
+    NULL,
+    dw,
+    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+    (LPTSTR) &lpMsgBuf,
+    0,
+    NULL
+  );
 
-    lpDisplayBuf = 
-        (LPVOID)LocalAlloc( LMEM_ZEROINIT, 
-                            ( lstrlen((LPCTSTR)lpMsgBuf)
-                              + lstrlen((LPCTSTR)lpszFunction)
-                              + 40) // account for format string
-                            * sizeof(TCHAR) );
-    
-    if (FAILED( StringCchPrintf((LPTSTR)lpDisplayBuf, 
-                     LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-                     TEXT("%s failed with error code %d as follows:\n%s"), 
-                     lpszFunction, 
-                     dw, 
-                     lpMsgBuf)))
-    {
-        MessageBox(NULL, TEXT("FATAL ERROR: Unable to output error code."), TEXT("Error"), MB_OK);
-    }
-    
+  lpDisplayBuf = 
+      (LPVOID)LocalAlloc( LMEM_ZEROINIT,
+                          ( lstrlen((LPCTSTR)lpMsgBuf)
+                            + lstrlen((LPCTSTR)lpszFunction)
+                            + 40) // account for format string
+                          * sizeof(TCHAR) );
+
+  if (FAILED( StringCchPrintf((LPTSTR)lpDisplayBuf,
+                    LocalSize(lpDisplayBuf) / sizeof(TCHAR),
+                    TEXT("%s failed with error code %d as follows:\n%s"),
+                    lpszFunction,
+                    dw,
+                    lpMsgBuf))
+  ) {
+      MessageBox(NULL, TEXT("FATAL ERROR: Unable to output error code."), TEXT("Error"), MB_OK);
+  }
+
   MessageBox(NULL, (LPCTSTR) lpDisplayBuf, TEXT("Error"), MB_OK);
-    // _tprintf(TEXT("ERROR: %s\n"), (LPCTSTR)lpDisplayBuf);
+  // _tprintf(TEXT("ERROR: %s\n"), (LPCTSTR)lpDisplayBuf);
 
-    LocalFree(lpMsgBuf);
-    LocalFree(lpDisplayBuf);
+  LocalFree(lpMsgBuf);
+  LocalFree(lpDisplayBuf);
 }
 ```
 

@@ -331,15 +331,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 void sendtotray(HWND hwnd)
 {
-  string str = get_time_string();
-  ZeroMemory(&nid, sizeof(NOTIFYICONDATA)); 
-  nid.cbSize = sizeof(NOTIFYICONDATA); 
-  nid.hWnd = hwnd; 
-  nid.uID = ID_MINTRAYICON;
-  nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
-  nid.uCallbackMessage = MSG_MINTRAYICON;
-  nid.hIcon = (HICON)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICONSM), IMAGE_ICON, 16, 16, 0);
-  strcpy(nid.szTip, str.c_str());
+  // Using MAKEINTRESOURCE(IDI_ICONSM)
+  // ... ...
   bool valid = false;
   valid = Shell_NotifyIcon(NIM_ADD, &nid);
   if(valid)
@@ -411,16 +404,8 @@ void update(HWND hwnd)
   {
     if(daytime % 60 == 0)
     {
-      string str = get_time_string();
-      NOTIFYICONDATA nid;
-      ZeroMemory(&nid, sizeof(NOTIFYICONDATA)); 
-      nid.cbSize = sizeof(NOTIFYICONDATA); 
-      nid.hWnd = hwnd; 
-      nid.uID = ID_MINTRAYICON;
-      nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
-      nid.uCallbackMessage = MSG_MINTRAYICON;
-      nid.hIcon = (HICON)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICONSM), IMAGE_ICON, 16, 16, 0);
-      strcpy(nid.szTip, str.c_str());
+      // Using MAKEINTRESOURCE(IDI_ICONSM)
+      // ... ...
       Shell_NotifyIcon(NIM_MODIFY, &nid);
     }
 
@@ -436,6 +421,7 @@ void update(HWND hwnd)
 
   if((elapsedtime % 900 == 0) && (BEEP))
     Beep(523,500);
+
   if(elapsedtime % 20 == 0)
   {
     ofstream of;

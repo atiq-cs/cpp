@@ -71,8 +71,8 @@ HWND CreateToolTip(const HWND hwndTool, const HWND hWndMain, PTSTR pszText) {
   if (!hwndTool || !hwndTip)
   {
       return (HWND)NULL;
-  }                              
-                            
+  }
+
   // Associate the tooltip with the tool.
   TOOLINFO toolInfo = { 0 };
   toolInfo.cbSize = sizeof(toolInfo);
@@ -203,12 +203,13 @@ int WINAPI WinMain() {
 
   nid.uCallbackMessage = MSG_MINTRAYICON; //this message must be handled in hwnd's window procedure. more info below.
   nid.uID = ID_MINTRAYICON;
-  nid.hIcon = (HICON)LoadImage( //load up the icon:
-  GetModuleHandle(NULL), //get the HINSTANCE to this program
-  MAKEINTRESOURCE(IDI_PROGICON), //grab the icon out of our resource file
-  IMAGE_ICON, //tells the versatile LoadImage function that we are loading an icon
-  16, 16, //x and y values. we want a 16x16-pixel icon for the tray.
-  0); //no flags necessary. these flags specify special behavior, such as loading the icon from a file instead of a resource. see source list below for MSDN docs on LoadImage.
+  nid.hIcon = (HICON) LoadImage( //load up the icon:
+    GetModuleHandle(NULL), //get the HINSTANCE to this program
+    MAKEINTRESOURCE(IDI_PROGICON), //grab the icon out of our resource file
+    IMAGE_ICON, //tells the versatile LoadImage function that we are loading an icon
+    16, 16, //x and y values. we want a 16x16-pixel icon for the tray.
+    0
+  );
 
   _tcscpy_s(nid.szTip, _T("My very own system tray icon!")); //this string cannot be longer than 64 characters including the NULL terminator (which is added by default to string literals).
   //There are some more members of the NOTIFYICONDATA struct that are for advanced features we aren't using. See sources below for MSDN docs if you want to use balloon tips (only Win2000/XP).

@@ -49,7 +49,7 @@ CTranscoder::~CTranscoder()
 
 //-------------------------------------------------------------------
 //  OpenFile
-//        
+//
 //  1. Creates a media source for the caller specified URL.
 //  2. Creates the media session.
 //  3. Creates a transcode profile to hold the stream and 
@@ -74,7 +74,7 @@ HRESULT CTranscoder::OpenFile(const WCHAR *sURL)
   if (SUCCEEDED(hr))
   {
     hr = MFCreateMediaSession(NULL, &m_pSession);
-  }    
+  }
 
   // Create an empty transcode profile.
   if (SUCCEEDED(hr))
@@ -85,10 +85,9 @@ HRESULT CTranscoder::OpenFile(const WCHAR *sURL)
 }
 
 
-
 //-------------------------------------------------------------------
 //  ConfigureAudioOutput
-//        
+//
 //  Configures the audio stream attributes.  
 //  These values are stored in the transcode profile.
 //
@@ -131,7 +130,7 @@ HRESULT CTranscoder::ConfigureAudioOutput()
 
   if (SUCCEEDED(hr))
   {
-      hr = pAvailableTypes->GetElement(0, &pUnkAudioType);    
+      hr = pAvailableTypes->GetElement(0, &pUnkAudioType);
   }
 
   if (SUCCEEDED(hr))
@@ -142,7 +141,7 @@ HRESULT CTranscoder::ConfigureAudioOutput()
   // Create a copy of the attribute store so that we can modify it safely.
   if (SUCCEEDED(hr))
   {
-      hr = MFCreateAttributes(&pAudioAttrs, 0);     
+      hr = MFCreateAttributes(&pAudioAttrs, 0); 
   }
 
   if (SUCCEEDED(hr))
@@ -176,7 +175,7 @@ HRESULT CTranscoder::ConfigureAudioOutput()
 
 //-------------------------------------------------------------------
 //  ConfigureVideoOutput
-//        
+//
 //  Configures the Video stream attributes.  
 //  These values are stored in the transcode profile.
 //
@@ -249,7 +248,7 @@ HRESULT CTranscoder::ConfigureVideoOutput(int m_width, int m_height, int m_frame
 
 //-------------------------------------------------------------------
 //  ConfigureContainer
-//        
+//    
 //  Configures the container attributes.  
 //  These values are stored in the transcode profile.
 //  
@@ -261,9 +260,7 @@ HRESULT CTranscoder::ConfigureVideoOutput(int m_width, int m_height, int m_frame
 HRESULT CTranscoder::ConfigureContainer()
 {
     assert (m_pProfile);
-    
     HRESULT hr = S_OK;
-    
     IMFAttributes* pContainerAttrs = NULL;
 
     //Set container attributes
@@ -302,7 +299,7 @@ HRESULT CTranscoder::ConfigureContainer()
 
 //-------------------------------------------------------------------
 //  EncodeToFile
-//        
+//  
 //  Builds the transcode topology based on the input source,
 //  configured transcode profile, and the output container settings.  
 //-------------------------------------------------------------------
@@ -339,7 +336,7 @@ HRESULT CTranscoder::EncodeToFile(const WCHAR *sURL)
 
 //-------------------------------------------------------------------
 //  Name: Transcode
-//        
+//  
 //  Start the encoding session by controlling the media session.
 //  
 //  The encoding starts when the media session raises the 
@@ -370,11 +367,9 @@ HRESULT CTranscoder::Transcode()
 
       // Get the event type.
       hr = pEvent->GetType(&meType);
-      
       if (FAILED(hr)) { break; }
 
       hr = pEvent->GetStatus(&hrStatus);
-      
       if (FAILED(hr)) { break; }
 
       if (FAILED(hrStatus))
@@ -387,33 +382,33 @@ HRESULT CTranscoder::Transcode()
       switch (meType)
       {
       case MESessionTopologySet:
-          hr = Start();
-          if (SUCCEEDED(hr))
-          {
-              wprintf_s(TEXT("Ready to start.\n"));
-          }
-          break;
+        hr = Start();
+        if (SUCCEEDED(hr))
+        {
+            wprintf_s(TEXT("Ready to start.\n"));
+        }
+        break;
 
       case MESessionStarted:
-          wprintf_s(TEXT("Started encoding...\n"));
-          break;
+        wprintf_s(TEXT("Started encoding...\n"));
+        break;
 
       case MESessionEnded:
-          hr = m_pSession->Close();
-          if (SUCCEEDED(hr))
-          {
-              wprintf_s(TEXT("Finished encoding.\n"));
-          }
-          break;
+        hr = m_pSession->Close();
+        if (SUCCEEDED(hr))
+        {
+            wprintf_s(TEXT("Finished encoding.\n"));
+        }
+        break;
 
       case MESessionClosed:
-          wprintf_s(TEXT("Output file created.\n"));
-          break;
+        wprintf_s(TEXT("Output file created.\n"));
+        break;
       }
 
       if (FAILED(hr))
       {
-          break;
+        break;
       }
 
       SafeRelease(&pEvent);
@@ -442,7 +437,7 @@ HRESULT CTranscoder::Start()
 
   if (FAILED(hr))
   {
-      wprintf_s(TEXT("Failed to start the session...\n"));
+    wprintf_s(TEXT("Failed to start the session...\n"));
   }
   return hr;
 }
@@ -461,21 +456,21 @@ HRESULT CTranscoder::Shutdown()
   // Shut down the media source
   if (m_pSource)
   {
-      hr = m_pSource->Shutdown();
+    hr = m_pSource->Shutdown();
   }
 
   // Shut down the media session. (Synchronous operation, no events.)
   if (SUCCEEDED(hr))
   {
-      if (m_pSession)
-      {
-          hr = m_pSession->Shutdown();
-      }
+    if (m_pSession)
+    {
+        hr = m_pSession->Shutdown();
+    }
   }
 
   if (FAILED(hr))
   {
-      wprintf_s(TEXT("Failed to close the session...\n"));
+    wprintf_s(TEXT("Failed to close the session...\n"));
   }
   return hr;
 }
