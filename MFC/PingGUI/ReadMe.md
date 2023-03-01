@@ -45,7 +45,8 @@ Same approach to implement Tray Notification is used in [CD Eject](../../Win32/P
 
 ** Tray Notification Ref**  
 Including Balloon Notifications,  
-- [Win7 Sample - NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon)
+- [Win7 Sample - NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon), and, [MSFT Docs for the sample](https://learn.microsoft.com/en-us/windows/win32/shell/samples-notificationicon)
+- [MSFT - Display the Notification](https://learn.microsoft.com/en-us/windows/win32/shell/notification-area#display-the-notification)
 
 **Refs**  
 Used to be hosted in google code (svn) in the beginning,  
