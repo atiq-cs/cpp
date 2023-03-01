@@ -16,7 +16,8 @@ BOOL AddNotificationIcon(HWND hWnd, UINT uID, UINT CallbackMessageID, HICON hIco
   tnid.cbSize = sizeof(NOTIFYICONDATA);
   tnid.hWnd = hWnd;
   tnid.uID = uID;
-  tnid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
+  // ** don't specify NIF_ICON when dwInfoFlags is set to NIIF_USER
+  tnid.uFlags = NIF_MESSAGE | NIF_TIP;
   tnid.uCallbackMessage = CallbackMessageID;
   tnid.dwInfoFlags = NIIF_USER;
 

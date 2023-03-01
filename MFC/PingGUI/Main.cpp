@@ -165,4 +165,4 @@ BOOL CMyApp::InitInstance() {
   return FALSE;
 }
 
-CMyApp winApp;
+CMyApp theApp;

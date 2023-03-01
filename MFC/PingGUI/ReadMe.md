@@ -47,6 +47,10 @@ Same approach to implement Tray Notification is used in [CD Eject](../../Win32/P
 Including Balloon Notifications,  
 - [Win7 Sample - NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon)
 
+**Refs**  
+Used to be hosted in google code (svn) in the beginning,  
+- [sourceforge/pingguin](https://sourceforge.net/projects/pingguin)
+
 **Project Goals**  
 From earlier doc,  
 Here's some screenshot of the project.  
@@ -115,7 +119,7 @@ DNS Lookup is implemented in a multi-threaded approach. It checks whether intern
 We also considered that UI should be re-implemented using Win32 SDK/API. We don't need MFC since it's straight-forward!
 
 In future, platforms to cover,
-2. Metro App for Windows
+2. MAUI App for Windows to run cross platform
 3. App for Linux
 4. One app for MAC
 
@@ -412,6 +416,14 @@ else
 
 pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
 ```
+
+
+Old code dir in previous repo that we merged from,
+last code rev, 07-09-2011
+
+Old code dir is old version of the app that
+- didn't have Tray Support
+- some codes are moved around
 
 
 tags: C++, network-programming
