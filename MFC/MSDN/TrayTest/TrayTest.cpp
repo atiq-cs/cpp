@@ -20,10 +20,10 @@ END_MESSAGE_MAP()
 BOOL CMyApp::InitInstance()
 {
   // Create main frame window (don't use doc/view stuff)
-  //
   CMainFrame* pMainFrame = new CMainFrame;
   if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
     return FALSE;
+
   pMainFrame->ShowWindow(SW_HIDE);
   pMainFrame->UpdateWindow();
   m_pMainWnd = pMainFrame;
@@ -33,8 +33,8 @@ BOOL CMyApp::InitInstance()
 
 //////////////////
 // Custom about dialog uses CStaticLink for hyperlinks.
-//    * for text control, URL is specified as text in dialog editor
-//    * for icon control, URL is specified by setting m_iconLink.m_link
+// * for text control, URL is specified as text in dialog editor
+// * for icon control, URL is specified by setting m_iconLink.m_link
 //
 class CAboutDialog : public CDialog {
 protected:

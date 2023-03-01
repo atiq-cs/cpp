@@ -252,20 +252,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
           Shell_NotifyIcon(NIM_DELETE, &nid);
           ShowWindow(hwnd, SW_SHOW);
         }
-        else if (lParam == WM_RBUTTONUP) //time to display a menu.
+        else if (lParam == WM_RBUTTONUP) // time to display a menu.
         {
           HMENU myMenu = NULL;
-          myMenu = CreatePopupMenu(); //create our menu. You'll want to error-check this, because if it fails the next few functions may produce segmentation faults, and your menu won't work.
+          myMenu = CreatePopupMenu(); // create our menu. You'll want to error-check this, because if it fails the next few functions may produce segmentation faults, and your menu won't work.
 
-          //IDM_TRAYEXIT, IDM_TRAYABOUT, and IDM_TRAYHELP are #defined constants.
+          // IDM_TRAYEXIT, IDM_TRAYABOUT, and IDM_TRAYHELP are #defined constants.
           AppendMenu(myMenu, MF_STRING, IDM_TRAYEXIT, "Exit");
           AppendMenu(myMenu, MF_STRING, IDM_TRAYSHOW, "Show");
 
-          DWORD mp = GetMessagePos(); //get the position of the mouse at the time the icon was clicked (or, at least, the time this message was generated).
+          DWORD mp = GetMessagePos(); // get the position of the mouse at the time the icon was clicked (or, at least, the time this message was generated).
 
-          SetForegroundWindow(hwnd); //even though the window is hidden, we must set it to the foreground window because of popup-menu peculiarities. See the Remarks section of the MSDN page for TrackPopupMenu.
+          SetForegroundWindow(hwnd); // even though the window is hidden, we must set it to the foreground window because of popup-menu peculiarities. See the Remarks section of the MSDN page for TrackPopupMenu.
           TrackPopupMenu(myMenu, 0, GET_X_LPARAM(mp) , GET_Y_LPARAM(mp), 0, hwnd, NULL); //display the menu. you MUST #include <windowsx.h> to use those two macros.
-          SendMessage(hwnd, WM_NULL, 0, 0); //send benign message to window to make sure the menu goes away.
+          SendMessage(hwnd, WM_NULL, 0, 0); // send benign message to window to make sure the menu goes away.
         }
       }
       break;
@@ -308,7 +308,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
   hwnd = CreateWindowEx(
     NULL,
     g_szClassName,
-    "TimeCounter 2",
+    "Timer 2",
     WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
     CW_USEDEFAULT, CW_USEDEFAULT, winx, winy,
     NULL, NULL, hInstance, NULL);
@@ -316,17 +316,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
   if(hwnd == NULL)
   {
     MessageBox(NULL, "Window Creation Failed!", "Error!",
-        MB_ICONEXCLAMATION | MB_OK);
+      MB_ICONEXCLAMATION | MB_OK);
     return 0;
   }
 
-    // Step 3: The Message Loop
+  // Step 3: The Message Loop
   while(GetMessage(&Msg, NULL, 0, 0) > 0)
   {
-      TranslateMessage(&Msg);
-      DispatchMessage(&Msg);
+    TranslateMessage(&Msg);
+    DispatchMessage(&Msg);
   }
-    return Msg.wParam;
+
+  return Msg.wParam;
 }
 
 void sendtotray(HWND hwnd)
@@ -354,9 +355,9 @@ void ShowBalloonTip(HWND hwnd)
   HWND hIPAddBalloonTip;
 
   hIPAddBalloonTip = CreateWindowEx(WS_EX_TOPMOST, TOOLTIPS_CLASS, NULL,
-                                    WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP | TTS_BALLOON,
-                                    CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-                                    hShellTrayWnd, NULL, hShellTrayInst, NULL);
+        WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP | TTS_BALLOON,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        hShellTrayWnd, NULL, hShellTrayInst, NULL);
 
   SetWindowPos(hIPAddBalloonTip, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 
@@ -443,12 +444,16 @@ std::string get_time_string()
   int hours = (daytime - (daytime % 3600)) / 3600 - years * 8760 - days * 24;
   int minutes = (daytime - (daytime % 60)) / 60 - years * 525600 - days * 1440 - hours * 60;
   int secs = daytime - years * 31536000 - days * 86400 - hours * 3600 - minutes * 60;
+
   if(years)
     str.append(itoa(years)+ " years ");
+
   if(days)
     str.append(itoa(days)+ " days ");
+
   if(hours)
     str.append(itoa(hours)+ " hours ");
+
   str.append(itoa(minutes)+ " minutes");
 
   return str;
