@@ -55,13 +55,13 @@ MainDlg::MainDlg(CWnd* pParent /*=NULL*/)
 
 MainDlg::~MainDlg() {
   // if we do a killtimer here the application crashes
-  //Shell_NotifyIcon( NIM_DELETE, &m_nid ); // delete from the status area
+  // Shell_NotifyIcon( NIM_DELETE, &m_nid ); // delete from the status area
 }
 
 void MainDlg::DoDataExchange(CDataExchange* pDX)
 {
   CDialogEx::DoDataExchange(pDX);
-  //DDX_Control(pDX, IDC_PINGPROGRESS, ProgressPingReq);
+  // DDX_Control(pDX, IDC_PINGPROGRESS, ProgressPingReq);
 }
 
 BOOL MainDlg::OnInitDialog()
@@ -309,7 +309,7 @@ void MainDlg::OnTimer(UINT_PTR nIDEvent) {
 
     int PercentageOfReplies = noReplies * 100 / noReq;
     temp.Format(_T(" replied %d%% requests"), PercentageOfReplies);
-    CurReportStatic->SetWindowText(ReportStaticDefaultText+temp);
+    CurReportStatic->SetWindowText(ReportStaticDefaultText + temp);
 
     // if requests reached max
     if (noReq == MaxPingReqs) {

@@ -273,3 +273,125 @@ LRESULT MainFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
    return CFrameWnd::WindowProc(message, wParam, lParam);
 }
 ```
+
+Following example code from earlier version (06-24-2010), inside `MainFrame::TimerProc` is for reference,
+
+```cpp
+MainFrame *pMainWnd = (MainFrame *)AfxGetMainWnd();
+TCHAR *pstr = pMainWnd->TextStr;
+pstr[0] = '\0';
+
+HANDLE hIcmpFile;
+unsigned long ipaddr = INADDR_NONE;
+DWORD dwRetVal = 0;
+
+TCHAR SendData[] = _T("Data Buffer");
+LPVOID ReplyBuffer = NULL;
+DWORD ReplySize = 0;
+pMainWnd->CountRequest++;
+
+ipaddr = inet_addr(ipaddrstrA);
+if (ipaddr == INADDR_NONE)
+{
+  _stprintf_s(pstr, MSGSIZE, _T("\n\tUsage: pinggui /t [optional] /ip IPAddress\n"));
+  PingQuit(pMainWnd, pstr);
+  return;
+}
+
+hIcmpFile = IcmpCreateFile();
+if (hIcmpFile == INVALID_HANDLE_VALUE)
+{
+  _stprintf_s(pstr, MSGSIZE, _T("\tUnable to open handle.\n"));
+  _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("IcmpCreatefile returned error: %ld\n"), GetLastError());
+  PingQuit(pMainWnd, pstr);
+  return;
+}
+
+ReplySize = sizeof(ICMP_ECHO_REPLY) + sizeof(SendData);
+ReplyBuffer = (VOID *)malloc(ReplySize);
+if (ReplyBuffer == NULL)
+{
+  _stprintf_s(pstr, MSGSIZE, _T("\tUnable to allocate memory\n"));
+  pMainWnd->MessageBox(pstr);
+  PingQuit(pMainWnd, pstr);
+  return;
+}
+
+_stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tRequest [%d] "), pMainWnd->CountRequest);
+
+dwRetVal = IcmpSendEcho(hIcmpFile, ipaddr, SendData, sizeof(SendData),
+              NULL, ReplyBuffer, ReplySize, 1000);
+if (dwRetVal != 0)
+{
+  PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)ReplyBuffer;
+  struct in_addr ReplyAddr;
+  ReplyAddr.S_un.S_addr = pEchoReply->Address;
+  _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T(" sent to %s\n"), ipaddrstr);
+
+  if (dwRetVal > 1)
+  {
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message responses\n\n"), dwRetVal);
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from the first response:\n"));
+  }
+  else
+  {
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message response\n\n"), dwRetVal);
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from this response:\n"));
+  }
+
+  _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Received from %s\n"), CString(inet_ntoa(ReplyAddr)));
+
+  if (pEchoReply->Status == 11003)
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = Request timed out.\n"));
+  else
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = %ld\n"),
+          pEchoReply->Status);
+
+  _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Roundtrip time = %ld milliseconds\n"),
+          pEchoReply->RoundTripTime);
+
+  if (IsToggleMode == TRUE && pEchoReply->Status != 11003)
+  {
+      _stprintf_s(pstr, MSGSIZE, _T("\n\tServer is up.\n\n\tClick close button to quit the program."));
+      PingQuit(pMainWnd, pstr);
+  }
+
+  pMainWnd->CountResponse = 0;
+}
+else
+{
+  int errorno = GetLastError();
+  _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("lost in the network\n"));
+  switch (errorno)
+  {
+  case 11010:
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tTimed out due to possible unreachability\n"), errno);
+      pMainWnd->CountResponse++;
+      break;
+  default:
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tIcmpSendEcho returned error: %ld\n"), errorno);
+  }
+
+  if (IsToggleMode == FALSE)
+  {
+      if (pMainWnd->CountResponse >= 48)
+      {
+        _stprintf_s(pstr, MSGSIZE, _T("\tTarget client is possibly down.\n\n\tClick close button to quit the program."));
+        PingQuit(pMainWnd, pstr);
+        return;
+      }
+      else
+      {
+        _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\n\tAnalyzing target host's unavailability.\n"));
+        _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tAbsence of reply count %d.\n"), pMainWnd->CountResponse);
+
+        pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
+        return;
+      }
+  }
+  else
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tServer is still dumb."));
+}
+
+pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
+```
