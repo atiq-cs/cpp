@@ -184,7 +184,7 @@ void CSubStringSearchnIndexingDlg::OnBnClickedButton1()
     if(pwc)
     {
       count++;
-	  // why??
+      // why??
       _tcsncpy (pwc,L"a",1);
     }
     else

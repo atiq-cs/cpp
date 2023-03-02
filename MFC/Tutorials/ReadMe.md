@@ -144,18 +144,18 @@ Example code,
 
 ```cpp
 void MainFrame::OnPaint() {
-	CFrameWnd::OnPaint();
-	SetWindowText(_T("The window has been painted."));
-	m_Label.SetWindowText(TextStr);
+  CFrameWnd::OnPaint();
+  SetWindowText(_T("The window has been painted."));
+  m_Label.SetWindowText(TextStr);
 }
 
 void CALLBACK EXPORT MainFrame::TimerProc (HWND hWnd, UINT nMsg, UINT nTimerID, DWORD dwTime) {
-	MainFrame* pMainWnd = (MainFrame *) AfxGetMainWnd();
+  MainFrame* pMainWnd = (MainFrame *) AfxGetMainWnd();
 
-	static int i = 0;
-	_stprintf(pMainWnd->TextStr, _T("Seconds passed %d"), i++);
+  static int i = 0;
+  _stprintf(pMainWnd->TextStr, _T("Seconds passed %d"), i++);
 
-	pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
+  pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
 }
 ```
 
@@ -207,3 +207,46 @@ For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
 
 
 ref, *P06_CEdit\P6_CEdit.cpp*, 06-26-2010
+
+**ScreenSaver App**  
+ref, 'p18_ScreenSaver02\ScreenSaver.cpp', 04-13-2011
+Section added following from functionx.com, tried this earlier on a dialog then tried to move this to a Window / Frame,  
+
+```cpp
+void MainFrame::OnTimer(UINT nIDEvent) {
+  // TODO: Add your message handler code here and/or call default
+  CClientDC dc(this);
+
+  int x = (rand() % Width) - 10;
+  int y = (rand() % Height) - 10;
+  CBrush BrushRand(RGB(rand() % 255, rand() % 255, rand() % 255));
+  CPen   PenRand(PS_SOLID, 1, RGB(rand() % 255, rand() % 255, rand() % 255));
+
+  CBrush *pOldBrush = dc.SelectObject(&BrushRand);
+  CPen   *pOldPen   = dc.SelectObject(&PenRand);
+  
+  switch(rand() % 5)
+  {
+  case 0:
+    dc.Ellipse(x, abs(y-200), abs(y-x), y);
+    break;
+  case 1:
+    dc.Rectangle(y, x, abs(y-x), (x+y)%255);
+    break;
+  case 2:
+    dc.RoundRect(y, x, y, x, abs(x-y), x+y);
+    break;
+  case 3:
+    dc.Ellipse(y, x, abs(x-y), x+y);
+    break;
+  case 4:
+    dc.Rectangle(x, y, abs(x-y), x+y);
+    break;
+  }
+
+  dc.SelectObject(pOldBrush);
+  dc.SelectObject(pOldPen);
+
+  CWnd::OnTimer(nIDEvent);
+}
+```

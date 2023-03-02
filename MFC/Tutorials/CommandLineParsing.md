@@ -18,7 +18,7 @@ public:
   CCustomCommandLineInfo() {}
   INT m_nError;
 
-  // This function will retrieve the value of the option provided	
+  // This function will retrieve the value of the option provided
   BOOL GetOption (LPCTSTR option, CString& val);
 
   // This function will check for the commandline without ny options

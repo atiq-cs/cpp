@@ -197,8 +197,8 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
   this->GetClientRect(PRect);
   m_Edit01.Create(ES_MULTILINE | WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER | ES_AUTOVSCROLL | ES_READONLY,
               PRect, this, 0x188);
-  // Since the window was successfully created, return 0
 
+  // Since the window was successfully created, return 0
   return 0;
 }
 
@@ -212,7 +212,7 @@ void MainFrame::OnPaint() {
 void MainFrame::OnSize(UINT nType, int cx, int cy) {
   CFrameWnd::OnSize(nType, cx, cy);
 
-  //track the window minimizing message
+  // Track the window minimizing message
    if(nType == SIZE_MINIMIZED) {
     NOTIFYICONDATA niData;
     ZeroMemory(&niData,sizeof(NOTIFYICONDATA));
@@ -250,27 +250,29 @@ void MainFrame::OnClose() {
 }
 
 LRESULT MainFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) {
-   //if  the message is from our application
-   //which is hiding in the tray area
-   if( message == UM_TRAYNOTIFY ) {
-      //trace the right mouse click msg
-      if(lParam == WM_RBUTTONDOWN)
-      {
-         CMenu myMenu;
-         myMenu.CreatePopupMenu();
+  //if  the message is from our application
+  //which is hiding in the tray area
+  if( message == UM_TRAYNOTIFY )
+  {
+    //trace the right mouse click msg
+    if(lParam == WM_RBUTTONDOWN)
+    {
+      CMenu myMenu;
+      myMenu.CreatePopupMenu();
 
-         POINT pt;
-         //Get the current cursor point
-         GetCursorPos(&pt);
+      POINT pt;
+      //Get the current cursor point
+      GetCursorPos(&pt);
 
-         //add menu items
-         myMenu.AppendMenu( MF_POPUP, WM_USER + 1, _T("Maximize App.") );
-         myMenu.AppendMenu( MF_POPUP, WM_USER + 2, _T("Exit") );
+      //add menu items
+      myMenu.AppendMenu( MF_POPUP, WM_USER + 1, _T("Maximize App.") );
+      myMenu.AppendMenu( MF_POPUP, WM_USER + 2, _T("Exit") );
 
-         myMenu.TrackPopupMenu(TPM_LEFTALIGN |TPM_RIGHTBUTTON,pt.x,pt.y,this );
-      }
-   }
-   return CFrameWnd::WindowProc(message, wParam, lParam);
+      myMenu.TrackPopupMenu(TPM_LEFTALIGN |TPM_RIGHTBUTTON,pt.x,pt.y,this );
+    }
+  }
+
+  return CFrameWnd::WindowProc(message, wParam, lParam);
 }
 ```
 
@@ -320,40 +322,41 @@ if (ReplyBuffer == NULL)
 _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tRequest [%d] "), pMainWnd->CountRequest);
 
 dwRetVal = IcmpSendEcho(hIcmpFile, ipaddr, SendData, sizeof(SendData),
-              NULL, ReplyBuffer, ReplySize, 1000);
+            NULL, ReplyBuffer, ReplySize, 1000);
+
 if (dwRetVal != 0)
 {
-  PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)ReplyBuffer;
+  PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY) ReplyBuffer;
   struct in_addr ReplyAddr;
   ReplyAddr.S_un.S_addr = pEchoReply->Address;
   _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T(" sent to %s\n"), ipaddrstr);
 
   if (dwRetVal > 1)
   {
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message responses\n\n"), dwRetVal);
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from the first response:\n"));
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message responses\n\n"), dwRetVal);
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from the first response:\n"));
   }
   else
   {
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message response\n\n"), dwRetVal);
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from this response:\n"));
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tReceived %ld icmp message response\n\n"), dwRetVal);
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tInformation from this response:\n"));
   }
 
   _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Received from %s\n"), CString(inet_ntoa(ReplyAddr)));
 
   if (pEchoReply->Status == 11003)
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = Request timed out.\n"));
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = Request timed out.\n"));
   else
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = %ld\n"),
-          pEchoReply->Status);
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Status = %ld\n"),
+      pEchoReply->Status);
 
   _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\t  Roundtrip time = %ld milliseconds\n"),
-          pEchoReply->RoundTripTime);
+    pEchoReply->RoundTripTime);
 
   if (IsToggleMode == TRUE && pEchoReply->Status != 11003)
   {
-      _stprintf_s(pstr, MSGSIZE, _T("\n\tServer is up.\n\n\tClick close button to quit the program."));
-      PingQuit(pMainWnd, pstr);
+    _stprintf_s(pstr, MSGSIZE, _T("\n\tServer is up.\n\n\tClick close button to quit the program."));
+    PingQuit(pMainWnd, pstr);
   }
 
   pMainWnd->CountResponse = 0;
@@ -365,33 +368,42 @@ else
   switch (errorno)
   {
   case 11010:
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tTimed out due to possible unreachability\n"), errno);
-      pMainWnd->CountResponse++;
-      break;
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tTimed out due to possible unreachability\n"), errno);
+    pMainWnd->CountResponse++;
+    break;
+
   default:
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tIcmpSendEcho returned error: %ld\n"), errorno);
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tIcmpSendEcho returned error: %ld\n"), errorno);
   }
 
   if (IsToggleMode == FALSE)
   {
-      if (pMainWnd->CountResponse >= 48)
-      {
-        _stprintf_s(pstr, MSGSIZE, _T("\tTarget client is possibly down.\n\n\tClick close button to quit the program."));
-        PingQuit(pMainWnd, pstr);
-        return;
-      }
-      else
-      {
-        _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\n\tAnalyzing target host's unavailability.\n"));
-        _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tAbsence of reply count %d.\n"), pMainWnd->CountResponse);
+    if (pMainWnd->CountResponse >= 48)
+    {
+      _stprintf_s(pstr, MSGSIZE, _T("\tTarget client is possibly down.\n\n\tClick close button to quit the program."));
+      PingQuit(pMainWnd, pstr);
+      return;
+    }
+    else
+    {
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\n\tAnalyzing target host's unavailability.\n"));
+      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tAbsence of reply count %d.\n"), pMainWnd->CountResponse);
 
-        pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
-        return;
-      }
+      pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
+      return;
+    }
   }
   else
-      _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tServer is still dumb."));
+    _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tServer is not responding!"));
 }
 
 pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
 ```
+
+
+Dropped VS Setup Project from the sln file, probably was planning to create an installer using VS Setup project!
+
+    Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PingGUI_Setup", "PingGUI_Setup\PingGUI_Setup.vdproj", "{F9CAA75A-7CE9-4808-A871-85C13C093271}"
+    EndProject
+
+ref, previous repo: [gitlab/pinggui](https://gitlab.com/atiq-cs/merged_pinggui/-/blob/dev/mfc-code/PingGUI.sln)
