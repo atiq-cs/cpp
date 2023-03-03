@@ -9,14 +9,17 @@ This MFC App parses UDP packets stored by wireshark; provides following info,
 - And data (optional)
 - Decrypted header for signaling
 
-
 Earlier version of this project did not use StunKeys. However, latest revision did include that to decrypt packets.
 
 However, following two source files are missing from last svn commit,  
 - StunKeySettings.h
 - StunKeySettings.cpp
 
-For now, StunKeys related code blocks are disabled compile time using Macro `STUN_KEYS_ENABLED`.
+Due to that, for now, StunKeys related code blocks are disabled compile time using Macro `STUN_KEYS_ENABLED`.
+
+"ParserUtils.cpp": has some functions (time etc. related) adapted from [Sub Sync project](../../Console/SubtitleSynchronizer/).
+
+**App Screenshot**  
 
 ![Running version of the parser app](https://user-images.githubusercontent.com/7858031/222569177-a9351568-602c-493b-b4e8-df822a1d4630.png)
 
@@ -61,3 +64,4 @@ Wireshark filters from draft,
 
 **Refs**  
 - [MSFT - MFC - Accessing File Status](https://learn.microsoft.com/en-us/cpp/mfc/accessing-file-status)
+- [gitlab/WSParser](https://gitlab.com/atiq-cs/Merged_WSParser/-/commits/master) for earlier revisions of this project.
