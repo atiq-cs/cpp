@@ -5,6 +5,11 @@ After starting the software press 'Ctrl + J' to eject CD/DVDROM. Pressing 'Ctrl 
 **Why this software?**  
 Recent statistics have emerged that use of button to eject CD/DVDROM often damages the drive. Hence, this to soft eject media drives specifically for CD/DVD!
 
+**TODO**  
+ref, approx, 2012,  
+- Create installer
+- Detect CDROM eject status
+
 **Features**  
 
 - Ejects CD/DVD ROM

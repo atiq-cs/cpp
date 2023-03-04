@@ -1,6 +1,6 @@
 /****************************** Module Header ******************************\
-Module Name:  Shutdwon timer.cpp
-Project:      Shutdown timer MFC Draft
+Module Name:  Shutdwon Timer.cpp
+Project:      Shutdown Timer MFC Draft
 
 A Shutdown timer software to specify time and date for shutdown
 TODO: check if InitCommonControlsEx is enabled in any other source file
