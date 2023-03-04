@@ -47,7 +47,7 @@ int GetEquivValue(TCHAR ch, int base) {
   return 0;
 }
 
-// atoi supporting converting from base
+// Modified atoi that supports convertion from base
 int atoi_base(LPCTSTR str, int base) {
   int res = 0;
   int i, len, tmp;

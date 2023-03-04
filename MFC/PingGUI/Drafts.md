@@ -81,7 +81,29 @@ void MainDlg::OnWindowPosChanging( WINDOWPOS FAR* lpwndpos )
 }
 ```
 
-And, here's `MainDlg::LoadToTray`,
+NOTIFYICONDATA uFlags,
+
+```
+// - NIF_ICON   The hIcon member is valid.
+// - NIF_MESSAGE The uCallbackMessage member is valid.
+// - NIF_TIP   The szTip member is valid.
+// - NIF_STATE   The dwState and dwStateMask members are valid.
+// - NIF_INFO   Use a balloon ToolTip instead of a standard ToolTip. The szInfo, uTimeout, szInfoTitle, and dwInfoFlags members are valid.
+// - NIF_GUID   Reserved.
+```
+
+NOTIFYICONDATA dwInfoFlags,
+
+```
+// - NIIF_ERROR     An error icon.
+// - NIIF_INFO      An information icon.
+// - NIIF_NONE      No icon.
+// - NIIF_WARNING   A warning icon.
+// - NIIF_ICON_MASK Version 6.0. Reserved.
+// - NIIF_NOSOUND   Version 6.0. Do not play the associated sound. Applies only to balloon ToolTips
+```
+
+Earlier on a `MainDlg::LoadToTray` we used `Shell_NotifyIcon( NIM_ADD, &m_nid );` along with `_tcscpy_s`,
 
 ```cpp
 void MainDlg::LoadToTray( CWnd    *pWnd,
@@ -97,36 +119,8 @@ void MainDlg::LoadToTray( CWnd    *pWnd,
       int     uTimeout, // in sec.
       HICON    icon )
 {
-  //NOTIFYICONDATA contains information that the system needs to process taskbar status area messages
-  ZeroMemory( &m_nid, sizeof( NOTIFYICONDATA ) );
-  m_nid.cbSize          = sizeof( NOTIFYICONDATA );
-  m_nid.hWnd        = pWnd->GetSafeHwnd();
-  m_nid.uID        = 0;
-  m_nid.uFlags          = NIF_MESSAGE | NIF_ICON | NIF_TIP | NIF_INFO;
-  // Flag Description:
-  // - NIF_ICON   The hIcon member is valid.
-  // - NIF_MESSAGE The uCallbackMessage member is valid.
-  // - NIF_TIP   The szTip member is valid.
-  // - NIF_STATE   The dwState and dwStateMask members are valid.
-  // - NIF_INFO   Use a balloon ToolTip instead of a standard ToolTip. The szInfo, uTimeout, szInfoTitle, and dwInfoFlags members are valid.
-  // - NIF_GUID   Reserved.
-
-  m_nid.dwInfoFlags      = NIIF_INFO; // add an icon to a balloon ToolTip
-  // Flag Description
-  // - NIIF_ERROR     An error icon.
-  // - NIIF_INFO      An information icon.
-  // - NIIF_NONE      No icon.
-  // - NIIF_WARNING   A warning icon.
-  // - NIIF_ICON_MASK Version 6.0. Reserved.
-  // - NIIF_NOSOUND   Version 6.0. Do not play the associated sound. Applies only to balloon ToolTips
-
-  m_nid.uCallbackMessage = uCallbackMessage;
-  m_nid.uTimeout         = uTimeout * 1000;
-  if (IsWin7OrLater())
-    m_nid.hBalloonIcon  = icon;
-  else
-    m_nid.hIcon  = icon;
-  m_nid.hIcon           = icon;
+  // code
+  // set hicon
 
   _tcscpy_s( m_nid.szInfoTitle, sInfoTitle );
   _tcscpy_s( m_nid.szInfo,      sInfo      );
@@ -140,18 +134,18 @@ Earlier Tray Inits in same Dlg `::OnInitDialog`,
 
 ```cpp
 _ToolTipCtrl.Create( this,
-      // the ToolTip control's style
-      TTS_NOPREFIX | // prevents the system from stripping the ampersand (&)
-                     // character from a string
+  // the ToolTip control's style
+  TTS_NOPREFIX | // prevents the system from stripping the ampersand (&)
+          // character from a string
 
-      TTS_BALLOON  | // the ToolTip control has the appearance of
-      // 0x40        // a cartoon "balloon," with rounded corners
-                    // and a stem pointing to the item.
+  TTS_BALLOON  | // the ToolTip control has the appearance of
+  // 0x40        // a cartoon "balloon," with rounded corners
+          // and a stem pointing to the item.
 
-      TTS_ALWAYSTIP  // the ToolTip will appear when the
-                    // cursor is on a tool, regardless of
-                    // whether the ToolTip control's owner
-                    // window is active or inactive
+  TTS_ALWAYSTIP  // the ToolTip will appear when the
+          // cursor is on a tool, regardless of
+          // whether the ToolTip control's owner
+          // window is active or inactive
 );
 
 SetIconAndTitleForBalloonTip( &_ToolTipCtrl, TTI_INFO, _T("Easy App - (title)"));
@@ -196,7 +190,7 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
   CRect PRect;
   this->GetClientRect(PRect);
   m_Edit01.Create(ES_MULTILINE | WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER | ES_AUTOVSCROLL | ES_READONLY,
-              PRect, this, 0x188);
+      PRect, this, 0x188);
 
   // Since the window was successfully created, return 0
   return 0;
@@ -205,6 +199,7 @@ int MainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void MainFrame::OnPaint() {
   CFrameWnd::OnPaint();
   MainFrame* pMainWnd = (MainFrame*) AfxGetMainWnd ();
+
   if (pMainWnd->TextStr[0])
     m_Edit01.SetWindowText(CString(pMainWnd->TextStr));
 }

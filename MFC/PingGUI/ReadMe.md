@@ -59,7 +59,7 @@ Still not implemented if other strings are not provided those ip addresses will 
 `Shell_NotifyIcon` for `NIM_MODIFY` and `NIM_ADD` had been fixed in latest revision!
 
 **Loading the Icon**  
-In `ShowBalloonTip`, earlier we used to load the icon. However, this seems not to be necessary since we already added the icon during `NIM_ADD`.
+In `ShowBalloon`, it looks like a ballon specification is necesary for `NIM_MODIFY` despite setting the icon during `NIM_ADD`.
 
 `LoadImage(*)` loads the item. Other ways to load,
 

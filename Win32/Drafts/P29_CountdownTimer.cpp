@@ -18,6 +18,7 @@ using namespace std;
 //  PURPOSE: Timer Demo
 //
 //  Remark : noted following,
+//   - Balloon Tool Tip
 //   - `SetBkMode` to transparent
 //   - `CreateFont` call seems different as well
 //   - `itoa` implementation is in Console Root ReadMe; FILE I/O examples follow
@@ -342,6 +343,7 @@ void sendtotray(HWND hwnd)
     ShowWindow(hwnd, SW_SHOW);*/
 }
 
+// Looks like a different kind of ShowBalloonTip than the one in MSDN TrayTest
 void ShowBalloonTip(HWND hwnd)
 {
   HWND hShellTrayWnd=FindWindowEx(NULL,NULL,TEXT("Shell_TrayWnd"),NULL);
