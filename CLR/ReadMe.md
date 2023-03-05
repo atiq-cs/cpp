@@ -1,9 +1,12 @@
 ### Visual C++ CLR / .Net
+
 This summary mostly contains OLEDb connection, querying examples from CLR Projects. In addition, it has similar examples, for,
 - access db
 - mdb
 
-**P01 - Bangla Dictinoary**  
+And, the Dictionary project.
+
+**P01 - Bangla Dictionary**  
 Feels like the Form header files are mixed up between Form2 and Form21. I think the mess up is created by brining Form2 over from an earlier project (not sure if we directly copied it over). In addition, not sure if we need following files,
 
 - dbInsert.h
