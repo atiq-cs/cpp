@@ -1,0 +1,46 @@
+# Microsoft Developer Studio Generated Dependency File, included by FSApp.mak
+
+.\doc.cpp : \
+  ".\doc.h"\
+  ".\FSApp.h"\
+  
+
+.\FSApp.cpp : \
+  ".\doc.h"\
+  ".\FSApp.h"\
+  ".\MainFrm.h"\
+  ".\StatLink.h"\
+  ".\view.h"\
+  
+
+.\FSApp.rc : \
+  ".\res\app.ico"\
+  ".\res\app.rc2"\
+  ".\RES\msdn.bmp"\
+  ".\res\Toolbar.bmp"\
+  
+
+.\mainfrm.cpp : \
+  ".\FSApp.h"\
+  ".\MainFrm.h"\
+  ".\tracewin.h"\
+  
+
+.\StatLink.cpp : \
+  ".\StatLink.h"\
+  
+
+.\StdAfx.cpp : \
+  ".\StdAfx.h"\
+  "d:\msdev\sdk\include\basetsd.h"\
+  "d:\msdev\sdk\include\guiddef.h"\
+  "d:\msdev\sdk\include\reason.h"\
+  "d:\msdev\sdk\include\stralign.h"\
+  "d:\msdev\sdk\include\tvout.h"\
+  
+
+.\view.cpp : \
+  ".\doc.h"\
+  ".\FSApp.h"\
+  ".\view.h"\
+  

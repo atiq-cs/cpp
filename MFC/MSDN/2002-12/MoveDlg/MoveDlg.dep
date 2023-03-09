@@ -1,0 +1,21 @@
+# Microsoft Developer Studio Generated Dependency File, included by MoveDlg.mak
+
+.\MoveDlg.cpp : \
+  ".\StatLink.h"\
+  ".\StdAfx.h"\
+  
+
+.\MoveDlg.rc : \
+  ".\res\app.ico"\
+  ".\res\app.rc2"\
+  ".\res\msdn.bmp"\
+  
+
+.\StatLink.cpp : \
+  ".\StatLink.h"\
+  ".\StdAfx.h"\
+  
+
+.\StdAfx.cpp : \
+  ".\StdAfx.h"\
+  
