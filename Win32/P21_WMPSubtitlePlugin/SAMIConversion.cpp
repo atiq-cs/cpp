@@ -90,9 +90,9 @@ m_bSAMIInTemp(bSAMIInTemp)
       if (!CloseHandle(hLogFile))
       {
         hLogFile = NULL;
-        return;
+        return ;
       }
-      return;
+      return ;
     }
 
     _tcscat_s(lpLogFilePathBuffer, MAX_PATH, TEXT("\\wmp_native_sub_conversion.log"));
@@ -400,14 +400,14 @@ BOOL SubToSAMIConverter::writeSmiText(LPTSTR bigStr/*, BOOL BOM_flag*/) {
 // if unicode to utf-8 conversion fails or write fails it returns an error
 void SubToSAMIConverter::writeLog(LPTSTR str) {
   if (m_bLogEnabled == FALSE)
-    return;
+    return ;
   if (hLogFile == NULL)
-    return;
+    return ;
   
   LPSTR DataBuffer = ConvertUTF16ToUTF8(str);
   if (DataBuffer == NULL) {
     MessageBox(NULL, TEXT("Data buffer null"), TEXT("buffer info"), MB_OK);
-    return;
+    return ;
   }
 
   // convert bigStr to multi-byte first
@@ -425,7 +425,7 @@ void SubToSAMIConverter::writeLog(LPTSTR str) {
   DataBuffer = NULL;
 
   if (bErrorFlag && (dwBytesWritten == dwBytesToWrite))
-    return;
+    return ;
 }
 
 /////////////////////////////////////////////////////////////////////////////

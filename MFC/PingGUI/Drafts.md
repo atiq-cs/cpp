@@ -292,7 +292,7 @@ if (ipaddr == INADDR_NONE)
 {
   _stprintf_s(pstr, MSGSIZE, _T("\n\tUsage: pinggui /t [optional] /ip IPAddress\n"));
   PingQuit(pMainWnd, pstr);
-  return;
+  return ;
 }
 
 hIcmpFile = IcmpCreateFile();
@@ -301,7 +301,7 @@ if (hIcmpFile == INVALID_HANDLE_VALUE)
   _stprintf_s(pstr, MSGSIZE, _T("\tUnable to open handle.\n"));
   _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("IcmpCreatefile returned error: %ld\n"), GetLastError());
   PingQuit(pMainWnd, pstr);
-  return;
+  return ;
 }
 
 ReplySize = sizeof(ICMP_ECHO_REPLY) + sizeof(SendData);
@@ -311,7 +311,7 @@ if (ReplyBuffer == NULL)
   _stprintf_s(pstr, MSGSIZE, _T("\tUnable to allocate memory\n"));
   pMainWnd->MessageBox(pstr);
   PingQuit(pMainWnd, pstr);
-  return;
+  return ;
 }
 
 _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\n\tRequest [%d] "), pMainWnd->CountRequest);
@@ -377,7 +377,7 @@ else
     {
       _stprintf_s(pstr, MSGSIZE, _T("\tTarget client is possibly down.\n\n\tClick close button to quit the program."));
       PingQuit(pMainWnd, pstr);
-      return;
+      return ;
     }
     else
     {
@@ -385,7 +385,7 @@ else
       _stprintf_s(&pstr[_tcslen(pstr)], MSGSIZE, _T("\tAbsence of reply count %d.\n"), pMainWnd->CountResponse);
 
       pMainWnd->PostMessage(WM_PAINT, (LPARAM) 0, (LPARAM) 0);
-      return;
+      return ;
     }
   }
   else

@@ -31,7 +31,7 @@ void ls(std::wstring csFilePath) {
     if (hFind == INVALID_HANDLE_VALUE)
     {
         std::cout << "FindFirstFile failed " << GetLastError();
-        return;
+        return ;
     }
     else
     {

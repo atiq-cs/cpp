@@ -76,7 +76,7 @@ void CBitmapViewer::OnPaint()
     // Create memory DC
     CDC MemDC;
     if (!MemDC.CreateCompatibleDC(&dc))
-      return;
+      return ;
 
     // Get Size of Display area
     CRect rect;

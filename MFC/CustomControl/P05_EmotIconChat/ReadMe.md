@@ -14,6 +14,8 @@ Demos,
 
 However, the database loading part is commented out in MainDlg for now.
 
+Some methods/code are duplicate in `CChatUIPainter.cpp`. However, instantiation of 'CChatUIPainter' class  in `CChatControl::OnPaint()` is commented out.
+
 
 **App Screenshot**  
 An app screenshot of the chat box is showed in screenshot below,  
@@ -22,3 +24,6 @@ An app screenshot of the chat box is showed in screenshot below,
   
   
 ![Edit Control for Chat with Emot Icons](https://user-images.githubusercontent.com/7858031/224503006-e385e308-fb0a-4090-ad8b-27c8fec4695c.png)
+
+  
+![Just the emot icons](https://user-images.githubusercontent.com/7858031/224509640-2fe8337a-7672-401e-9faf-0eba254fe8cd.png)

@@ -1,16 +1,11 @@
-// ChatUIPainter.cpp : implementation file for our custom chat control drawing operation class
-// We create a new window class for our control
-// register it into the system, control window is created automatically by dialog using resource file
-//   hence, scrollbar is automatically added to the control
-// Implements drawing and chat data structure for it
-
+// See comments on top of ChatControl.cpp
 
 #include "stdafx.h"
 #include "ChatUIPainter.h"
 #include "resource.h"    // for IDB_BMP_SMILE01
 #include "ChatControl.h"    // for CHATBOX_FIELD_TYPE, struct CHATBOX_ITEM and struct CHATBOX_ELEMENT
 
-// our contructor
+// Constructor
 CChatUIPainter::CChatUIPainter(CDC* paintDC, CList<CHATBOX_ELEMENT, CHATBOX_ELEMENT&>& rUIElement, int yPos, int timeWidth, CHATBOX_SHARED_DATA& lpItem):    // timeWidth: time width
     pDC(paintDC),
     m_rUIElement(rUIElement),
@@ -68,6 +63,7 @@ void CChatUIPainter::SetFonts(CFont* pfontArray, int* pfontHeight)
   // ptEnd.y +=  yScroll * pfontHeight[1];
 }
 
+// ChatControl.cpp also has this method, slightly different
 int CChatUIPainter::AddPaintElement(const CString gStr, CHATBOX_FIELD_TYPE strType) {
   // logic derived from drawElement
   switch(strType) {
@@ -223,10 +219,10 @@ int CChatUIPainter::DrawMessageEmo(CString message)
 }
 
 
-// DrawChatText independent function
-// output: output is sent via CPoint* pointer to modify to next starting point of drawing
-//    only adds required value to get correct next draw point without adding extra height
-//    it should not add extra single line height
+// duplicate from CChatControl.cpp
+// only difference is refactor of few vars
+//  - ptStart from m_ptStart
+//  - yCharSend
 void CChatUIPainter::DrawChatText(CString str)
 {
   if (str.IsEmpty())
@@ -411,43 +407,13 @@ bool CChatUIPainter::VirtualDrawTextMultiLine(CString str)
   return true;
 }
 
-/*
- *  Some input string will be fittable
- */
-CString CChatUIPainter::ExtractFittableLineFromStr(const CString str) {
-  if (IsFittableInRectangle(str, str.GetLength()-1))
-    return str;
-  int pos = GetFittablePositionRecursive(str, 0, str.GetLength()-1);
+// duplicate of a method in CChatControl.cpp
+// CString CChatUIPainter::ExtractFittableLineFromStr(const CString str) { .. }
 
-  // find a space or newline before this position to break
-  // if not found we break there anyway
-  CString exStr = str.Mid(0, pos+1);
+// duplicate of a method in CChatControl.cpp
+// int CChatControl::GetFittablePositionRecursive(const CString str, int iMin, int iMax) { ... }
 
-  int breakIndex = exStr.ReverseFind(_T(' '));      // ref: http://msdn.microsoft.com/en-us/library/aa300587(v=vs.60).aspx
-  // none found: ' '
-  if (breakIndex == -1)
-    // get string from pos
-    return exStr;
-  return exStr.Mid(0, breakIndex+1);
-}
-
-/*  Author    :  Saint Atique
- *  Desc    :  Recursive function to get fittable position
- *        :  follows binary search mechanism to fast reach fittable string
- *        :  Fastest algorithm to get fittable position
- */
-int CChatUIPainter::GetFittablePositionRecursive(const CString str, int iMin, int iMax) {
-  int iMid = (iMin + iMax) / 2;
-
-  if (IsFittableInRectangle(str, iMid) && ! IsFittableInRectangle(str, iMid+1))
-    return iMid;
-
-  if (IsFittableInRectangle(str, iMid))
-    return GetFittablePositionRecursive(str, iMid+1, iMax);
-  else
-    return GetFittablePositionRecursive(str, iMin, iMid-1);
-}
-
+// duplicate of a method in CChatControl.cpp
 bool CChatUIPainter::IsFittableInRectangle(const CString gStr, const int index) {
   // index is 1 less than count/length
   CString line = gStr.Mid(0, index+1);
@@ -560,13 +526,13 @@ void CChatUIPainter::LoadLastChatElement() {
   if (m_rUIElement.GetCount() == 0) {
     ptStart.x = 0;
     ptStart.y = 0;
-    return;
+    return ;
   }
   POSITION pos = m_rUIElement.GetTailPosition();
   // get time
   CHATBOX_ELEMENT lastElem = m_rUIElement.GetPrev(pos);
   if (lastElem.type != ElemTimeType)
-    return;
+    return ;
   // get text
   lastElem = m_rUIElement.GetPrev(pos);
   ptStart = lastElem.ptStart;

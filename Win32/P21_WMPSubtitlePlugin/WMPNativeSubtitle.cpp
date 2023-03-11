@@ -5,8 +5,10 @@
 //
 // Author: Atiq Rahman
 //
-// Primary ref: http://msdn.microsoft.com/en-us/library/windows/desktop/dd564686(v=vs.85).aspx
-// For pulgin type we are using ref: http://msdn.microsoft.com/en-us/library/windows/desktop/dd562476(v=vs.85).aspx
+// Primary ref MSFT Windows Media Player User Interface Plug-ins
+//   https://learn.microsoft.com/en-us/windows/win32/wmp/windows-media-player-user-interface-plug-ins
+// For pulgin type we are using ref, Win32- Background Plug-ins
+//   https://learn.microsoft.com/en-us/windows/win32/wmp/background-plug-ins
 /////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
@@ -91,47 +93,48 @@ void CWMPNativeSubtitle::FinalRelease()
 
 HRESULT CWMPNativeSubtitle::SetCore(IWMPCore *pCore)
 {
-    HRESULT hr = S_OK;
+  HRESULT hr = S_OK;
 
-    // release any existing WMP core interfaces
-    ReleaseCore();
+  // release any existing WMP core interfaces
+  ReleaseCore();
 
-    // If we get passed a NULL core, this  means
-    // that the plugin is being shutdown.
+  // If we get passed a NULL core, this  means
+  // that the plugin is being shutdown.
 
-    if (pCore == NULL)
+  if (pCore == NULL)
+  {
+    return S_OK;
+  }
+
+  m_spCore = pCore;
+
+  // connect up the event interface
+  CComPtr<IConnectionPointContainer>  spConnectionContainer;
+
+  hr = m_spCore->QueryInterface( &spConnectionContainer );
+
+  if (SUCCEEDED(hr))
+  {
+    hr = spConnectionContainer->FindConnectionPoint( __uuidof(IWMPEvents), &m_spConnectionPoint );
+  }
+
+  if (SUCCEEDED(hr))
+  {
+    hr = m_spConnectionPoint->Advise( GetUnknown(), &m_dwAdviseCookie );
+
+    if ((FAILED(hr)) || (0 == m_dwAdviseCookie))
     {
-        return S_OK;
+      m_spConnectionPoint = NULL;
     }
+  }
 
-    m_spCore = pCore;
+  // Causes error
+  // if (SUCCEEDED(hr))
+  // {
+  //   hr = m_spCore->QueryInterface(&m_spWMPPlayer);
+  // }
 
-    // connect up the event interface
-    CComPtr<IConnectionPointContainer>  spConnectionContainer;
-
-    hr = m_spCore->QueryInterface( &spConnectionContainer );
-
-    if (SUCCEEDED(hr))
-    {
-        hr = spConnectionContainer->FindConnectionPoint( __uuidof(IWMPEvents), &m_spConnectionPoint );
-    }
-
-    if (SUCCEEDED(hr))
-    {
-        hr = m_spConnectionPoint->Advise( GetUnknown(), &m_dwAdviseCookie );
-
-        if ((FAILED(hr)) || (0 == m_dwAdviseCookie))
-        {
-            m_spConnectionPoint = NULL;
-        }
-    }
-  /* / only causes error
-    if (SUCCEEDED(hr))
-    {
-    hr = m_spCore->QueryInterface(&m_spWMPPlayer);
-  }*/
-
-    return hr;
+  return hr;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -312,8 +315,8 @@ BOOL CWMPNativeSubtitle::CaptionAlreadyAvailable() {
     return true;
   }
       
-    if (spWMPClosedCaption)
-    {
+  if (spWMPClosedCaption)
+  {
     // MessageBox(NULL, TEXT("Interface found"), TEXT("IWMPClosedCaption Interface not null."), MB_OK);
     BSTR smiFileName;
     hr = spWMPClosedCaption->get_SAMIFileName(&smiFileName);
@@ -325,7 +328,8 @@ BOOL CWMPNativeSubtitle::CaptionAlreadyAvailable() {
       ::SysFreeString(smiFileName);
       return isNotEmpty;
     }
-    }
+  }
+
   return FALSE;
 }
 
@@ -341,7 +345,7 @@ void CWMPNativeSubtitle::UpdateMediaFilePath() {
   BSTR sFileName;
   HRESULT hr = m_spCore->get_URL(&sFileName);
   if (FAILMSG(hr))
-    return;
+    return ;
   // 1 for terminating NULL char
   const int sfnSize = SysStringLen(sFileName)+1;
   // will be freed during destruction of object as well
@@ -361,10 +365,12 @@ LPTSTR CWMPNativeSubtitle::GetSubtitleFilePath() {
   HRESULT hr = m_spCore->get_URL(&sFileName);
   if (FAILMSG(hr))
     return NULL;
+
   // 10 extra chars just in case, actually we may need 3/4 max
   const int sfnSize = SysStringLen(sFileName)+10;
   // caller function has the responsibility to free this memory
-  LPTSTR streamFileName = new WCHAR[sfnSize];  // Ref: http://msdn.microsoft.com/en-us/library/ms221240(v=vs.85).aspx
+  // ref MSFT Win32 SysStringLen
+  LPTSTR streamFileName = new WCHAR[sfnSize];
   wcscpy_s(streamFileName, sfnSize, sFileName);
   ::SysFreeString(sFileName);
 

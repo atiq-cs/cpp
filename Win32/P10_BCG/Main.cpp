@@ -444,14 +444,14 @@ void processInput() {
           bIndex -= 2;
           buff[bIndex] = L'\0';
           if (WriteToOutBuffer(buff, bIndex) == FALSE)
-            return;
+            return ;
           bIndex = 0;
 
         }
         else { 
           if (bIndex + 1 > buffsize) {
             WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-            return;
+            return ;
           }
           else
             buff[bIndex++] = ch;
@@ -461,7 +461,7 @@ void processInput() {
       else { 
         if (bIndex + 1 > buffsize) {
           WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-          return;
+          return ;
         }
         else
           buff[bIndex++] = ch;
@@ -477,17 +477,17 @@ void processInput() {
       // write texts from buffer to output
       if (bIndex != 0) {
         if (WriteToOutBuffer(buff, bIndex) == FALSE)
-          return;
+          return ;
         bIndex = 0;
       }
 
       if (whichTag != -1 && EndCode[whichTag][0] != NULL) {
         if (WriteToOutBuffer(EndCode[whichTag], wcslen(EndCode[whichTag])) == FALSE)
-          return;
+          return ;
         whichTag = -1;
       }
       if (endTagS(&spanActive) == FALSE)
-        return;
+        return ;
     }
     else if (ch == '>') {
       if (LOpfound == TRUE) {
@@ -498,12 +498,12 @@ void processInput() {
           // write texts from buffer to output
           if (bIndex != 0) {
             if (WriteToOutBuffer(buff, bIndex) == FALSE)
-              return;
+              return ;
             bIndex = 0;
           }
 
           if (endTagS(&spanActive) == FALSE)
-            return;
+            return ;
           if (codingMode == 1)
             codingMode = 0;
         }
@@ -516,7 +516,7 @@ void processInput() {
           //wcscpy_s(currentTag, 250, currentTag);
           if (writeCodeForTag(currentTag, &spanActive, &divActive, &tagStarted) == FALSE) {
             writeError(10);
-            return;
+            return ;
           }
 
           //wsprintf(str, L"string: %ls", currentStarttag);
@@ -528,7 +528,7 @@ void processInput() {
         if (tagStarted == TRUE) {
           if (bIndex+4>buffsize) {
             WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-            return;
+            return ;
           }
           else {
             buff[bIndex] = NULL;
@@ -546,14 +546,14 @@ void processInput() {
       else if (LOpfound == TRUE) {
         if (tagIndex > tagLimit) {
           writeError(2);
-          return;
+          return ;
         }
         currentTag[tagIndex++] = ch;
       }
       else if (tagStarted == TRUE)
         if (bIndex + 1 > buffsize) {
           WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-          return;
+          return ;
         }
         else
           buff[bIndex++] = ch;
@@ -562,7 +562,7 @@ void processInput() {
       if (LOpfound == TRUE) {
         if (tagIndex > tagLimit) {
           writeError(2);
-          return;
+          return ;
         }
         currentTag[tagIndex++] = ch;
       }
@@ -573,7 +573,7 @@ void processInput() {
             case L' ':
               if (bIndex+6>buffsize) {
                 WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-                return;
+                return ;
               }
               else {
                 buff[bIndex] = NULL;
@@ -584,7 +584,7 @@ void processInput() {
             case L'\t':
               if (bIndex+24>buffsize) {
                 WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-                return;
+                return ;
               }
               else {
                 buff[bIndex] = NULL;
@@ -595,7 +595,7 @@ void processInput() {
             default:
               if (bIndex + 1 > buffsize) {
                 WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-                return;
+                return ;
               }
               else
                 buff[bIndex++] = ch;
@@ -604,7 +604,7 @@ void processInput() {
         else {
           if (bIndex + 1 > buffsize) {
             WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-            return;
+            return ;
           }
           else
             buff[bIndex++] = ch;
@@ -620,19 +620,19 @@ void processInput() {
 
           if (bIndex + 1 > buffsize) {
             WriteToOutBuffer(L"Text Buffer Overflow!!", 22);
-            return;
+            return ;
           }
           else
             buff[bIndex++] = ch;
 
           if (writeCodeForTag(L"normal", &spanActive, &divActive, &tagStarted) == FALSE) {
             writeError(10);
-            return;
+            return ;
           }
         }
 
         //writeError(1);
-        //return;
+        //return ;
       }
 
     }
@@ -642,7 +642,7 @@ void processInput() {
 
   if (bIndex != 0) {
     if (WriteToOutBuffer(buff, bIndex) == FALSE)
-      return;
+      return ;
     bIndex = 0;
   }
   endTag(&spanActive, &divActive);

@@ -52,7 +52,7 @@ IMPLEMENT_DYNAMIC(CFileTrace, CFile)
 void CFileTrace::Write(const void* lpBuf, UINT nCount)
 {
   if (!afxTraceEnabled)
-    return;  // MFC tracing not enabled
+    return ;  // MFC tracing not enabled
 
   HWND hTraceWnd = ::FindWindow(TRACEWND_CLASSNAME, NULL);
   if (hTraceWnd==NULL)

@@ -232,7 +232,7 @@ void WSPDlg::OnDropFiles(HDROP hDropInfo) {
   UINT Length = DragQueryFile(hDropInfo, 0, 0, 0);
   if (Length == 0) {
     MessageBox(_T("Drag file: an error ocurred."));
-    return;
+    return ;
   }
 
   // Remember to avoid memory leak
@@ -240,7 +240,7 @@ void WSPDlg::OnDropFiles(HDROP hDropInfo) {
   Length = DragQueryFile(hDropInfo, 0, FPath, Length+1);
   if (Length == 0) {
     MessageBox(_T("Drag file: another error ocurred."));
-    return;
+    return ;
   }
 
   // It will automatically update the input edit control

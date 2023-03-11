@@ -4,9 +4,17 @@
 //  Remarks :
 //    - We create a new window class for our control; register it into the system, control window is
 //    created automatically by dialog using resource file.
+//    - Custom Drawing operations implemented
 //    - Hence, scrollbar is automatically added to the control.
 //    - Implements drawing and chat data structure for it
-//    - Two senders randomly selected
+//    - Two senders are randomly selected to simulate sender and recipients of instant messaging
+//
+//   Instantiation flow (moved from ChatUIPainter.h)
+//    - An object of the class is instantiated right after the call of BeginPaint of OnPaint
+//     function
+//    - It is destroyed when that function exits
+//    - Input to this class is the CDC, using which we perform all drawing operations
+//    - We also handle relaled drawing for scrollbar operations, and for future OnSize operation
 //
 //    Demos,
 //    - SQLite DB
@@ -291,23 +299,22 @@ void CChatControl::OnPaint() {
     // Read from database
     // Dummy code to unblock tool-tip for all controls in the dialog
     // CTime timeDate = CTime::GetCurrentTime();
-    // PostChatMessage(TEXT("Saint Atique testing :)"), timeDate);
-    // PostChatMessage(TEXT("Saint Atique double :P testing :POOP"), timeDate);
+    // PostChatMessage(TEXT("test emo 1 :P emo2 :POOP"), timeDate);
 
+    // PAINTSTRUCT ps;
+    // m_pDC = BeginPaint(&ps);
+    // m_pDC->TextOut(0, 0, _T(" "));
+    // EndPaint(&ps);
+    // m_pDC = NULL;
 
-    /*PAINTSTRUCT ps;
-    m_pDC = BeginPaint(&ps);
-    m_pDC->TextOut(0, 0, _T(" "));
-    EndPaint(&ps);
-    m_pDC = NULL;
-    return;*/
+    return ;
   }
 
   if (m_pDC)
     return ;
 
   if (m_ptEnd == CPoint(0,0))
-    return;
+    return ;
 
   PAINTSTRUCT ps;
   m_pDC = BeginPaint(&ps);
@@ -484,7 +491,7 @@ void CChatControl::PostChatMessage(CString chat_message, CTime time_date) {
    * the numbers will be different every time we run.
    * cpp Rand - https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/rand
    */
-    srand( (unsigned)time( NULL ) );
+    srand( (unsigned) time( NULL ) );
   bool isRecievedFromNetwork = (bool) ((rand()) % 2);
   if (isRecievedFromNetwork) {
     m_currentChatItem.sUserName = TEXT("Client 01");

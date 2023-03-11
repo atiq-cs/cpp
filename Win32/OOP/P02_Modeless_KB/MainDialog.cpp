@@ -115,7 +115,7 @@ INT_PTR CALLBACK MainDialog::DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPAR
             }*/
             SetDlgItemText(hDlg, IDC_STATIC_LOG_TEXT, _T("Test data on static text control updated by code"));
         }
-        return bReturn;
+        return breturn ;
     }
 
     // Get the dialog object from the window's user data
@@ -125,7 +125,7 @@ INT_PTR CALLBACK MainDialog::DialogProc(HWND hDlg, UINT msg, WPARAM wParam, LPAR
     {
         bReturn = pDlg->ProcessMessage(hDlg, msg, wParam, lParam);
     }
-    return bReturn;
+    return breturn ;
 }
 
 

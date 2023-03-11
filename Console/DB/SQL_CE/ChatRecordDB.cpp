@@ -36,7 +36,7 @@ CChatRecordDB::CChatRecordDB(BOOL& bSuccess) : /*m_hWndEmployees(NULL), */
     bSuccess = FALSE;
 
     MessageBox(NULL, L"COM Initialization Failure.", L"Employees", MB_OK);
-    return;
+    return ;
   }
 
   bSuccess = TRUE;
@@ -283,7 +283,7 @@ HRESULT CChatRecordDB::CreateDatabase()
    sscedbprop[1].dwPropertyID = DBPROP_SSCE_DBPASSWORD;
    sscedbprop[1].dwOptions = DBPROPOPTIONS_REQUIRED;
    sscedbprop[1].vValue.vt = VT_BSTR;
-   sscedbprop[1].vValue.bstrVal = SysAllocString(L"REVE@ppDB321");
+   sscedbprop[1].vValue.bstrVal = SysAllocString(IM_DB_PASS);
 
    if(NULL == sscedbprop[1].vValue.bstrVal)
    {
@@ -325,10 +325,10 @@ HRESULT CChatRecordDB::CreateDatabase()
   /*
   // Set the properties into the provider's data source object.
   hr = pIDBInitialize->QueryInterface(IID_IDBProperties,(void**)&pIDBProperties);
-  if(FAILED(hr))  
-    {
+  if(FAILED(hr))
+  {
     goto Exit;
-    }
+  }
 
   DBPROP           sscedbprop_open[1];      // for opening database security properties are different
   VariantInit(&sscedbprop_open[0].vValue);
@@ -339,7 +339,7 @@ HRESULT CChatRecordDB::CreateDatabase()
   sscedbprop_open[0].dwPropertyID = DBPROP_SSCE_DBPASSWORD;
   sscedbprop_open[0].dwOptions = DBPROPOPTIONS_REQUIRED;
   sscedbprop_open[0].vValue.vt = VT_BSTR;
-  sscedbprop_open[0].vValue.bstrVal = SysAllocString(L"REVE@ppDB321");
+  sscedbprop_open[0].vValue.bstrVal = SysAllocString(IM_DB_PASS);
   if(NULL == sscedbprop_open[0].vValue.bstrVal)
   {
     hr = E_OUTOFMEMORY;
@@ -357,6 +357,7 @@ HRESULT CChatRecordDB::CreateDatabase()
   {
     goto Exit;
   }
+
   // Initialize the data source.
   hr = pIDBInitialize->Initialize();
   if(FAILED(hr))
@@ -365,9 +366,9 @@ HRESULT CChatRecordDB::CreateDatabase()
   }
 
   // DisplayCurrentThreadErrors();
-    // Get IDBCreateSession interface
-    //
-    hr = pIDBInitialize->QueryInterface(IID_IDBCreateSession, (void**)&m_pIDBCreateSession);
+  // Get IDBCreateSession interface
+  //
+  hr = pIDBInitialize->QueryInterface(IID_IDBCreateSession, (void**)&m_pIDBCreateSession);
   if(FAILED(hr))
   {
     goto Exit;
@@ -471,13 +472,14 @@ HRESULT CChatRecordDB::OpenDatabase()
   VariantInit(&dbprop[0].vValue);    
   VariantInit(&sscedbprop[0].vValue);
 
-    // Create an instance of the OLE DB Provider
-  // Saint Atique: changed from CLSID_SQLSERVERCE_3_5
+  // Create an instance of the OLE DB Provider
+  // Changed from CLSID_SQLSERVERCE_3_5
   hr = CoCreateInstance(  CLSID_SQLSERVERCE, 
         0, 
         CLSCTX_INPROC_SERVER, 
         IID_IDBInitialize, 
         (void**)&pIDBInitialize);
+
   if(FAILED(hr))
   {
     goto Exit;
@@ -507,7 +509,7 @@ HRESULT CChatRecordDB::OpenDatabase()
   sscedbprop[0].dwPropertyID = DBPROP_SSCE_DBPASSWORD;
   sscedbprop[0].dwOptions = DBPROPOPTIONS_REQUIRED;
   sscedbprop[0].vValue.vt = VT_BSTR;
-  sscedbprop[0].vValue.bstrVal = SysAllocString(L"REVE@ppDB321");
+  sscedbprop[0].vValue.bstrVal = SysAllocString(IM_DB_PASS);
   if(NULL == sscedbprop[0].vValue.bstrVal)
   {
     hr = E_OUTOFMEMORY;
@@ -1976,7 +1978,7 @@ HRESULT CChatRecordDB::LoadEmployeePhoto(ILockBytes* pILockBytes)
     DeleteObject(hBrush);
     ReleaseDC(m_hWndEmployees, hDC);
 
-    return;
+    return ;
   }
 
   // Retrieve the device context handle

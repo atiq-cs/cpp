@@ -114,16 +114,16 @@ void SubtractTime (TimeType* TimeObj, const TimeType* diff) {
 
   // Check if time is less then offset
   if (TimeObj->hour < diff->hour)
-    return;
+    return ;
   if (TimeObj->hour == diff->hour) {
     if (TimeObj->minute < diff->minute)
-      return;
+      return ;
     else if (TimeObj->minute == diff->minute) {
       if (TimeObj->second < diff->second)
-        return;
+        return ;
       else if (TimeObj->second == diff->second) {
         if (TimeObj->milisec < diff->milisec)
-          return;
+          return ;
       }
     }
   }

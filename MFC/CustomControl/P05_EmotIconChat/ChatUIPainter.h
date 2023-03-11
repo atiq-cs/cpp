@@ -1,10 +1,3 @@
-// ChatUIPainter.h : header file for custom chat control's drawing operation class
-// This class is responsible for all drawing operation in custom chat control
-// An object of the class is instantiated right after the call of BeginPaint of OnPaint function
-// It is destroyed when that function exits
-// Input to this class is the CDC, with which we perform all drawing operations
-// we also handle relaled drawing for scrollbar operations, and for future OnSize operation
-
 enum CHATBOX_FIELD_TYPE;
 struct CHATBOX_ELEMENT;
 typedef struct CHATBOX_ELEMENT CHATBOX_ELEMENT;

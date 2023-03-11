@@ -134,9 +134,8 @@ BOOL CMainDlg::OnInitDialog()
   SetIcon(m_hIcon, TRUE);      // Set big icon
   SetIcon(m_hIcon, FALSE);    // Set small icon
 
-  // TODO: Add extra initialization here
   // each dialog control has special bitmaps
-  //emoPopUpBmp.AutoLoad(IDC_EMOPOP, this);
+  // emoPopUpBmp.AutoLoad(IDC_EMOPOP, this);
 
   //emoPopUpBmp.SizeToContent();
   /*
@@ -147,7 +146,7 @@ BOOL CMainDlg::OnInitDialog()
         TRACE("Unable To create ToolTip\n");
         return TRUE;
     }
-  // ref: http://msdn.microsoft.com/en-us/library/s2y2wf56(v=vs.110).aspx
+  // ref, MFC CToolTipCtrl
   // The lpRectTool and nIDTool parameters must both be valid, or if lpRectTool is NULL, nIDTool must be 0.
   //VERIFY(m_pTooltip->AddTool(&buttonTest, _T("smileee text over here unbelievable!!!")));
 
@@ -156,7 +155,7 @@ BOOL CMainDlg::OnInitDialog()
   pBWnd = GetDlgItem(IDOK);
   VERIFY(m_pTooltip->AddTool(pBWnd, _T("smileee text over here unbelievable!!!")));
   //this->EnableToolTips();
-  // ref:http://msdn.microsoft.com/en-us/library/7tabdbhs(v=vs.110).aspx 
+  // ref, https://learn.microsoft.com/en-us/cpp/mfc/reference/ctooltipctrl-class
   m_pTooltip->Activate(TRUE);
   */
 
@@ -164,8 +163,8 @@ BOOL CMainDlg::OnInitDialog()
 
   // Test Insertion of information
   // primarily important operation here is to sent the text and print
-  /*CTime timeDate = CTime::GetCurrentTime();
-  m_ChatEmoBox.PostChatMessage(TEXT("Saint Atique testing"), timeDate);*/
+  // CTime timeDate = CTime::GetCurrentTime();
+  // m_ChatEmoBox.PostChatMessage(TEXT("testing 1"), timeDate);
   // m_chatBoxEditCtrl.SetWindowText(_T(""));
 
   return TRUE;  // return TRUE  unless you set the focus to a control
@@ -226,7 +225,7 @@ void CMainDlg::OnBnClickedOk()
   CString m_chInText;    // chat input text
   // CEdit *chatBoxEditCtrl = (CEdit *) GetDlgItem(IDC_EDIT_CHAT_IN);
   //if (chatBoxEditCtrl == NULL)
-    //return;
+    //return ;
   //chatBoxEditCtrl->GetWindowText(m_chInText);
   m_chatBoxEditCtrl.GetWindowText(m_chInText);
   //GetDlgItemText(IDC_EDIT_CHAT_IN, m_chInText);
@@ -261,7 +260,7 @@ void CMainDlg::OnSize(UINT nType, int cx, int cy)
     isMinimized = true;
   }*/
   if (cx==0 && cy==0)
-    return;
+    return ;
   /*CRect rc;
   GetWindowRect(&rc);
   ClientToScreen(rc);
@@ -292,7 +291,7 @@ void CMainDlg::OnSize(UINT nType, int cx, int cy)
 
   CEdit *chatBoxEditCtrl = (CEdit *) GetDlgItem(IDC_EDIT_CHAT_IN);
   if (chatBoxEditCtrl == NULL)
-    return;
+    return ;
     if (::IsWindow(m_chatBoxEditCtrl.GetSafeHwnd()))
   {
     int xEditBox = cx/15;
@@ -304,7 +303,7 @@ void CMainDlg::OnSize(UINT nType, int cx, int cy)
 
    CButton *buttonCtl = (CButton *) GetDlgItem(IDOK);
   if (buttonCtl == NULL)
-    return;
+    return ;
 
    if (::IsWindow(buttonCtl->GetSafeHwnd()))
    {

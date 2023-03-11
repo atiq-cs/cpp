@@ -98,13 +98,13 @@ void CxSkinButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
       if ((GetState() & BST_PUSHED) != BST_PUSHED) {
         //TRACE("* Inconsistency up detected! Fixing.\n");
         SetState(TRUE);
-        return;
+        return ;
       }
     } else {
       if ((GetState() & BST_PUSHED) == BST_PUSHED) {
         //TRACE("* Inconsistency up detected! Fixing.\n");
         SetState(FALSE);
-        return;
+        return ;
       }
     }
   }
@@ -196,9 +196,9 @@ void CxSkinButton::DrawBitmap(CDC* dc, HBITMAP hbmp, RECT r, int DrawMode)
 //  DrawMode: 0=Normal; 1=stretch; 2=tiled fill
   if(DrawMode==2){
     FillWithBitmap(dc,hbmp,r);
-    return;
+    return ;
   }
-  if(!hbmp) return;  //safe check
+  if(!hbmp) return ;  //safe check
 
   int cx=r.right  - r.left;
   int cy=r.bottom - r.top;
@@ -248,7 +248,7 @@ void CxSkinButton::DrawBitmap(CDC* dc, HBITMAP hbmp, RECT r, int DrawMode)
 /////////////////////////////////////////////////////////////////////////////
 void CxSkinButton::FillWithBitmap(CDC* dc, HBITMAP hbmp, RECT r)
 {
-  if(!hbmp) return;
+  if(!hbmp) return ;
   CDC memdc;
   memdc.CreateCompatibleDC(dc);
   memdc.SelectObject(hbmp);
