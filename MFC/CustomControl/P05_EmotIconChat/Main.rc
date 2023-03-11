@@ -1,0 +1,344 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+  "#ifndef APSTUDIO_INVOKED\r\n"
+  "#include ""targetver.h""\r\n"
+  "#endif\r\n"
+  "#include ""afxres.h""\r\n"
+  "#include ""verrsrc.h""\r\n"
+  "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+  "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+  "#define _AFX_NO_OLE_RESOURCES\r\n"
+  "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+  "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+  "\r\n"
+  "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+  "LANGUAGE 9, 1\r\n"
+  // "#include ""res\\Main.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+  "#include ""afxres.rc""      // Standard components\r\n"
+  "#endif\r\n"
+  "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Main.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Main"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "Main, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2013",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_Main_DIALOG DIALOGEX 0, 0, 533, 277
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Custom Control to Support Emot Icon"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_CHAT_IN,36,180,461,57,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL
+    DEFPUSHBUTTON   "Send",IDOK,447,247,50,15
+    CONTROL         "EmotIcons",IDC_EMOPOP,"Button",BS_OWNERDRAW | BS_BITMAP | WS_TABSTOP,7,182,27,20
+    CONTROL         "",IDC_CHATCUSTOM,"CChatControl",WS_VSCROLL | WS_TABSTOP,36,18,461,148
+END
+
+IDD_DIALOG_EMOPOP DIALOGEX 0, 64, 166, 113
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+  CONTROL         "",IDC_BUTTON_EMO01,"Button",BS_OWNERDRAW | WS_TABSTOP,4,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO02,"Button",BS_OWNERDRAW | WS_TABSTOP,24,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO03,"Button",BS_OWNERDRAW | WS_TABSTOP,44,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO04,"Button",BS_OWNERDRAW | WS_TABSTOP,64,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO05,"Button",BS_OWNERDRAW | WS_TABSTOP,84,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO06,"Button",BS_OWNERDRAW | WS_TABSTOP,104,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO07,"Button",BS_OWNERDRAW | WS_TABSTOP,124,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO08,"Button",BS_OWNERDRAW | WS_TABSTOP,146,4,16,14
+  CONTROL         "",IDC_BUTTON_EMO09,"Button",BS_OWNERDRAW | WS_TABSTOP,4,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO10,"Button",BS_OWNERDRAW | WS_TABSTOP,24,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO11,"Button",BS_OWNERDRAW | WS_TABSTOP,44,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO12,"Button",BS_OWNERDRAW | WS_TABSTOP,64,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO13,"Button",BS_OWNERDRAW | WS_TABSTOP,84,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO14,"Button",BS_OWNERDRAW | WS_TABSTOP,104,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO15,"Button",BS_OWNERDRAW | WS_TABSTOP,124,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO16,"Button",BS_OWNERDRAW | WS_TABSTOP,146,22,16,14
+  CONTROL         "",IDC_BUTTON_EMO17,"Button",BS_OWNERDRAW | WS_TABSTOP,4,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO18,"Button",BS_OWNERDRAW | WS_TABSTOP,24,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO19,"Button",BS_OWNERDRAW | WS_TABSTOP,44,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO20,"Button",BS_OWNERDRAW | WS_TABSTOP,64,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO21,"Button",BS_OWNERDRAW | WS_TABSTOP,84,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO22,"Button",BS_OWNERDRAW | WS_TABSTOP,104,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO23,"Button",BS_OWNERDRAW | WS_TABSTOP,124,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO24,"Button",BS_OWNERDRAW | WS_TABSTOP,146,40,16,14
+  CONTROL         "",IDC_BUTTON_EMO25,"Button",BS_OWNERDRAW | WS_TABSTOP,4,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO26,"Button",BS_OWNERDRAW | WS_TABSTOP,24,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO27,"Button",BS_OWNERDRAW | WS_TABSTOP,44,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO28,"Button",BS_OWNERDRAW | WS_TABSTOP,64,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO29,"Button",BS_OWNERDRAW | WS_TABSTOP,84,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO30,"Button",BS_OWNERDRAW | WS_TABSTOP,104,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO31,"Button",BS_OWNERDRAW | WS_TABSTOP,124,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO32,"Button",BS_OWNERDRAW | WS_TABSTOP,146,58,16,14
+  CONTROL         "",IDC_BUTTON_EMO33,"Button",BS_OWNERDRAW | WS_TABSTOP,4,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO34,"Button",BS_OWNERDRAW | WS_TABSTOP,24,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO35,"Button",BS_OWNERDRAW | WS_TABSTOP,44,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO36,"Button",BS_OWNERDRAW | WS_TABSTOP,64,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO37,"Button",BS_OWNERDRAW | WS_TABSTOP,84,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO38,"Button",BS_OWNERDRAW | WS_TABSTOP,104,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO39,"Button",BS_OWNERDRAW | WS_TABSTOP,124,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO40,"Button",BS_OWNERDRAW | WS_TABSTOP,146,76,16,14
+  CONTROL         "",IDC_BUTTON_EMO41,"Button",BS_OWNERDRAW | WS_TABSTOP,4,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO42,"Button",BS_OWNERDRAW | WS_TABSTOP,24,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO43,"Button",BS_OWNERDRAW | WS_TABSTOP,44,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO44,"Button",BS_OWNERDRAW | WS_TABSTOP,64,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO45,"Button",BS_OWNERDRAW | WS_TABSTOP,84,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO46,"Button",BS_OWNERDRAW | WS_TABSTOP,104,94,16,14
+  CONTROL         "",IDC_BUTTON_EMO47,"Button",BS_OWNERDRAW | WS_TABSTOP,124,94,16,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "Demo Corp"
+      VALUE "FileDescription", "Main"
+      VALUE "FileVersion", "1.0.0.1"
+      VALUE "InternalName", "Main.exe"
+      VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+      VALUE "OriginalFilename", "Main.exe"
+      VALUE "ProductName", "TODO: <Product name>"
+      VALUE "ProductVersion", "1.0.0.1"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+      VALUE "Translation", 0x409, 1200
+  END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+  IDD_ABOUTBOX, DIALOG
+  BEGIN
+      LEFTMARGIN, 7
+      RIGHTMARGIN, 163
+      TOPMARGIN, 7
+      BOTTOMMARGIN, 55
+  END
+
+  IDD_Main_DIALOG, DIALOG
+  BEGIN
+      LEFTMARGIN, 7
+      TOPMARGIN, 7
+  END
+
+  IDD_DIALOG_EMOPOP, DIALOG
+  BEGIN
+      LEFTMARGIN, 7
+      RIGHTMARGIN, 162
+      TOPMARGIN, 7
+      BOTTOMMARGIN, 112
+  END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BMP_SMILE01         BITMAP                  "res\\emot_icons.bmp"
+IDB_BMP_EMOPOP_UP       BITMAP                  "res\\emoPopU.bmp"
+IDB_BMP_EMOPOP_DOWN     BITMAP                  "res\\emoPopD.bmp"
+IDB_BMP_EMOPOP_FOCUS    BITMAP                  "res\\emoPopF.bmp"
+IDB_BMP_DELIV_STATUS_01     BITMAP              "res\\deliv\\im_sending.bmp"
+IDB_BMP_DELIV_STATUS_02     BITMAP              "res\\deliv\\im_pending.bmp"
+IDB_BMP_DELIV_STATUS_03     BITMAP              "res\\deliv\\im_sent.bmp"
+IDB_BMP_DELIV_STATUS_04     BITMAP              "res\\deliv\\im_fail.bmp"
+IDB_BMP_EMOTICON_01     BITMAP                  "res\\bmps\\EI01_Happy.bmp"
+IDB_BMP_EMOTICON_02     BITMAP                  "res\\bmps\\EI02_Sad.bmp"
+IDB_BMP_EMOTICON_03     BITMAP                  "res\\bmps\\EI03_ToothHappy.bmp"
+IDB_BMP_EMOTICON_04     BITMAP                  "res\\bmps\\EI04_LOL.bmp"
+IDB_BMP_EMOTICON_05     BITMAP                  "res\\bmps\\EI05_worried.bmp"
+IDB_BMP_EMOTICON_06     BITMAP                  "res\\bmps\\EI06_surprised.bmp"
+IDB_BMP_EMOTICON_07     BITMAP                  "res\\bmps\\EI07_angry.bmp"
+IDB_BMP_EMOTICON_08     BITMAP                  "res\\bmps\\EI08_inlove.bmp"
+IDB_BMP_EMOTICON_09     BITMAP                  "res\\bmps\\EI09_vampire.bmp"
+IDB_BMP_EMOTICON_10     BITMAP                  "res\\bmps\\EI10_Straightface.bmp"
+IDB_BMP_EMOTICON_11     BITMAP                  "res\\bmps\\EI11_cry.bmp"
+IDB_BMP_EMOTICON_12     BITMAP                  "res\\bmps\\EI12_blushing.bmp"
+IDB_BMP_EMOTICON_13     BITMAP                  "res\\bmps\\EI13_curlylips.bmp"
+IDB_BMP_EMOTICON_14     BITMAP                  "res\\bmps\\EI14_kiss.bmp"
+IDB_BMP_EMOTICON_15     BITMAP                  "res\\bmps\\EI15_pacman.bmp"
+IDB_BMP_EMOTICON_16     BITMAP                  "res\\bmps\\EI16_unsure.bmp"
+IDB_BMP_EMOTICON_17     BITMAP                  "res\\bmps\\EI17_wink.bmp"
+IDB_BMP_EMOTICON_18     BITMAP                  "res\\bmps\\EI18_glass.bmp"
+IDB_BMP_EMOTICON_19     BITMAP                  "res\\bmps\\EI19_grumpy.bmp"
+IDB_BMP_EMOTICON_20     BITMAP                  "res\\bmps\\EI20_upset.bmp"
+IDB_BMP_EMOTICON_21     BITMAP                  "res\\bmps\\EI21_sunglasses.bmp"
+IDB_BMP_EMOTICON_22     BITMAP                  "res\\bmps\\EI22_confused.bmp"
+IDB_BMP_EMOTICON_23     BITMAP                  "res\\bmps\\EI23_angel.bmp"
+IDB_BMP_EMOTICON_24     BITMAP                  "res\\bmps\\EI24_devil.bmp"
+IDB_BMP_EMOTICON_25     BITMAP                  "res\\bmps\\EI25_penguin.bmp"
+IDB_BMP_EMOTICON_26     BITMAP                  "res\\bmps\\EI26_heart.bmp"
+IDB_BMP_EMOTICON_27     BITMAP                  "res\\bmps\\EI27_laugh.bmp"
+IDB_BMP_EMOTICON_28     BITMAP                  "res\\bmps\\EI28_sleepy.bmp"
+IDB_BMP_EMOTICON_29     BITMAP                  "res\\bmps\\EI29_poop.bmp"
+IDB_BMP_EMOTICON_30     BITMAP                  "res\\bmps\\EI30_emabarassed.bmp"
+IDB_BMP_EMOTICON_31     BITMAP                  "res\\bmps\\EI31_cross.bmp"
+IDB_BMP_EMOTICON_32     BITMAP                  "res\\bmps\\EI32_Tears.bmp"
+IDB_BMP_EMOTICON_33     BITMAP                  "res\\bmps\\EI33_chuckle.bmp"
+IDB_BMP_EMOTICON_34     BITMAP                  "res\\bmps\\EI34_wave.bmp"
+IDB_BMP_EMOTICON_35     BITMAP                  "res\\bmps\\EI35_6hammer.bmp"
+IDB_BMP_EMOTICON_36     BITMAP                  "res\\bmps\\EI36_8goat.bmp"
+IDB_BMP_EMOTICON_37     BITMAP                  "res\\bmps\\EI37_rose.bmp"
+IDB_BMP_EMOTICON_38     BITMAP                  "res\\bmps\\EI38_shhh.bmp"
+IDB_BMP_EMOTICON_39     BITMAP                  "res\\bmps\\EI39_thinking.bmp"
+IDB_BMP_EMOTICON_40     BITMAP                  "res\\bmps\\EI40_Thumbs_up.bmp"
+IDB_BMP_EMOTICON_41     BITMAP                  "res\\bmps\\EI41_thumbsdown.bmp"
+IDB_BMP_EMOTICON_42     BITMAP                  "res\\bmps\\EI42_V-Sign.bmp"
+IDB_BMP_EMOTICON_43     BITMAP                  "res\\bmps\\EI43_birthday.bmp"
+IDB_BMP_EMOTICON_44     BITMAP                  "res\\bmps\\EI44_tea.bmp"
+IDB_BMP_EMOTICON_45     BITMAP                  "res\\bmps\\EI45_fist.bmp"
+IDB_BMP_EMOTICON_46     BITMAP                  "res\\bmps\\EI46_88bored.bmp"
+IDB_BMP_EMOTICON_47     BITMAP                  "res\\bmps\\EI47_broken_heart.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG_SMILE01         PNG                     "res\\cry_15px.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PHOTO
+//
+
+IDR_PHOTO_SUYAMA        PHOTO   DISCARDABLE     "res\\users\\Suyama.BMP"
+IDR_PHOTO_BUCHANAN      PHOTO   DISCARDABLE     "res\\users\\buchanan.BMP"
+IDR_PHOTO_CALLAHAN      PHOTO   DISCARDABLE     "res\\users\\Callahan.bmp"
+IDR_PHOTO_DAVOLIO       PHOTO   DISCARDABLE     "res\\users\\davolio.BMP"
+IDR_PHOTO_DODSWORTH     PHOTO   DISCARDABLE     "res\\users\\Dodsworth.BMP"
+IDR_PHOTO_FULLER        PHOTO   DISCARDABLE     "res\\users\\fuller.BMP"
+IDR_PHOTO_KING          PHOTO   DISCARDABLE     "res\\users\\King.BMP"
+IDR_PHOTO_LEVERLING     PHOTO   DISCARDABLE     "res\\users\\leverling.bmp"
+IDR_PHOTO_PEACOCK       PHOTO   DISCARDABLE     "res\\users\\peacock.BMP"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About Main..."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+// #include "res\Main.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"      // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
