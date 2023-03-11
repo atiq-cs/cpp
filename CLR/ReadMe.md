@@ -4,7 +4,7 @@ This summary mostly contains OLEDb connection, querying examples from CLR Projec
 - access db
 - mdb
 
-And, the Dictionary project.
+And, the Dictionary project. Not sure, if this was a reference we followed, however, there is an ODBC Windows-classic-samples at Refs section at the bottom.
 
 **P01 - Bangla Dictionary**  
 Feels like the Form header files are mixed up between Form2 and Form21. I think the mess up is created by brining Form2 over from an earlier project (not sure if we directly copied it over). In addition, not sure if we need following files,
@@ -145,3 +145,4 @@ We encountered `System.invalidException` which we fixed.
 
 **Refs**  
 - [MSFT - Windows Forms Keys Enum](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.keys)
+- [Windows-classic-samples - ODBC](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/dataaccess/odbc)
