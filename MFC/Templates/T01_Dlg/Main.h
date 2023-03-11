@@ -1,5 +1,5 @@
 
-// Main.h : main header file for the PROJECT_NAME application
+// Main.h : main header file for the Dlg Template 1 application
 //
 
 #pragma once
