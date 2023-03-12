@@ -4,6 +4,8 @@ Demos,
 - SQL CE
 
 
+When possible look at in-memory database Redis instead. ref, [stackshare - Redis vs SQLite](https://stackshare.io/stackups/redis-vs-sqlite#:~:text=Redis%20can%20be%20classified%20as,reasons%20why%20SQLite%20is%20favored.)
+
 However, the database loading part is commented out in MainDlg for now.
 
 
@@ -42,6 +44,14 @@ Delete the instance after handling `dlg.DoModal()`'s response in same method,
       delete g_pChatRecords;
       g_pChatRecords = NULL;
     }
+
+
+**SQLite**  
+SQLite is Preinstalled on iOS and Android.
+Related materials,  
+- [Books List, sqlite.org](https://www.sqlite.org/books.html)
+- Michael Owens - [The Definitive Guide to SQLite](https://link.springer.com/book/10.1007/978-1-4302-0172-4)
+- [Chris Newman - SQLite](https://www.goodreads.com/book/show/1984913.SQLite), ref, `sqlite-developers.chm`
 
 
 **Refs**
