@@ -241,15 +241,16 @@ HRESULT CChatRecordDB::CreateDatabase()
   // Create an instance of the OLE DB Provider
   // changed from CLSID_SQLSERVERCE_3_5
   /*hr = CoCreateInstance(  CLSID_SQLSERVERCE, 
-          0, 
-          CLSCTX_INPROC_SERVER, 
-          IID_IDBInitialize, 
-          (void**) &pIDBInitialize);*/
+        0, 
+        CLSCTX_INPROC_SERVER, 
+        IID_IDBInitialize, 
+        (void**) &pIDBInitialize);*/
+
   hr = CoCreateInstance(  CLSID_SQLSERVERCE, 
-          0, 
-          CLSCTX_INPROC_SERVER, 
-          IID_IDBDataSourceAdmin, 
-          (void**) &pIDBDataSourceAdmin);
+        0, 
+        CLSCTX_INPROC_SERVER, 
+        IID_IDBDataSourceAdmin, 
+        (void**) &pIDBDataSourceAdmin);
 
   if(FAILED(hr))
   {
@@ -263,8 +264,8 @@ HRESULT CChatRecordDB::CreateDatabase()
 
   // Initialize a property with name of database
   dbprop[0].dwPropertyID    = DBPROP_INIT_DATASOURCE;
-  dbprop[0].dwOptions      = DBPROPOPTIONS_REQUIRED;
-  dbprop[0].vValue.vt      = VT_BSTR;
+  dbprop[0].dwOptions       = DBPROPOPTIONS_REQUIRED;
+  dbprop[0].vValue.vt       = VT_BSTR;
   dbprop[0].vValue.bstrVal  = SysAllocString(IM_DEMO_APP_DATABASE);
 
   if(NULL == dbprop[0].vValue.bstrVal)
@@ -317,10 +318,11 @@ HRESULT CChatRecordDB::CreateDatabase()
   // Create and initialize data store
   //
   hr = pIDBDataSourceAdmin->CreateDataSource(sizeof(dbpropset)/sizeof(dbpropset[0]), dbpropset, NULL, IID_IUnknown, &pIUnknownSession);
+
   if(FAILED(hr))  
-    {
+  {
     goto Exit;
-    }
+  }
 
   /*
   // Set the properties into the provider's data source object.
@@ -460,13 +462,13 @@ Exit:
 ////////////////////////////////////////////////////////////////////////////////
 HRESULT CChatRecordDB::OpenDatabase()
 {
-    HRESULT           hr        = NOERROR;  // Error code reporting
+  HRESULT           hr        = NOERROR;  // Error code reporting
   DBPROP        dbprop[1];          // property used in property set to initialize provider
   DBPROPSET      dbpropset[2];        // Property Set used to initialize provider
   DBPROP        sscedbprop[1];      // for opening database security properties are different
 
 
-    IDBInitialize       *pIDBInitialize = NULL;    // Provider Interface Pointer
+  IDBInitialize       *pIDBInitialize = NULL;    // Provider Interface Pointer
   IDBProperties       *pIDBProperties  = NULL;    // Provider Interface Pointer
 
   VariantInit(&dbprop[0].vValue);    
@@ -475,10 +477,10 @@ HRESULT CChatRecordDB::OpenDatabase()
   // Create an instance of the OLE DB Provider
   // Changed from CLSID_SQLSERVERCE_3_5
   hr = CoCreateInstance(  CLSID_SQLSERVERCE, 
-        0, 
-        CLSCTX_INPROC_SERVER, 
-        IID_IDBInitialize, 
-        (void**)&pIDBInitialize);
+      0, 
+      CLSCTX_INPROC_SERVER, 
+      IID_IDBInitialize, 
+      (void**) &pIDBInitialize);
 
   if(FAILED(hr))
   {
