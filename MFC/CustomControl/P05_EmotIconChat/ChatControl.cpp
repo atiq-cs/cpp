@@ -744,13 +744,16 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
     CString csPreviousDate;    // previous date
     if (m_iChatItemInsertionIndex > 0)
       csPreviousDate = m_vChatRecords[m_iChatItemInsertionIndex-1].timedate.Format(_T("%B %d, %Y"));
-    // set date font
+
+    // Set date font
     if (m_pOldFont == NULL)
       m_pOldFont = m_pDC->SelectObject(&m_dateFont);
     else
       m_pDC->SelectObject(&m_dateFont);
+
     int preY = m_ptStart.y;
-    // add vertical space from second time
+
+    // Add vertical space from second time
     if (!csPreviousDate.IsEmpty() && sCurrentDate != csPreviousDate)
       m_ptStart.y += m_yCharDate;
 
@@ -761,9 +764,9 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
 
       // add vertical space between chat items when headingText is different
       CHATBOX_ELEMENT tmp = { ElemDateType, sCurrentDate, m_ptStart, size };
-      //chatUIElements.push_back(tmp);
+      // chatUIElements.push_back(tmp);
 
-      // ref: http://stackoverflow.com/questions/671423/c-stl-vectors-get-iterator-from-index
+      // ref, http://stackoverflow.com/questions/671423/c-stl-vectors-get-iterator-from-index
       vUIElements.push_back(tmp);
       m_ptStart.y += m_yCharDate;
     }
@@ -781,6 +784,7 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
       m_pOldFont = m_pDC->SelectObject(&m_headingFont);
     else
       m_pDC->SelectObject(&m_headingFont);
+
     int preY = m_ptStart.y;
     // add space from second time
     if (!csPreviousName.IsEmpty() && csPreviousName != chatItem.sUserName)
@@ -796,7 +800,7 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
       CHATBOX_ELEMENT tmp = { ElemNameType, chatItem.sUserName, m_ptStart, size };
       // chatUIElements.push_back(tmp);
 
-     // ref: http://stackoverflow.com/questions/671423/c-stl-vectors-get-iterator-from-index
+     // ref, http://stackoverflow.com/questions/671423/c-stl-vectors-get-iterator-from-index
       vUIElements.push_back(tmp);
       m_ptStart.y += m_yCharHeading;
     }
@@ -805,7 +809,7 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
   }
   case FieldMessageType:
   {
-    // set chat text font
+    // Set chat text font
     m_pDC->SelectObject(m_textFont);
     CPoint oldPoint = m_ptStart;
 
@@ -829,7 +833,7 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
     // get extent of time Text
     CSize size = m_pDC->GetOutputTextExtent(sCurrentTime);
     // does ChatUIPainter has knowledge on where the starting drawing point of time would be??
-    // let' see we have 
+    // let's see, we have 
     CPoint ptTime = CPoint(m_cxChatText, m_ptStart.y);
     CHATBOX_ELEMENT tmp = { ElemTimeType, sCurrentTime, ptTime, size };
     vUIElements.push_back(tmp);
@@ -837,7 +841,7 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
   }
   case FieldDeliveryStatusType:
   {
-    // set font for time
+    // Set font for time
     if (m_pOldFont == NULL)
       m_pOldFont = m_pDC->SelectObject(&m_timeFont);
     else
@@ -846,10 +850,12 @@ int CChatControl::AddPaintElement(CHATBOX_ITEM& chatItem, CHATBOX_FIELD_TYPE str
     CPoint delivPtStart(m_cxChatText+m_cxTimeWidth+1, m_ptStart.y);
     CHATBOX_ELEMENT tmp = { ElemDeliveryStatusType, TEXT(""), delivPtStart, CPoint(m_cxDeliveryStatusWidth, m_cxDeliveryStatusWidth) };
     vUIElements.push_back(tmp);
-    // got it from previous message drawing calculation
+
+    // Got it from previous message drawing calculation
     m_ptStart.y += m_cyChatItem;
     return 0;
   }
+
   default:
     return 0;
   }
