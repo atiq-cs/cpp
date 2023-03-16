@@ -138,6 +138,10 @@ We can use `GetDlgItem` to set/retrieve text. Here's an example, how to set,
     // set text using the control variable retrieved
     staticText->SetWindowText(str);
 
+
+**Modeless Dialogs**  
+[Nish Nishant - Modeless Dialogs with MFC](https://www.codeproject.com/Articles/1651/Tutorial-Modeless-Dialogs-with-MFC)
+
 **Access Main Window Frame in Timer Proc**  
 Use of `CWnd::PostMessage` in Timer Callback Proc,
 Example code,
