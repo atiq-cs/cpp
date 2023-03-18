@@ -1,7 +1,9 @@
 ### Learning Resources
-Listing,  
+**Listing**,  
 - [Command Line Parsing Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/CommandLineParsing.md)
+- [Unicode Conversion Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/UnicodeConversion.md)
 - [WINVER def ref on Win32 ReadMe](../../Win32/Tutorials#target-platforms-win32)
+
 
 ### Teaching Assignments
 
@@ -201,7 +203,7 @@ A Screenshot from the 'Rich Edit Control' Sample is presented below,
 On the contrary, *CustomDialog* creates a second dialog from resource file Dialog Definition (dlg id) (not reproduced here since it's easy to create!).
 
 ### Adding Controls By Hand
-As per [MSFT - MFC UI Elements - Adding Controls By Hand](https://learn.microsoft.com/en-us/cpp/mfc/adding-controls-by-hand), we can either add controls to a dialog box with the dialog editor or add them yourself, with code.
+As per [MSFT - MFC UI Elements - Adding Controls By Hand](https://learn.microsoft.com/en-us/cpp/mfc/adding-controls-by-hand), we can either add controls to a dialog box with the dialog editor or add them yourself, with code. Also, look at VC Sample on Custom Control.
 
 **Window Styles**  
 For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
@@ -211,6 +213,41 @@ For Edit Controls, `ES_MULTILINE` specifies multi-line, example,
 
 
 ref, *P06_CEdit\P6_CEdit.cpp*, 06-26-2010
+
+**ToolTip**  
+How to add a ToolTip, following code segment extracted,
+
+First, we add following in `MainDlg::OnInitDialog()`,
+
+```cpp
+m_pTooltip = new CToolTipCtrl;
+if(!m_pTooltip->Create(this, WS_POPUP | TTS_ALWAYSTIP))
+{
+  TRACE("Unable To create ToolTip\n");
+  return TRUE;
+}
+
+// ref: http://msdn.microsoft.com/en-us/library/s2y2wf56(v=vs.110).aspx
+// The lpRectTool and nIDTool parameters must both be valid, or if lpRectTool is NULL, nIDTool must be 0.
+// CWnd* pWnd = GetDlgItem(IDC_BUTTON_TEST);
+VERIFY(m_pTooltip->AddTool(&m_Btn, _T("smileee text over here unbelievable!!!")));
+// CToolInfo ti(TTF_SUBCLASS, buttonTest, 0, NULL, _T ("bla-bla-bla")); 
+// EnableToolTips();
+// ref, http://msdn.microsoft.com/en-us/library/7tabdbhs(v=vs.110).aspx 
+m_pTooltip->Activate(TRUE);
+```
+
+Second, in `PreTranslateMessage`, we enable relaying of the tooltip messages,
+
+```cpp
+BOOL MainDlg::PreTranslateMessage(MSG* pMsg)
+{
+	if (nullptr != m_pTooltip)            
+      m_pTooltip->RelayEvent(pMsg);
+
+	return CDialogEx::PreTranslateMessage(pMsg);
+}
+```
 
 **ScreenSaver App**  
 ref, 'p18_ScreenSaver02\ScreenSaver.cpp', 04-13-2011
