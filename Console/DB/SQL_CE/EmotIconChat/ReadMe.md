@@ -4,6 +4,7 @@ During earlier deveopment of SQL CE DB Ops we had this console driver program wh
 - ChatRecordDB.h
 
 ref, DbOperations.cpp, 12-19-2013
+
 ```cpp
 #include "stdafx.h"
 #include <sqlce_oledb.h>

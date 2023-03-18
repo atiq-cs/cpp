@@ -5,7 +5,7 @@
 //  sqlite3.h
 //  sqlite3.lib
 // linked against sqlite3.lib
-// Output DB file Name: sea.s3db
+// Output DB file Name: 'sea.s3db'
 //
 
 #include <iostream>
@@ -101,17 +101,17 @@ int addDataRow()
 {
   // get the student data from user 
   student stud = getStudent();
-  //cout << stud.getName() << endl;
+  // cout << stud.getName() << endl;
   std::stringstream strm;
   strm << "insert into student(roll,name,cgpa) values(" << stud.getid() << ",'" << stud.getName() << "'," << stud.getcgpa() << ")";
 
   string s = strm.str();
   char *str = &s[0];
-  //cout << str << endl;
+  // cout << str << endl;
   
   sqlite3_stmt *statement;
   int result;
-  //char *query="insert into student(roll,name,cgpa)values(4,'uuu',6.6)";
+  // char *query="insert into student(roll,name,cgpa)values(4,'uuu',6.6)";
   char *query = str;
   {
     if(sqlite3_prepare(dbfile,query,-1,&statement,0)==SQLITE_OK)
@@ -142,11 +142,11 @@ int updateRow()
 
   string s = strm.str();
   char *str = &s[0];
-  //cout << str << endl;
+  // cout << str << endl;
   
   sqlite3_stmt *statement;
   int result;
-  //char *query="update student set cgpa=3.66 where roll=11";
+  // char *query="update student set cgpa=3.66 where roll=11";
   char *query = str;  
   
   {
@@ -192,7 +192,7 @@ int deleteRow()
   
   return 0;
 }
-  
+
 void getTableData()
 {
   sqlite3_stmt *statement;  

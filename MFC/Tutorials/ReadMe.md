@@ -2,6 +2,7 @@
 **Listing**,  
 - [Command Line Parsing Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/CommandLineParsing.md)
 - [Unicode Conversion Ref](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/UnicodeConversion.md)
+- [VC Samples](https://github.com/atiq-cs/cpp/blob/dev/MFC/Tutorials/VCSamples.md)
 - [WINVER def ref on Win32 ReadMe](../../Win32/Tutorials#target-platforms-win32)
 
 
