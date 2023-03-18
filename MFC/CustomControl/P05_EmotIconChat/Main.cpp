@@ -75,13 +75,13 @@ BOOL CMainApp::InitInstance()
 
   MSG Msg;
   while(GetMessage(&Msg, NULL, 0, 0))
-    {
+  {
     if(!IsDialogMessage(pdlgModeless->GetSafeHwnd(), &Msg))
-        {
-            TranslateMessage(&Msg);
-            DispatchMessage(&Msg);
-        }
-    }*/
+    {
+      TranslateMessage(&Msg);
+      DispatchMessage(&Msg);
+    }
+  }*/
 
   // Since the dialog has been closed, return FALSE so that we exit the
   //  application, rather than start the application's message pump.

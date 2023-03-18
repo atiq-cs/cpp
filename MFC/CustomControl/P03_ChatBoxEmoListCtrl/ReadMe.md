@@ -1,13 +1,13 @@
 ### Chat Box with Emot Icon Support
 *Not a custom control project, but it's here to be grouped together with Emot Icon related projects!*
 
-Original files from 08-05-2014 without modifications!
-
 **App Output**  
 An app screenshot of the chat box is showed in screenshot below,  
   
-![Chat Box with Emot Ico Screenshot](https://user-images.githubusercontent.com/7858031/221368040-2a500631-c886-4d47-9777-c9dccaf2de85.png)
+![Chat Box with Emot Icon Screenshot](https://user-images.githubusercontent.com/7858031/226075385-66a0c3b1-c5f3-4412-9856-bfd7ae4cad0c.png)
 
 
 **Refs**  
-- [MSFT Docs - Custom Controls Tech Note](https://learn.microsoft.com/en-us/cpp/mfc/tn014-custom-controls)
+*Most of the refs are inside 'ListCtrlEmo.cpp'*,  following refs are extracted from the function `OnNMCustomdrawListEmo` documentation on comments,
+1. [MSFT Docs - About Custom Draw](https://learn.microsoft.com/en-us/windows/win32/controls/about-custom-draw)
+2. [MSFT msdn - Developing Custom Draw Controls in Visual C++](https://learn.microsoft.com/en-us/previous-versions/ms364048\(v=vs.80\))

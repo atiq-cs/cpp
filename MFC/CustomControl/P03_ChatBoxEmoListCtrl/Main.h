@@ -11,14 +11,14 @@
 #include "resource.h"    // main symbols
 
 
-// CEmoSAApp:
+// CMyApp:
 // See Main.cpp for the implementation of this class
 //
 
-class CEmoSAApp : public CWinApp
+class CMyApp : public CWinApp
 {
 public:
-  CEmoSAApp();
+  CMyApp();
 
 // Overrides
 public:
@@ -29,4 +29,4 @@ public:
   DECLARE_MESSAGE_MAP()
 };
 
-extern CEmoSAApp theApp;
+extern CMyApp theApp;

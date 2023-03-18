@@ -7,3 +7,7 @@
 - Spin Control
 - Bitmap Button
 - Owner Drawing (Menu and List Box)
+
+
+**Refs**  
+- [MSFT Listing - Visual Studio C++ Samples](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-samples)

@@ -11,16 +11,16 @@
 #endif
 
 
-// CEmoSAApp
+// CMyApp
 
-BEGIN_MESSAGE_MAP(CEmoSAApp, CWinApp)
+BEGIN_MESSAGE_MAP(CMyApp, CWinApp)
   ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CEmoSAApp construction
+// CMyApp construction
 
-CEmoSAApp::CEmoSAApp()
+CMyApp::CMyApp()
 {
   // support Restart Manager
   m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
@@ -30,14 +30,14 @@ CEmoSAApp::CEmoSAApp()
 }
 
 
-// The one and only CEmoSAApp object
+// The one and only CMyApp object
 
-CEmoSAApp theApp;
+CMyApp theApp;
 
 
-// CEmoSAApp initialization
+// CMyApp initialization
 
-BOOL CEmoSAApp::InitInstance()
+BOOL CMyApp::InitInstance()
 {
   // InitCommonControlsEx() is required on Windows XP if an application
   // manifest specifies use of ComCtl32.dll version 6 or later to enable

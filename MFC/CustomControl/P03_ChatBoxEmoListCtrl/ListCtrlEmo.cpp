@@ -184,30 +184,32 @@ void CListCtrlEmo::CalculateItemRect( int nIndex, CRect& rect )
 // CListCtrlEmo message handlers
 //
 
-// ** good ref on custom draw
-// http://msdn.microsoft.com/en-us/library/windows/desktop/ff919569(v=vs.85).aspx
 void CListCtrlEmo::OnNMCustomdrawListEmo(NMHDR *pNMHDR, LRESULT *pResult)
 {
-  // ref: http://msdn.microsoft.com/en-us/library/ms364048(v=vs.80).aspx
+  // ref 2 of ReadMe
   // NMCUSTOMDRAW, LPNMCUSTOMDRAW  is for Rebar, trackbar, and header
   // NMLVCUSTOMDRAW, LPNMLVCUSTOMDRAW for list-view
-  //  Example, http://msdn.microsoft.com/en-us/library/ms364048(v=vs.80).aspx
   LPNMLVCUSTOMDRAW lpLVCustomDraw = reinterpret_cast<LPNMLVCUSTOMDRAW>(pNMHDR);
 
   // TODO: Add your control notification handler code here
   switch(lpLVCustomDraw->nmcd.dwDrawStage) {
-  /*  ref: http://msdn.microsoft.com/en-us/library/windows/desktop/ff919569(v=vs.85).aspx#CustomDraw_Prepaint
-    At the beginning of each paint cycle, the control sends the NM_CUSTOMDRAW notification code, specifying the CDDS_PREPAINT value in the dwDrawStage member of the \
-    accompanying NM_CUSTOMDRAW structure. The value that your application returns to this first notification dictates how and when the control sends subsequent custom \
-    draw notifications for the rest of that paint cycle.  */
+  // ref 2 of ReadMe, section CustomDraw_Prepaint
+  //
+  // At the beginning of each paint cycle, the control sends the NM_CUSTOMDRAW notification code,
+  // specifying the CDDS_PREPAINT value in the dwDrawStage member of the accompanying
+  // `NM_CUSTOMDRAW` structure. The value that your application returns to this first
+  // notification dictates how and when the control sends subsequent custom draw notifications
+  // for the rest of that paint cycle.
+  //
   case CDDS_PREPAINT:
     //AfxMessageBox(TEXT("we are in CDDS_PREPAINT"), MB_OK);
     // CDRF_NOTIFYSUBITEMDRAW is invalid in CDDS_PREPAINT
     *pResult |= CDRF_NOTIFYITEMDRAW;
-    //*pResult |= CDRF_DOERASE;
-    //*pResult |= CDRF_NOTIFYPOSTERASE;
-    /* The control will notify the parent of any item-specific drawing operations. It will send NM_CUSTOMDRAW notification codes before and after it draws items. \
-    This occurs when dwDrawStage equals CDDS_PREPAINT. */
+    // *pResult |= CDRF_DOERASE;
+    // *pResult |= CDRF_NOTIFYPOSTERASE;
+    // The control will notify the parent of any item-specific drawing operations. It will send
+    // `NM_CUSTOMDRAW` notification codes before and after it draws items. This occurs when
+    // dwDrawStage equals `CDDS_PREPAINT`.
     break;
   /*case CDDS_ITEMPOSTERASE:
   {
