@@ -1,4 +1,5 @@
 ## Windows SDK and Visual Studio Samples
+- [BasicPlayback](../Win32/Samples/BasicPlayback/), MediaFoundation Player Sample
 
 Most of the old samples are available on
 - [GitHub MSFT Archive](https://github.com/microsoftarchive), [GitHub MSFT Archive Samples Search](https://github.com/microsoftarchive?q=sample&type=all&language=&sort=) root archive containing tons of samples, includes
