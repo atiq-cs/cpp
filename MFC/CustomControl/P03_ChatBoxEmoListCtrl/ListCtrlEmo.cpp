@@ -1,4 +1,4 @@
-// ref, 08-25-2013
+// ref, 08-31-2013
 
 #include "stdafx.h"
 #include "ListCtrlEmo.h"
@@ -34,6 +34,7 @@ int CListCtrlEmo::DrawBitmap(CDC* pDC, CRect* limitRect)
 {
   // load IDB_BMP_SMILE01 from our resources
   CBitmap bmp;
+
   if (bmp.LoadBitmap(IDB_BMP_SMILE01))
   {
     // Get the size of the bitmap
@@ -48,7 +49,7 @@ int CListCtrlEmo::DrawBitmap(CDC* pDC, CRect* limitRect)
     // Select the bitmap into the in-memory DC
     CBitmap* pOldBitmap = dcMemory.SelectObject(&bmp);
 
-    // Find a centerpoint for the bitmap in the client area
+    // Find a center point for the bitmap in the client area
     // CRect rect;
     // GetClientRect(&rect);
     // int nX = limitRect->left + (limitRect->Width() - bmpInfo.bmWidth) / 2;
@@ -64,7 +65,7 @@ int CListCtrlEmo::DrawBitmap(CDC* pDC, CRect* limitRect)
     CImage img;
     img.LoadFromResource(AfxGetResourceHandle(), IDB_BMP_SMILE01);
     img.StretchBlt(dcMemory.m_hDC, 0, 0, limitRect, dimy, 0, 0, img1.GetWidth(), img1.GetHeight(), SRCCOPY);
-    // ref: http://stackoverflow.com/questions/2339702/setting-resized-bitmap-file-to-an-mfc-picture-control
+     ref: http://stackoverflow.com/questions/2339702/setting-resized-bitmap-file-to-an-mfc-picture-control
     and ref: http://social.msdn.microsoft.com/Forums/vstudio/en-US/8a636954-5a3a-4a10-9e84-386ce057b2d9/colour-problems-when-scaling-a-bitmap-with-cdcstretchblt */  
 
     dcMemory.SelectObject(pOldBitmap);
@@ -78,78 +79,92 @@ int CListCtrlEmo::DrawBitmap(CDC* pDC, CRect* limitRect)
   }
 }
 
-void CListCtrlEmo::DrawSelectedItem( CDC& dc, int nIndex ) {
+// does not support Emot icons
+void CListCtrlEmo::DrawSubItem( CDC& dc, int nIndex, int nSubIndex ) {
   // we are drawing single column
   // int subitemCount = GetHeaderCtrl()->GetItemCount();
-
   CRect itemRect;
-  for (int i = 0; i < 1; i++)
+  if (nSubIndex == 0)
   {
-    if (i == 0)
-    {
       CalculateItemRect(nIndex, itemRect);
-    }
-    else if (!GetSubItemRect(nIndex, i, LVIR_BOUNDS, itemRect))
-    {
+  }
+  else if (!GetSubItemRect(nIndex, nSubIndex, LVIR_BOUNDS, itemRect))
+  {
       return ;
-    }
+  }
 
-    CString itemText = GetItemText(nIndex, i);
-    CString emo = TEXT(":)");
-    int n = itemText.Find(emo);    // ref: http://msdn.microsoft.com/en-us/library/aa300543(v=vs.60).aspx
-    int startPos = 0;
-    const int vSpace = 2;
+  // Adjust text rect to not overlap with grid lne and leave some space
+  // DeflateRect deflates CRect by moving its sides toward its center. ref: http://msdn.microsoft.com/en-us/library/w0k1h0f6(v=vs.110).aspx
+  itemRect.DeflateRect(6, 0);
+  dc.DrawText(GetItemText(nIndex, nSubIndex), itemRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
+}
 
-    CRect emoRect(itemRect);
-    emoRect.DeflateRect(6, 0);
+// This is the function implementing supports for Emot icons
+void CListCtrlEmo::DrawSubItemEmo( CDC& dc, int nIndex, int nSubIndex ) {
+  // we are drawing single column
+  CRect itemRect;
+  if (nSubIndex == 0)
+  {
+    CalculateItemRect(nIndex, itemRect);
+  }
+  else if (!GetSubItemRect(nIndex, nSubIndex, LVIR_BOUNDS, itemRect))
+  {
+    return ;
+  }
 
-    while (n != -1) {
-      // get substring before emo
+  CString itemText = GetItemText(nIndex, nSubIndex);
+  CString emo = TEXT(":)");
+
+  // ref: http://msdn.microsoft.com/en-us/library/aa300543(v=vs.60).aspx
+  int n = itemText.Find(emo);
+  int startPos = 0;
+  const int vSpace = 2;
+
+  CRect emoRect(itemRect);
+  CString token;
+  // Adjust text rect to not overlap with grid lne and leave some space
+  // DeflateRect deflates CRect by moving its sides toward its center.
+  // ref, http://msdn.microsoft.com/en-us/library/w0k1h0f6(v=vs.110).aspx
+  emoRect.DeflateRect(6, 0);
+
+  while (n != -1) {
+    // get substring before emo
+    if (n-startPos > 0) {
       // ref: http://msdn.microsoft.com/en-us/library/aa300543(v=vs.60).aspx
-      CString mid = itemText.Mid(startPos, n-startPos);
-      if (! mid.IsEmpty()) {
+      token = itemText.Mid(startPos, n-startPos);
+      if (! token.IsEmpty()) {
         // draw text
         // dc.DrawText(itemText, itemRect, DT_CALCRECT| DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
         // ref: http://msdn.microsoft.com/en-US/library/a6x7y2a4(v=vs.110).aspx
-        dc.DrawText(mid, emoRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
-        emoRect.left += dc.GetTextExtent(mid).cx;    // ref: http://msdn.microsoft.com/en-us/library/z7e878zz(v=vs.110).aspx
+        dc.DrawText(token, emoRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
+        emoRect.left += dc.GetTextExtent(token).cx;    // ref: http://msdn.microsoft.com/en-us/library/z7e878zz(v=vs.110).aspx
       }
-
-      CString dbgStr;
-      dbgStr.Format(TEXT("draw pos x = %d"), emoRect.left);
-      // AfxMessageBox(dbgStr, MB_OK);
-      CRect cpEmoRect(emoRect);
-      int bitmapWidth = DrawBitmap(&dc, &emoRect);
-      if (bitmapWidth==0)
-        AfxMessageBox(TEXT("bitmap width zero"), MB_OK);
-
-      emoRect = cpEmoRect;
-      emoRect.left += bitmapWidth + vSpace;
-      startPos += n + emo.GetLength();
-      n = itemText.Find(emo, startPos);
     }
 
+    //CRect cpEmoRect(emoRect);
+    int bitmapWidth = DrawBitmap(&dc, &emoRect);
+    if (bitmapWidth==0)
+      AfxMessageBox(TEXT("bitmap width zero"), MB_OK);
+
+    // emoRect = cpEmoRect;
+    emoRect.left += bitmapWidth + vSpace;
+    startPos = n + emo.GetLength();
+    n = itemText.Find(emo, startPos);
+
+    /*CString dbgStr;
+    //dbgStr.Format(TEXT("draw pos x = %d"), emoRect.left);
+    dbgStr.Format(TEXT("emo in position = %d"), n);
+    AfxMessageBox(dbgStr, MB_OK);*/
+  }
+
+  if ( itemText.GetLength()-startPos > 0) {
     // ref: http://msdn.microsoft.com/en-us/library/aa300543(v=vs.60).aspx
-    CString mid = itemText.Mid(startPos, itemText.GetLength()-startPos);
-    if (! mid.IsEmpty()) {
-      // ref: http://msdn.microsoft.com/en-US/library/a6x7y2a4(v=vs.110).aspx
-      dc.DrawText(mid, emoRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
-      AfxMessageBox(mid, MB_OK);
+    token = itemText.Mid(startPos, itemText.GetLength()-startPos);
+    if (! token.IsEmpty()) {
+      // ref, http://msdn.microsoft.com/en-US/library/a6x7y2a4(v=vs.110).aspx
+      dc.DrawText(token, emoRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
+      // AfxMessageBox(mid, MB_OK);
     }
- 
-    // Adjust text rect to not overlap with grid lne and leave some space
-    // DeflateRect deflates CRect by moving its sides toward its center.
-    // ref: http://msdn.microsoft.com/en-us/library/w0k1h0f6(v=vs.110).aspx
-        
-    /*// dc.Ellipse(itemRect);
-    emoRect.left += 31;
-    DrawBitmap(&dc, &emoRect);
-    emoRect.left += 18;
-    dc.DrawText(TEXT("Hi"), emoRect, DT_LEFT | DT_NOCLIP | DT_VCENTER | DT_SINGLELINE | DT_END_ELLIPSIS);
-    emoRect.left += 16;
-    DrawBitmap(&dc, &emoRect);
-    // itemRect.DeflateRect(35, 0);
-    DrawBitmap(&dc, &itemRect);*/
   }
 }
  
@@ -165,9 +180,12 @@ void CListCtrlEmo::CalculateItemRect( int nIndex, CRect& rect )
   }
 }
 
+//
+// CListCtrlEmo message handlers
+//
+
 // ** good ref on custom draw
 // http://msdn.microsoft.com/en-us/library/windows/desktop/ff919569(v=vs.85).aspx
-// CListCtrlEmo message handlers
 void CListCtrlEmo::OnNMCustomdrawListEmo(NMHDR *pNMHDR, LRESULT *pResult)
 {
   // ref: http://msdn.microsoft.com/en-us/library/ms364048(v=vs.80).aspx
@@ -203,47 +221,39 @@ void CListCtrlEmo::OnNMCustomdrawListEmo(NMHDR *pNMHDR, LRESULT *pResult)
   }*/
   case CDDS_ITEMPREPAINT:
   {
-    // this implementation ref: http://sheenspace.wordpress.com/2011/01/07/custom-drawing-selected-item-rows-in-windows-list-view-control/
+    // this implementation ref
+    // http://sheenspace.wordpress.com/2011/01/07/custom-drawing-selected-item-rows-in-windows-list-view-control
+    //
     // lpLVCustomDraw is pointer to NMLVCUSTOMDRAW structure
     //int itemIndex = lpLVCustomDraw->nmcd.dwItemSpec;
 
     // Can't use (lplvcd->nmcd.uItemState | CDIS_SELECTED) to tell whether item is selected
     // when List-View control has style LVS_SHOWSELALWAYS.
     // See http://msdn.microsoft.com/en-us/library/bb775483(v=vs.85).aspx
-    /*UINT selectState = GetItemState(itemIndex, LVIS_SELECTED);
-    if (selectState == LVIS_SELECTED)
+    int itemIndex = lpLVCustomDraw->nmcd.dwItemSpec;
+    // int subItemIndex = lpLVCustomDraw->iSubItem;
+    // if (subItemIndex == 0) {
+    CDC dc;
+    if (dc.Attach(lpLVCustomDraw->nmcd.hdc))
     {
-      lpLVCustomDraw->clrTextBk = RGB(0, 0, 255);
-      CDC dc;
-      if (dc.Attach(lpLVCustomDraw->nmcd.hdc))
-      {
-          DrawSelectedItem(dc, itemIndex);
-          dc.Detach();
-      }
-     *pResult = CDRF_SKIPDEFAULT;
+      DrawSubItemEmo(dc, itemIndex, 0);
+      DrawSubItem(dc, itemIndex, 1);
+      dc.Detach();
     }
-    else*/
-      *pResult |= CDRF_NOTIFYSUBITEMDRAW;
+
+    *pResult |= CDRF_SKIPDEFAULT;
+
+    //}
+    /*else {  // for declaration of dc
+      //*pResult |= CDRF_NOTIFYSUBITEMDRAW;
+      *pResult = CDRF_DODEFAULT;
+    }*/
+    // *pResult |= CDRF_NOTIFYSUBITEMDRAW;
 
     break;
   }
   case CDDS_ITEMPREPAINT | CDDS_SUBITEM:
   {
-    int itemIndex = lpLVCustomDraw->nmcd.dwItemSpec;
-    int subItemIndex = lpLVCustomDraw->iSubItem;
-    if (subItemIndex == 0) {
-      CDC dc;
-      if (dc.Attach(lpLVCustomDraw->nmcd.hdc))
-      {
-        DrawSelectedItem(dc, itemIndex);
-        dc.Detach();
-      }
-      *pResult |= CDRF_SKIPDEFAULT;
-    }
-    else {  // for declaration of dc
-      // *pResult |= CDRF_NOTIFYSUBITEMDRAW;
-      *pResult = CDRF_DODEFAULT;
-    }
     /*if ((lpLVCustomDraw->nmcd.dwItemSpec + lpLVCustomDraw->iSubItem) % 2) {
       lpLVCustomDraw->clrText = CLR_DEFAULT;
       lpLVCustomDraw->clrTextBk = CLR_DEFAULT;
@@ -252,6 +262,7 @@ void CListCtrlEmo::OnNMCustomdrawListEmo(NMHDR *pNMHDR, LRESULT *pResult)
       lpLVCustomDraw->clrText = RGB(255,255,255); // white text
       lpLVCustomDraw->clrTextBk = RGB(0,0,0); // black background
     }
+
     {
       // this implementation ref: http://sheenspace.wordpress.com/2011/01/07/custom-drawing-selected-item-rows-in-windows-list-view-control/
       // lpLVCustomDraw is pointer to NMLVCUSTOMDRAW structure
@@ -264,13 +275,14 @@ void CListCtrlEmo::OnNMCustomdrawListEmo(NMHDR *pNMHDR, LRESULT *pResult)
       if (selectState == LVIS_SELECTED)
       {
         lpLVCustomDraw->clrTextBk = RGB(0, 0, 255);
-
         CDC dc;
+
         if (dc.Attach(lpLVCustomDraw->nmcd.hdc))
         {
             DrawSelectedItem(dc, itemIndex);
             dc.Detach();
         }
+
         *pResult = CDRF_SKIPDEFAULT;
       }
       else
