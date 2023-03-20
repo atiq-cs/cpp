@@ -1,6 +1,8 @@
 ### Ping GUI
 *a.k.a Ping GUI (penguin misspelled)* is a **Net Notifier cross platform app**  
   
+![Story of Ping GUI](https://user-images.githubusercontent.com/7858031/226458697-cf6241a2-be95-48ff-a20c-1e4cf2beb5b6.jpg)
+  
 **TODO: Migrate to MAUI**  
 Perform Ping/ICMP, DNS lookup using this one tool including command line support.
 
@@ -31,6 +33,11 @@ Ping in progress,
 Tray Notification,
 
 ![App Tray Notification screenshot](https://user-images.githubusercontent.com/7858031/221957356-537d282e-829d-4b30-b3d3-566ef3a592be.png)
+  
+
+On Win7, Tray notification looks slightly different,  
+  
+![Windows 7 Tray Notification](https://user-images.githubusercontent.com/7858031/226458827-ccc132cc-097a-4ac4-a67e-46824be5498d.png)
 
 Please open github issue if you have any suggestion/feedback.
 
