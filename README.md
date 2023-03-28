@@ -71,5 +71,9 @@ For debug builds, we need to create the debug dir,
 **Refs**  
 - [MSFT Docs - Walkthrough: Compile a C program on the command line](https://learn.microsoft.com/en-us/cpp/build/walkthrough-compile-a-c-program-on-the-command-line)
 - [MSFT Docs - Release Builds and Optimizations](https://learn.microsoft.com/en-us/cpp/build/release-builds)
-- ref for '.gitignore': [GitHub C++ `.gitignore`](https://github.com/github/gitignore/blob/main/C%2B%2B.gitignore), single vs double asterisks, ref, [henriquesd - The .gitignore File
-](https://henriquesd.medium.com/the-gitignore-file-dc293f6c80fb)
+
+
+**gitignore Refs**  
+- '.gitignore': [GitHub C++ `.gitignore`](https://github.com/github/gitignore/blob/main/C%2B%2B.gitignore)
+- Single vs double asterisks, [henriquesd - The .gitignore File](https://henriquesd.medium.com/the-gitignore-file-dc293f6c80fb)
+- old repo, [OOP-Win32-CPP/.gitignore](https://github.com/atiq-cs/cpp/blob/dev/Win32/git_ignore.md)

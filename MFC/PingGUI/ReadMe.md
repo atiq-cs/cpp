@@ -44,7 +44,7 @@ Please open github issue if you have any suggestion/feedback.
 Same approach to implement Tray Notification is used in [CD Eject](../../Win32/P14_CDEject/) project!
 `Shell_NotifyIcon` for `NIM_MODIFY` and `NIM_ADD` had been fixed in latest revision! We should also check and fix if required for the CD Eject project!
 
-** Tray Notification Ref**  
+**Tray Notification Ref**  
 Including Balloon Notifications,  
 - [Win7 Sample - NotificationIcon](https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/winui/shell/appshellintegration/NotificationIcon), and, [MSFT Docs for the sample](https://learn.microsoft.com/en-us/windows/win32/shell/samples-notificationicon)
 - [MSFT - Display the Notification](https://learn.microsoft.com/en-us/windows/win32/shell/notification-area#display-the-notification)

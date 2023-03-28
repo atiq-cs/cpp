@@ -57,3 +57,4 @@ from the linker!
 
 **Refs**  
 - Win Classic Media Foundation Sample [MSFT on Github  - MFPlayer2](https://github.com/microsoft/Windows-classic-samples/tree/main/Samples/Win7Samples/multimedia/mediafoundation/MFPlayer2), [MSFT Docs - medfound](https://learn.microsoft.com/en-us/windows/win32/medfound/mfplayer2-sample)
+- Media Foundation - [Transcode, Broadcast and Stream Live Video](https://github.com/mediafoundation/media-server)

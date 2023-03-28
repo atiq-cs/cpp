@@ -18,6 +18,7 @@
 // Demos file drops and reading file path from the drop
 //   how to use Transcode API to convert vidoes/ how to call transcode methods
 // This file will only have inclusions for UI
+//
 
 #include "MFConverter.h"
 #include "MainDialog.h"
