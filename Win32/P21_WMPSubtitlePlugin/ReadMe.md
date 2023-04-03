@@ -21,6 +21,9 @@ Features,
 - Launching MS Store Apps from COM
 - Subtitle Converter (from on Sub format to another)
 - Properly detecting encoding of input text file
+  - UTF-8 with and without BOM
+  - Conversion from Unicode UTF-8 text to Unicode UTF-16 (Windows), utilizes MultiByteToWideChar`
+
 
 *Build Instructions for this project is at [build doc](https://github.com/atiq-cs/cpp/blob/dev/Win32/P21_WMPSubtitlePlugin/Build.md)*. Target platform for the build is defined at 'StdAfx.h'.
 

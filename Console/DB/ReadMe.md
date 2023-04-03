@@ -60,6 +60,7 @@ Delete the instance after handling `dlg.DoModal()`'s response in same method,
       g_pChatRecords = NULL;
     }
 
+
 **Northwind Ole DB Samples**  
 Contains following,
 
@@ -123,3 +124,5 @@ Related materials,
 - [Chris Newman - SQLite](https://www.goodreads.com/book/show/1984913.SQLite), ref, `sqlite-developers.chm`
 
 
+**General DB Refs**
+- [VC ODBC Database Sample](https://github.com/microsoft/VCSamples/tree/master/VC2012Samples/ODBC%20Database%20sample)

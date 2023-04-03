@@ -3,7 +3,7 @@
 // encoding.cpp : Implementation of encoding contexts
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //
-// Use of tchar library
+// Use of TCHAR library
 // Author: Atiq Rahman
 /////////////////////////////////////////////////////////////////////////////
 

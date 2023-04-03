@@ -26,3 +26,35 @@ Motley of code related to,
 - Date / time conversion
 - Sys Tray Notification
 - C++ string manipulation, read/write file
+
+
+**Tray Notif in Common Shell**  
+Previously, in AddNotificationIcon, we had,
+
+```cpp
+// We already loaded the icon in `hIcon`
+// When we use m_hIcon which is created using LoadIcon in the constructor, just doesn't work
+HICON hIcon = (HICON) LoadImage( //load up the icon:
+  hInst, //get the HINSTANCE to this program
+  MAKEINTRESOURCE(dwIcon), //grab the icon out of our resource file
+  IMAGE_ICON, // tells the versatile LoadImage function that we are loading an icon
+  16, 16, //x and y values. we want a 16x16-pixel icon for the tray.
+  LR_DEFAULTCOLOR);
+
+if (IsWin7OrLater()) {
+  nid.hBalloonIcon  = hIcon;
+}
+else {
+  nid.hIcon  = hIcon;
+}
+```
+
+However, we went with alternative coz it requires ID from 'resource.h',
+
+    LoadIconMetric(hInst, MAKEINTRESOURCE(IDR_MAINFRAME), LIM_SMALL, &nid.hIcon);
+
+
+Similarly, we went with alternative coz it requires ID: `IDS_TOOLTIP` from 'resource.h',
+
+    LoadString(hInst, IDS_TOOLTIP, lpszTip, nid.szTip, ARRAYSIZE(nid.szTip));
+

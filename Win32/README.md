@@ -54,3 +54,14 @@ Turns out latest VS CL doesn't show generation of pch files! In case we need it 
 
 2. C ++ the application has failed to start because the application configuration is incorrect? How to fix?  
  This happened a few times when the .sln file was targetting "/SUBSYSTEM:Console" However, project was a Win32 App.
+
+
+**Tray Notification / Balloon**  
+`Common\Shell\TrayNotification.cpp` implements following,
+- AddNotificationIcon
+- ShowBalloon
+- IsWin7OrLater
+
+
+**icon Refs**  
+- [rw designer - online ico maker](http://www.rw-designer.com/online_icon_maker.php) including favicons, 10-15-2009
